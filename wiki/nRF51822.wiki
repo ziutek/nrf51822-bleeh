@@ -1,4 +1,4 @@
-#Bluetooth low energy and 2.4GHz proprietary SoC
+#Summary Bluetooth low energy and 2.4GHz proprietary SoC
 
 = Introduction =
 
@@ -16,17 +16,17 @@ The nRF51822 supports the SoftDevices below (click on the icons for details).
 = Feature =
 
  
-*Single chip, highly flexible, 2.4GHz multi-protocol device
-*32-bit ARM Cortex M0 CPU core
-*256KB flash 16KB RAM
-*Supports Bluetooth low energy protocol stacks
-*Thread safe and run-time protected
-*Event driven API
-*On air compatible with nRF24L series
-*3 data rates (2Mbps/1Mbps/250kbps)
-*+4dBm output power
-*-93dBm sensitivity, Bluetooth low energy
-*PPI system for maximum power-efficient applications and code simplification
-*Flexible power management system with automatic power management of each peripheral
-*Configurable I/O mapping for analog and digital I/O
+* Single chip, highly flexible, 2.4GHz multi-protocol device
+* 32-bit ARM Cortex M0 CPU core
+* 256KB flash 16KB RAM
+* Supports Bluetooth low energy protocol stacks
+* Thread safe and run-time protected
+* Event driven API
+* On air compatible with nRF24L series
+* 3 data rates (2Mbps/1Mbps/250kbps)
+* +4dBm output power
+* -93dBm sensitivity, Bluetooth low energy
+* PPI system for maximum power-efficient applications and code simplification
+* Flexible power management system with automatic power management of each peripheral
+* Configurable I/O mapping for analog and digital I/O
  
