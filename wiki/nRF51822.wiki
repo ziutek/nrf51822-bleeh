@@ -30,4 +30,17 @@ The nRF51822 supports the Softdevices below (click on the icons for details).
  * PPI system for maximum power-efficient applications and code simplification
  * Flexible power management system with automatic power management of each peripheral
  * Configurable I/O mapping for analog and digital I/O
+
+=Applications=
+
+ * Mobile phone accessories
+ * Wearables
+ * PC peripherals
+ * Consumer Electronics (CE) remote controls
+ * Proximity/Alert sensors
+ * Sports, fitness and healthcare sensors
+ * Smart RF tags
+ * Toys and electronic games
+ * Intelligent domestic appliances
+ * Industrial and commercial sensors
  
