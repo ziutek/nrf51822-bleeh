@@ -1,4 +1,4 @@
-#Summary Bluetooth low energy and 2.4GHz proprietary SoC
+#summary Bluetooth low energy and 2.4GHz proprietary SoC
 
 = Introduction =
 
@@ -8,25 +8,25 @@ nRF51822 supports Bluetooth low energy protocol stacks as well as 2.4GHz protoco
 nRF51 SDK provides extensive software support for both Bluetooth low energy and 2.4GHz proprietary applications.
 nRF51822 is available in 6x6mm 48-pin QFN packages and 3.5x3.8mm 64 ball wafer-level chip-scale packages (WLCSP).
 nRF51822 is available in either 256k or 128kB Flash size variants.
-Nordic Semiconductor protocol stacks are known as SoftDevices. SoftDevices are pre-compiled, pre-linked binary files. SoftDevices can be programmed in nRF51 series SoCs and are downloadable from the Nordic web.
-The nRF51822 supports the SoftDevices below (click on the icons for details).
+Nordic Semiconductor protocol stacks are known as Softdevices. Softdevices are pre-compiled, pre-linked binary files. Softdevices can be programmed in nRF51 series SoCs and are downloadable from the Nordic web.
+The nRF51822 supports the Softdevices below (click on the icons for details).
  Bluetooth low energy peripheral/broadcaster role protocol stack
  Bluetooth low energy 8-link central/observer role protocol stack
 
 = Feature =
 
  
-* Single chip, highly flexible, 2.4GHz multi-protocol device
-* 32-bit ARM Cortex M0 CPU core
-* 256KB flash 16KB RAM
-* Supports Bluetooth low energy protocol stacks
-* Thread safe and run-time protected
-* Event driven API
-* On air compatible with nRF24L series
-* 3 data rates (2Mbps/1Mbps/250kbps)
-* +4dBm output power
-* -93dBm sensitivity, Bluetooth low energy
-* PPI system for maximum power-efficient applications and code simplification
-* Flexible power management system with automatic power management of each peripheral
-* Configurable I/O mapping for analog and digital I/O
+ * Single chip, highly flexible, 2.4GHz multi-protocol device
+ * 32-bit ARM Cortex M0 CPU core
+ * 256KB flash 16KB RAM
+ * Supports Bluetooth low energy protocol stacks
+ * Thread safe and run-time protected
+ * Event driven API
+ * On air compatible with nRF24L series
+ * 3 data rates (2Mbps/1Mbps/250kbps)
+ * +4dBm output power
+ * -93dBm sensitivity, Bluetooth low energy
+ * PPI system for maximum power-efficient applications and code simplification
+ * Flexible power management system with automatic power management of each peripheral
+ * Configurable I/O mapping for analog and digital I/O
  
