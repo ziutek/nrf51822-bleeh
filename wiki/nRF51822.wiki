@@ -14,6 +14,89 @@ Nordic Semiconductor protocol stacks are known as Softdevices. Softdevices are p
 The nRF51822 supports the Softdevices below (click on the icons for details).
 ||[https://www.nordicsemi.com/eng/Products/Bluetooth-R-low-energy/nRF51822# https://www.nordicsemi.com/var/ezwebin_site/storage/images/media/special-icons/s110/655984-10-eng-GB/S110_special_icon.png]||[https://www.nordicsemi.com/eng/Products/Bluetooth-R-low-energy/nRF51822# https://www.nordicsemi.com/var/ezwebin_site/storage/images/media/special-icons/s120/655987-8-eng-GB/S120_special_icon.png]||
 
+#summary Specifications for nRF51822 SoC
+
+= Specifications =
+
+Ultra low power consumption
+ 
+6.3 mA - TX at -4 dBm (3V using on-chip DC-DC)
+8.1 mA - TX at 0 dBm (3V using on-chip DC-DC)
+8 mA - TX at -4 dBm(No DCDC)
+10.5 mA - TX at 0 dBm(No DC-DC)
+13 mA - RX at 1 Mbps
+0.6 µA - Sleep, no RAM retention
+1.2 µA - 8 KB RAM retention
+2.6 µA - All peripherals in idle mode
+ 
+2.4GHz Multi-protocol Radio
+ 
+Multi-protocol radio
++4 dBm to -20 dBm output power
+-93 dBm RX sensitivity Bluetooth low energy mode
+-96 dBm RX sensitivity at 250 kbs
+-90 dBm RX sensitivity at 1 Mbs
+-85 dBm RX sensitivity at 2 Mbs
+2 Mbps/1 Mbps/250 kbps programmable on air data rate
+Excellent co-existence performance
+Compatible with 16 MHz ± 40 ppm crystal
+ 
+CPU
+ 
+32-bit ARM® Cortex™ M0 32-bit CPU
+ 
+Memory
+ 
+256/128 KB embedded flash
+16 KB RAM
+ 
+System Peripherals
+ 
+One 32 and two 16 bit timers with counter mode
+16 channel CPU independent Programmable Peripheral Interconnect (PPI)
+Encryption -128 bit AES ECB/CCM/AAR co-processor
+RNG
+RTC
+Temperature sensor
+ 
+GPIO
+ 
+Flexible GPIO pin configuration
+31 GPIO
+Up to 4 PWM
+ 
+Digital I/O
+ 
+Digital interfaces SPI Master/Slave, 2-wire Master (I2C compatible), UART (CTS/RTS)
+Quadrature decoder
+ 
+Analog I/O
+ 
+8/9/10 bit ADC - 8 configurable channels
+Low power comparator
+ 
+Oscillators
+ 
+16MHz XO
+16MHz RCOSC
+32HHx XO
+32kHz RCOSC
+ 
+Power Management
+ 
+Wide supply voltage range (1.8 V to 3.6 V)
+Flexible power management scheme
+On-chip DC/DC converter
+0.6 µA @ 3V OFF mode
+1.2 µA @ 3V OFF mode + 1 region RAM retention
+2.6 µA @ 3V ON mode, all blocks in idle mode
+ 
+S110 Bluetooth low energy protocol stack
+ 
+Bluetooth low energy stack
+Protocol manager
+SoC library
+
 = Feature =
 
  
