@@ -15,3 +15,8 @@ In this tutorial I've used nrf51 SDK v.6.0.0.43681.
 More information on setup [https://www.nordicsemi.com/eng/user/login/?next=Products/Bluetooth-Smart-Bluetooth-low-energy/nRF51822-Evaluation-Kit?resource=18974 here] (you must be registered on Nordic Semiconductor's website).
 
 == Hot to download the example code into the board ==
+
+Make sure that KEIL uVision is correctly setted: open the application and click on File>Device Database.. 
+You must see the nRF51822 device in the list.
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/DeviceDatabase.png
+
