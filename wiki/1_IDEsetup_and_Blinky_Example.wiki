@@ -2,14 +2,16 @@
 
 = Introduction =
 
+
+
+== IDE & tools setup ==
+
 Using the Evaluation Kit (PCA10001), you must:
- # download and install Keil MDK-ARM Lite from [https://www.keil.com/demo/eval/arm.htm here]to your hard drive. Keil downloads to c:\Keil\unless you change the location when installing.
+ # download and install Keil MDK-ARM Lite from [https://www.keil.com/demo/eval/arm.htm here] to your hard drive. Keil downloads to c:\Keil\unless you change the location when installing.
  # download and run the J-Link Software and documentation pack for Windows from [http://www.segger.com/jlink-software.html here]. The serial number from your SEGGER J-Link hardware is needed to identify your device.
+ # Register an account on [www.nordicsemi.com www.nordicsemi.com] and enter the product key of your evaluation board. This make it possible to download documents and the nRF51 SDK installer. Be sure to download the installer and not the zipped folder, this avoid annoying setup of the SDK. Finally run the SDK installer.
+In this tutorial I've used nrf51 SDK v.6.0.0.43681.
 
+More information on setup [https://www.nordicsemi.com/eng/user/login/?next=Products/Bluetooth-Smart-Bluetooth-low-energy/nRF51822-Evaluation-Kit?resource=18974 here] (you must be registered on Nordic Semiconductor's website).
 
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+== Hot to download the example code into the board ==
