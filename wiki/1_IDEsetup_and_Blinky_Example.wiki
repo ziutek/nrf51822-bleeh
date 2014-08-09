@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary Setup of MDK-ARM IDE and download of blinky example on the Evaluation board PCA10001.
 
 = Introduction =
 
