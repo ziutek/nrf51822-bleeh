@@ -2,7 +2,9 @@
 
 = Introduction =
 
-Add your content here.
+Using the Evaluation Kit (PCA10001), you must:
+ # download and install Keil MDK-ARM Lite from [https://www.keil.com/demo/eval/arm.htm here]to your hard drive. Keil downloads to c:\Keil\unless you change the location when installing.
+ # download and run the J-Link Software and documentation pack for Windows from [http://www.segger.com/jlink-software.html here]. The serial number from your SEGGER J-Link hardware is needed to identify your device.
 
 
 = Details =
