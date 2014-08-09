@@ -1,7 +1,7 @@
 #summary Setup of MDK-ARM IDE and download of blinky example on the Evaluation board PCA10001.
 
 = Introduction =
-Here are described the step to do in order to setup the IDE and run the first example on the nRF51822_EK (PCA100001).
+Here are described the step to follow in order to setup the IDE and run the first example on the nRF51822_EK (PCA100001).
 == IDE & tools setup ==
 
 Using the Evaluation Kit (PCA10001), you must:
