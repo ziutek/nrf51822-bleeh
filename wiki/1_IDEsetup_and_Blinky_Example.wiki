@@ -16,7 +16,10 @@ More information on setup [https://www.nordicsemi.com/eng/user/login/?next=Produ
 
 == Hot to download the example code into the board ==
 
-Make sure that KEIL uVision is correctly setted: open the application and click on File>Device Database.. 
-You must see the nRF51822 device in the list.
+Make sure that KEIL uVision is correctly setted: open the application and click on File>Device Database..
+
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/DeviceDatabase.png
 
+You must see the nRF51822 device in the list.
+
+Once uVision is ok, let's to locate the Blinky project under _<keil path>\ARM\Device\Nordic\nRF51822\Board\PCA10001\blinky_example\arm_.
