@@ -19,3 +19,5 @@ More information on setup [https://www.nordicsemi.com/eng/user/login/?next=Produ
  # Open the Blinky project in Keil μVision by double clicking the _blinky.uvprojfile_.
  # Select nRF51822from the Select Target list and click Buildor press F7to compile the Blinky project.
  # Click the Load icon to download and run the Blinky example firmware. LED 0and LED 1on the PCA10001 should now blink sequentially.
+
+== Debug mode ==
