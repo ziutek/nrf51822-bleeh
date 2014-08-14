@@ -4,9 +4,8 @@
 
 Here are described the setup of a blank project, the hardware to test the comparator (a button and a simple debouncing RC circuit) and the development of the comparator's driver.
 
-= Details =
+= The setup of a blank project =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+= The circuit to test the comparator =
+
+= The comparator's driver =
