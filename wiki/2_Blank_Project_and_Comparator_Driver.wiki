@@ -2,8 +2,7 @@
 
 = Introduction =
 
-Add your content here.
-
+Here are described the setup of a blank project, the hardware to test the comparator (a button and a simple debouncing RC circuit) and the development of the comparator's driver.
 
 = Details =
 
