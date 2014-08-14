@@ -21,6 +21,9 @@ More information on setup [https://www.nordicsemi.com/eng/user/login/?next=Produ
  # Click the Load icon to download and run the Blinky example firmware. LED 0and LED 1on the PCA10001 should now blink sequentially.
 
 == Debug mode ==
-Debug mode, in KEIU uVision, is very complete and full of features. Allow, in combination with the on-board & build-in Segger J-Link, to debug the application right in the evaluation board with different views such as disassebly window, register window, performance analyzer, logic analyzer, instruction trace, etc..
+The debug mode, in KEIU uVision, is very complete and full of features. It allow, in combination with the on-board & build-in Segger J-Link, to debug the application right in the evaluation board with different views such as disassebly window, register window, performance analyzer, logic analyzer, instruction trace, etc..
 Entering in debug mode is very simple: just click on the start/stop debug session button or press Ctrl+F5 on keyboard.
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/debug_button.png
+In debug tab, there are the command to run the application, run it step-by-step, to place/remove the breakpoints, etc.
+In the tab Peripherals->System Viewer->... there are  
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/debug_GPIO.png
