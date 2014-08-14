@@ -28,4 +28,5 @@ In debug tab, there are the command to run the application, run it step-by-step,
 Likewise, in the tab Peripherals->System Viewer->... there are the peripherals registers viewers. Select the one you're interested in to show the window. 
 The following image show the GPIO out register during debugging the Blinky project on nRF51822-EK board.
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/debug_GPIO.png
-Here the LED 1 is ON in fact the corresponding pin 19 is high (1).
+
+At that time the LED 1 was ON. Notice the corresponding pin 19 was high (1).
