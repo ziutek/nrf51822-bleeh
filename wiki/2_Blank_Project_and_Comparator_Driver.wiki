@@ -4,8 +4,8 @@
 
 Here are described the setup of a blank project, the hardware to test the comparator (a button and a simple debouncing RC circuit) and the development of the comparator's driver.
 
-= The setup of a blank project =
+== The setup of a blank project ==
 
-= The circuit to test the comparator =
+== The circuit to test the comparator ==
 
-= The comparator's driver =
+== The comparator's driver ==
