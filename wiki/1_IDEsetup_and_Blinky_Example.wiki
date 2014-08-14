@@ -29,4 +29,4 @@ Likewise, in the tab Peripherals->System Viewer->... there are the peripherals r
 The following image show the GPIO out register during debugging the Blinky project on nRF51822-EK board.
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/debug_GPIO.png
 
-At that time the LED 1 was ON. Notice the corresponding pin 19 was high (1).
+At that time the LED 1 was ON. Notice the corresponding PIN19 was high (1).
