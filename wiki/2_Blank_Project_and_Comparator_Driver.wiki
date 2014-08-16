@@ -8,4 +8,6 @@ Here are described the setup of a blank project, the hardware to test the compar
 
 == The circuit to test the comparator ==
 
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/debouncingRCcircuit.png
+
 == The comparator's driver ==
