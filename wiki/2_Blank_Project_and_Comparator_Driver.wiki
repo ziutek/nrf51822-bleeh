@@ -8,6 +8,7 @@ Here are described the setup of a blank project, the hardware to test the compar
 
 == The circuit to test the comparator ==
 
+To emulate the voltage pulse due to the crossing of the magnet above the coil was build a simple circuit. The circuit consists of a button that trigger a positive voltage an a MCU's comparator pin and a one-pole RC circuit that remove the button's bounces.
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/debouncingRCcircuit.png
 
 == The comparator's driver ==
