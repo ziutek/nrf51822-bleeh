@@ -6,6 +6,8 @@ Here are described the setup of a blank project, the hardware to test the compar
 
 == The setup of a blank project ==
 
+
+
 == The circuit to test the comparator ==
 
 To emulate the voltage pulse due to the crossing of the magnet above the coil was build a simple circuit. The circuit consists of a button (SW1) to trigger a positive voltage (Vcc=3 V) on a MCU's comparator pin (P0.03) and a one-pole RC circuit (R1 and C1) that remove the button's bounces.
