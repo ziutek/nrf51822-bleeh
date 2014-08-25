@@ -10,6 +10,7 @@ Here are described the setup of a blank project, the hardware to test the compar
 
 To emulate the voltage pulse due to the crossing of the magnet above the coil was build a simple circuit. The circuit consists of a button (SW1) to trigger a positive voltage (Vcc=3 V) on a MCU's comparator pin (P0.03) and a one-pole RC circuit (R1 and C1) that remove the button's bounces.
 P3 is the on-board 2x5 male pin header of the PCA10001.
+
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/debouncingRCcircuit.png
 
 The R-C circuit has a charge-time-constant tc=10 ms and a discharge-time-constant td=20 ms thus the mechanical bounces are bypassed and button presses could be detected.
