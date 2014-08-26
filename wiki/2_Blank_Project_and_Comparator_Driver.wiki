@@ -18,8 +18,27 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/ManageR
 To build a blank project select only _CMSIS/CORE_ and _Device/Startup_ .
 
 === CMSIS ===
+
 The Cortex Microcontroller Software Interface Standard (CMSIS) provides a ground-up software framework for embedded applications that run on Cortex-M based microcontrollers. The CMSIS enables consistent and simple software interfaces to the processor and the peripherals, simplifying software reuse, reducing the learning curve for microcontroller developers (see [http://www2.keil.com/docs/default-source/default-document-library/mdk5-getting-started.pdf#page=17 here]).
+
 *CMSIS-CORE*: Defines the API for the Cortex-M processor core and peripherals and includes a consistent system startup code. The software components ::CMSIS:CORE and ::Device:Startup are all you need to create and run applications on the native processor that uses exceptions, interrupts, and device peripherals.
+
+=== Using CMSIS-CORE ===
+
+A native Cortex-M application with CMSIS uses the software component ::CMSIS:CORE, which should be used together with the software component ::Device:Startup. These components provide the following central files:
+ * The startup_<device>.s file with reset handler and exception vectors.
+ * The system_<device>.c configuration file for basic device setup (clock and memory BUS).
+ * The <device>.h include file for user code access to the microcontroller device.
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/UsingCMSIS.png
+
+The <device>.h header file is included in C source files and defines:
+
+ * Peripheral Access with standardized register layout.
+ * Access to Interrupts and Exceptions and the Nested Interrupt Vector Controller (NVIC).
+ * Intrinsic Functions to generate special instructions, for example to activate sleep mode.
+ * Systick Timer (SYSTICK) functions to configure and start a periodic timer interrupt.
+ * Debug Access for printf-style I/O and ITM communication via on-chip CoreSight.
 
 
 
