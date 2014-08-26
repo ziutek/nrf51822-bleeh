@@ -2,7 +2,7 @@
 
 = Introduction =
 
-Here are described the setup of a blank project (see [http://www2.keil.com/docs/default-source/default-document-library/mdk5-getting-started.pdf?sfvrsn=0 this] useful guide), the hardware to test the comparator (a button and a simple debouncing RC circuit) and the development of the comparator's driver.
+Here are described the setup of a blank project (see [http://www2.keil.com/docs/default-source/default-document-library/mdk5-getting-started.pdf this] useful guide), the hardware to test the comparator (a button and a simple debouncing RC circuit) and the development of the comparator's driver.
 
 == The setup of a blank project ==
 
@@ -10,7 +10,18 @@ In uVision 5.10, you can create a new project clicking on _Project->New uVision 
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/select_target.png
 
-Now select the device nRF51822_xxAA and click ok. If the device is not available, probably you've not correctly installed the nRF51 Software Development Kit (SDK).
+Now select the device nRF51822_xxAA and click ok. If the device is not available, probably you've not correctly installed the nRF51 Software Development Kit (SDK). For more information about software packs on MDK 5, see [http://www2.keil.com/docs/default-source/default-document-library/mdk5-getting-started.pdf#page=14 here].
+After selecting the device, the Manage Run-Time Environment window shows the related software components for this device.
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/ManageRunTimeEnvironment.png
+
+To build a blank project select only _CMSIS/CORE_ and _Device/Startup_ .
+
+=== CMSIS ===
+The Cortex Microcontroller Software Interface Standard (CMSIS) provides a ground-up software framework for embedded applications that run on Cortex-M based microcontrollers. The CMSIS enables consistent and simple software interfaces to the processor and the peripherals, simplifying software reuse, reducing the learning curve for microcontroller developers (see [http://www2.keil.com/docs/default-source/default-document-library/mdk5-getting-started.pdf#page=17 here]).
+*CMSIS-CORE*: Defines the API for the Cortex-M processor core and peripherals and includes a consistent system startup code. The software components ::CMSIS:CORE and ::Device:Startup are all you need to create and run applications on the native processor that uses exceptions, interrupts, and device peripherals.
+
+
 
 == The circuit to test the comparator ==
 
