@@ -23,7 +23,7 @@ The Cortex Microcontroller Software Interface Standard (CMSIS) provides a ground
 
 *CMSIS-CORE*: Defines the API for the Cortex-M processor core and peripherals and includes a consistent system startup code. The software components CMSIS/CORE and /Device/Startup are all you need to create and run applications on the native processor that uses exceptions, interrupts, and device peripherals.
 
-=== Using CMSIS-CORE ===
+*Using CMSIS-CORE*
 
 A native Cortex-M application with CMSIS uses the software component CMSIS/CORE, which should be used together with the software component Device/Startup. These components provide the following central files:
  * The startup_nRF51.s file with reset handler and exception vectors.
@@ -40,6 +40,9 @@ The nRF51.h header file is included in C source files and defines:
  * Systick Timer (SYSTICK) functions to configure and start a periodic timer interrupt.
  * Debug Access for printf-style I/O and ITM communication via on-chip CoreSight.
 
+*Adding Software Components to the Project*
+The files for the components CMSIS/CORE and Device/Startup are added to a project using the µVision dialog Manage Run-Time Environment. Just select the software components.
+The µVision environment adds the related files.
 
 
 == The circuit to test the comparator ==
