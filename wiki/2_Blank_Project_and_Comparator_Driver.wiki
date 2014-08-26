@@ -2,11 +2,15 @@
 
 = Introduction =
 
-Here are described the setup of a blank project, the hardware to test the comparator (a button and a simple debouncing RC circuit) and the development of the comparator's driver.
+Here are described the setup of a blank project (see [http://www2.keil.com/docs/default-source/default-document-library/mdk5-getting-started.pdf?sfvrsn=0 this] useful guide), the hardware to test the comparator (a button and a simple debouncing RC circuit) and the development of the comparator's driver.
 
 == The setup of a blank project ==
 
+In uVision 5.10, you can create a new project clicking on _Project->New uVision Project..._. A window will shown. Chose the project folder (create one if no exists) and create the project file (with extension .uvprojx).
 
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/select_target.png
+
+Now select the device nRF51822_xxAA and click ok. If the device is not available, probably you've not correctly installed the nRF51 Software Development Kit (SDK).
 
 == The circuit to test the comparator ==
 
