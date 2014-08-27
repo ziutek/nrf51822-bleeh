@@ -4,6 +4,8 @@
 
 Here are described the setup of a blank project (see [http://www2.keil.com/docs/default-source/default-document-library/mdk5-getting-started.pdf this] useful guide), the hardware to test the comparator (a button and a simple debouncing RC circuit) and the development of the comparator's driver.
 
+----
+
 == The setup of a blank project ==
 
 In uVision 5.10, you can create a new project clicking on _Project->New uVision Project..._. A window will shown. Chose the project folder (create one if no exists) and create the project file (with extension .uvprojx).
@@ -41,9 +43,37 @@ The nRF51.h header file is included in C source files and defines:
  * Debug Access for printf-style I/O and ITM communication via on-chip CoreSight.
 
 *Adding Software Components to the Project*
+
 The files for the components CMSIS/CORE and Device/Startup are added to a project using the µVision dialog Manage Run-Time Environment. Just select the software components.
 The µVision environment adds the related files.
 
+=== Project folders arrangement ===
+The starting project arrangement is the following:
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/ProjectFoldersArrangement.png
+
+Now create _Source_ folder and _Include_ folder inside the project main folder. Populate the _Include_ folder with required header file (*.h) and the _Source_ folder with required source code (library, *.c or *.cpp) files. 
+To start with a new project are useful the following header files:
+
+ * 'compiler_abstraction-h'
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+
+They can be copied from the _Include_ folder int the nRF51 SDK installation path. 
+
+
+
+
+=== Build the project ===
+
+=== Download code to flash memory ===
+
+----
 
 == The circuit to test the comparator ==
 
@@ -53,5 +83,7 @@ P3 is the on-board 2x5 male pin header of the PCA10001.
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/debouncingRCcircuit.png
 
 The R-C circuit has a charge-time-constant tc=10 ms and a discharge-time-constant td=20 ms thus the mechanical bounces are bypassed and button presses could be detected.
+
+----
 
 == The comparator's driver ==
