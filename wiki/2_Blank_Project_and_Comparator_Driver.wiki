@@ -52,7 +52,7 @@ The starting project arrangement is the following:
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/ProjectFoldersArrangement.png
 
-Now create _Source_ folder and _Include_ folder inside the project main folder. Populate the _Include_ folder with required header file (.h) and the _Source_ folder with required source code (library, .c or .cpp) files. 
+Now create _Source_ folder and _Include_ folder inside the project's main folder. Populate the _Include_ folder with required header file (.h) and the _Source_ folder with required source code files (library, .c or .cpp). 
 To start with a new project are useful the following header files:
 
  * `compiler_abstraction.h`
@@ -63,12 +63,32 @@ To start with a new project are useful the following header files:
  * `pca10001.h`
  * `system_nrf51.h`
 
-They can be copied from the _Include_ folder located in the nRF51 SDK installation path (typically in `C:\Keil_v5\ARM\Device\Nordic\nrf51822\Include`). 
+Copy the files from the _Include_ folder in the nRF51 SDK installation path (typically in `C:\Keil_v5\ARM\Device\Nordic\nrf51822\Include`) into new project's _Include_ folder.
+In uVision Project window, right-click on _Target1_ folder and select _Manage Project Items_
 
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/ManageProjectItems.png
 
+In Project Items tab, you can rename the project targets _Target1_ into _bleeh_ and add a new groups named _Lib_. Here will be placed the source library files. 
+Finally rename _Source Group 1_ to _Source_. Here will be placed the main source .c or .cpp files besides the header .h files.
 
+=== Setup of Blinky example from blank project ===
+
+To create a working project add a new main.c file into the main project's folder. In uVision, right-click on _bleeh/Source_ folder and select _Add New Item to Group 'Source'_. Select _C file (.c)_ and name it _main.c_. 
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/AddNewItem.png
+
+The main.c file will be created into selected location (typically the main's project folder) and is linked into Source uVision project's folder.
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/AddNewItemtoGroupSource.png
+
+Now let's go to write the main source code for a Blinky DIY example: copy the following code into your empty _main.c_ file.
+
+{{{
+codeeeee
+}}}
 
 === Build the project ===
+
 
 === Download code to flash memory ===
 
