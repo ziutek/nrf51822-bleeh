@@ -53,18 +53,17 @@ The starting project arrangement is the following:
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/ProjectFoldersArrangement.png
 
 Now create _Source_ folder and _Include_ folder inside the project main folder. Populate the _Include_ folder with required header file (.h) and the _Source_ folder with required source code (library, .c or .cpp) files. 
-To start with a new project are useful the following header '*' files:
+To start with a new project are useful the following header files:
 
- * 'compiler_abstraction-h'
- * 
- * 
- * 
- * 
- * 
- * 
- * 
+ * `compiler_abstraction.h`
+ * `nrf.h`
+ * `nfr_gpio.h`
+ * `nrf51.h`
+ * `nrf51:deprecated.h`
+ * `pca10001.h`
+ * `system_nrf51.h`
 
-They can be copied from the _Include_ folder int the nRF51 SDK installation path. 
+They can be copied from the _Include_ folder located in the nRF51 SDK installation path (typically in `C:\Keil_v5\ARM\Device\Nordic\nrf51822\Include`). 
 
 
 
