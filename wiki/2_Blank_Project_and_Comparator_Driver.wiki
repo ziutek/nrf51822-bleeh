@@ -52,8 +52,8 @@ The starting project arrangement is the following:
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/ProjectFoldersArrangement.png
 
-Now create _Source_ folder and _Include_ folder inside the project main folder. Populate the _Include_ folder with required header file (*.h) and the _Source_ folder with required source code (library, *.c or *.cpp) files. 
-To start with a new project are useful the following header files:
+Now create _Source_ folder and _Include_ folder inside the project main folder. Populate the _Include_ folder with required header file (.h) and the _Source_ folder with required source code (library, .c or .cpp) files. 
+To start with a new project are useful the following header '*' files:
 
  * 'compiler_abstraction-h'
  * 
