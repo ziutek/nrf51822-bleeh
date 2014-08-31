@@ -84,7 +84,40 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/AddNewI
 Now let's go to write the main source code for a Blinky DIY example: copy the following code into your empty _main.c_ file.
 
 {{{
-codeeeee
+/*
+* This file contains the source code for a sample application using GPIO to drive LEDs.
+*/
+
+#include <stdbool.h>
+#include <stdint.h>
+#include <nRF51.h>
+#include "nrf_gpio.h"
+#include <pca10001.h>
+#include "nrf_delay_l85.h"
+
+/**
+ * Main function
+ */
+int main(void)
+{
+    // Configure LED-pins as outputs
+    nrf_gpio_cfg_output(LED_0);
+    nrf_gpio_cfg_output(LED_1);
+  
+    // LED 0 and LED 1 blink alternately.
+    while (true)
+    {
+        nrf_gpio_pin_clear(LED_0);
+        nrf_gpio_pin_set(LED_1);
+    
+        nrf_delay_ms(1000);
+    
+        nrf_gpio_pin_clear(LED_1);
+        nrf_gpio_pin_set(LED_0);
+    
+        nrf_delay_ms(200);
+    }
+}
 }}}
 
 === Build the project ===
