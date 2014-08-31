@@ -84,9 +84,18 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/AddNewI
 Now let's go to write the main source code for a Blinky DIY example: copy the following code into your empty _main.c_ file.
 
 {{{
-/*
-* This file contains the source code for a sample application using GPIO to drive LEDs.
-*/
+/* ---------------------------------------------------------------------------
+** Filename: main.c
+**
+** Description: main file for Nordic Semiconductor nRF51822 Evaluation Kit 
+** (a.k.a. PCA10001)blinky example. This example file is derived from 
+** Nordic Semiconductor's "blinky_example" using a custom delay module.
+** This file contains the source code for a sample application using GPIO to
+** drive LEDs.
+**
+** Author: Luca Buccolini
+**
+** -------------------------------------------------------------------------*/
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -110,14 +119,73 @@ int main(void)
         nrf_gpio_pin_clear(LED_0);
         nrf_gpio_pin_set(LED_1);
     
-        nrf_delay_ms(1000);
+			nrf_delay(100); // notice they're NOT ms!!
     
         nrf_gpio_pin_clear(LED_1);
         nrf_gpio_pin_set(LED_0);
     
-        nrf_delay_ms(200);
+        nrf_delay(100); // notice they're NOT ms!!
     }
 }
+}}}
+
+Main.c use modules from Nordic Semiconductor's SDK. While SDK provide also a delay module, let's show how to add modules (header and source files) to the project. For example, write a nrf_delay module:
+ * Add new item to group source, select header file, name it "nrf_delay_l85.h" and place it into project include folder.
+ * Add new item to group lib, select c file, name it "nrf_delay_l85.c" and place it into project source folder.
+Fill _nrf_delay_l85.h_ file with:
+{{{
+/* ---------------------------------------------------------------------------
+** This file is in the public domain, furnished "as is", without technical
+** support, and with no warranty, express or implied, as to its usefulness for
+** any purpose.
+**
+** Filename: nrf_delay_l85.h
+**
+** Description: header file for delay functions
+**
+** Author: Luca Buccolini
+**
+** -------------------------------------------------------------------------*/
+
+
+#ifndef NRF_DELAY_L85_H
+#define NRF_DELAY_L85_H
+
+#include <stdint.h>
+#define __SYSTEM_CLOCK      (16000000UL)     /*!< nRF51 devices use a fixed System Clock Frequency of 16MHz */
+
+void nrf_delay(uint32_t t_delay);
+
+#endif 
+
+}}}
+
+and fill _nrf_delay_l85.c_ file with:
+{{{
+/* ---------------------------------------------------------------------------
+** This file is in the public domain, furnished "as is", without technical
+** support, and with no warranty, express or implied, as to its usefulness for
+** any purpose.
+**
+** Filename: nrf_delay_l85.c
+**
+** Description: source file for delay functions
+**
+** Author: Luca Buccolini
+**
+** -------------------------------------------------------------------------*/
+
+#include "nrf_delay_l85.h"
+
+void nrf_delay(uint32_t t_delay) 
+	{
+		uint32_t i = t_delay*0.001*__SYSTEM_CLOCK;
+		while(--i)
+			{
+			}
+	}
+
+	
 }}}
 
 === Build the project ===
