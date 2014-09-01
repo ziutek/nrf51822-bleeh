@@ -1,4 +1,5 @@
 #summary Setup of MDK-ARM IDE and download of blinky example on the Evaluation board PCA10001.
+#labels Phase-Deploy
 
 = Introduction =
 Here are described the step to follow in order to setup the IDE and run the first example on the nRF51822_EK (PCA100001).
