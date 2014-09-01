@@ -1,0 +1,9 @@
+--cpu Cortex-M0
+".\main.o"
+".\nrf_delay_l85.o"
+".\arm_startup_nrf51.o"
+".\system_nrf51.o"
+--strict --scatter ".\bleeh.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\bleeh.map" -o .\bleeh.axf
