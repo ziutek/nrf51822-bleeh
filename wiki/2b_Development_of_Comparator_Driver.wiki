@@ -1,9 +1,10 @@
 #summary Development of comparator's driver using an external button to trigger the comparator during development and experimental phases.
+#labels Phase-QA,Phase-Implementation,Phase-Design
 
 <wiki:toc max_depth="2" />
 
 = Introduction =
-Here is described the development of LPCOMP driver, the Low Power Comparator peripheral drivers of nRF51822. The LPCOMP compares an input voltage (VIN+), which comes from an analog input pin selected through the PSEL register against a reference voltage (VIN-) selected through the REFSEL and EXTREFSEL registers.
+Here is described the development of LPCOMP driver, the Low Power Comparator peripheral drivers of nRF51822. The LPCOMP compares an input voltage (VIN+), which comes from an analog input pin selected through the PSEL register against a reference voltage (VIN-) selected through the REFSEL and EXTREFSEL registers. In this application is compared (VIN+) with VDD/2 (VDD*4/8).
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/LPCOMP.png
 
@@ -19,6 +20,7 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/debounc
 The R-C circuit has a charge-time-constant tc=10 ms and a discharge-time-constant td=20 ms thus the mechanical bounces are bypassed and button presses could be detected.
 
 P0.03 correspond to the ADC/LPCOMP input 4 (AIN4).
+
 ----
 
 == The comparator's driver ==
