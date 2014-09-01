@@ -1,7 +1,5 @@
 #summary Instruction to setup of a blank project in Keil MDK for the nRF51822 EK by Nordic Semiconductor
 
-#sidebar TableOfContents
-
 = Introduction =
 
 Here is described the setup of a blank project (see [http://www2.keil.com/docs/default-source/default-document-library/mdk5-getting-started.pdf this] useful guide) and the development of a "Blinky example" using a custom module (nRF_delay_l85.h and nrf_delay_l85.c).
