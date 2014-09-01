@@ -1,4 +1,4 @@
-#summary Setup of a blank project and development of comparator's driver using an external button to trigger the comparator during development and experimental phases
+#summary Instruction to setup of a blank project in Keil MDK for the nRF51822 EK by Nordic Semiconductor
 
 = Introduction =
 
