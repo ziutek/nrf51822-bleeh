@@ -180,12 +180,9 @@ and fill _nrf_delay_l85.c_ file with:
 void nrf_delay(uint32_t t_delay) 
 	{
 		uint32_t i = t_delay*0.001*__SYSTEM_CLOCK;
-		while(--i)
-			{
-			}
-	}
+		while(--i);
+		}
 
-	
 }}}
 
 Now save and rebuild all!
@@ -206,6 +203,8 @@ Chose SW as port and click on _Flash Download_ tab.
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/JLinkSetup_Reset%26Run.png
 
 Here tick _Reset and Run_ and click ok.
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/downloadButton.png
 
 Finally, in main window of uVision, press the _Load_ button to download the code into the nRF51822.
 The leds will start to blink!!
