@@ -3,7 +3,7 @@
 <wiki:toc max_depth="2" />
 
 = Introduction =
-Here is described the development of LPCOMP driver the Low Power Comparator peripheral drivers of nRF51822. The low power comparator compares an input voltage (VIN+), which comes from an analog input pin selected through the PSEL register against a reference voltage (VIN-) selected through the REFSEL and EXTREFSEL registers.
+Here is described the development of LPCOMP driver, the Low Power Comparator peripheral drivers of nRF51822. The LPCOMP compares an input voltage (VIN+), which comes from an analog input pin selected through the PSEL register against a reference voltage (VIN-) selected through the REFSEL and EXTREFSEL registers.
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/LPCOMP.png
 
