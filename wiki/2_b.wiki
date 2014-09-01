@@ -1,9 +1,7 @@
 #summary One-sentence summary of this page.
 
 = Introduction =
-
-Add your content here.
-
+Development of comparator's driver using an external button to trigger the comparator during development and experimental phases.
 
 = Details =
 
