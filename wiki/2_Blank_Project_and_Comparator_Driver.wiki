@@ -129,9 +129,9 @@ int main(void)
 }
 }}}
 
-Main.c use modules from Nordic Semiconductor's SDK. While SDK provide also a delay module, let's show how to add modules (header and source files) to the project. For example, write a nrf_delay module:
- * Add new item to group source, select header file, name it "nrf_delay_l85.h" and place it into project include folder.
- * Add new item to group lib, select c file, name it "nrf_delay_l85.c" and place it into project source folder.
+Main.c use modules from Nordic Semiconductor's SDK. Nordic's SDK provide also a delay module, let's show how to add this modules (header and source files) to the project. For example, let's write a custom nrf_delay module:
+ * In uVision, add new item to group source, select header file, name it "nrf_delay_l85.h" and place it into "include" folder of the project.
+ * Add new item to group lib, select c file, name it "nrf_delay_l85.c" and place it into source folder of the project.
 Fill _nrf_delay_l85.h_ file with:
 {{{
 /* ---------------------------------------------------------------------------
@@ -188,10 +188,27 @@ void nrf_delay(uint32_t t_delay)
 	
 }}}
 
-=== Build the project ===
-
+Now save and rebuild all!
 
 === Download code to flash memory ===
+
+Finally go to download code into nRF51822. 
+Select _Flash->Configure Flash Tools..._ and click on _Debug_ tab. In the right part of the window chose to use J-LINK / J-TRACE Cortex.
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/OptionForTarget.png
+
+Then click on _Settings_ button. A new window show the Evaluation Kit on-board J-LINK properties.
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/JLinkSetup.png
+
+Chose SW as port and click on _Flash Download_ tab. 
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/JLinkSetup_Reset%26Run.png
+
+Here tick _Reset and Run_ and click ok.
+
+Finally, in main window of uVision, press the _Load_ button to download the code into the nRF51822.
+The leds will start to blink!!
 
 ----
 
