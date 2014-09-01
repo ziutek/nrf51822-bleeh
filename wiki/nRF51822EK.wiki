@@ -1,5 +1,4 @@
 #summary Evaluation Kit (nRF51822-EK)
-#labels Phase-Implementation
 
 = Introduction =
 
