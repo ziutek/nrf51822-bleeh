@@ -1,4 +1,5 @@
 #summary Instruction to setup of a blank project in Keil MDK for the nRF51822 EK by Nordic Semiconductor
+#labels Phase-Deploy,Phase-Design,Phase-Implementation
 
 <wiki:toc max_depth="2" />
 
