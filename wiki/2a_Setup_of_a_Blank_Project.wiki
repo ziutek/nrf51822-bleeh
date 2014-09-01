@@ -1,6 +1,6 @@
 #summary Instruction to setup of a blank project in Keil MDK for the nRF51822 EK by Nordic Semiconductor
 
-<wiki:toc max_depth="1" />
+<wiki:toc max_depth="2" />
 
 = Introduction =
 
