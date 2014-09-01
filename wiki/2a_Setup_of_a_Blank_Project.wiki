@@ -2,7 +2,8 @@
 
 = Introduction =
 
-Here are described the setup of a blank project (see [http://www2.keil.com/docs/default-source/default-document-library/mdk5-getting-started.pdf this] useful guide), the hardware to test the comparator (a button and a simple debouncing RC circuit) and the development of the comparator's driver.
+Here is described the setup of a blank project (see [http://www2.keil.com/docs/default-source/default-document-library/mdk5-getting-started.pdf this] useful guide) and the development of a "Blinky example" using a custom module (nRF_delay_l85.h and nrf_delay_l85.c).
+Finally will be described the steps to download the code into the board.
 
 ----
 
