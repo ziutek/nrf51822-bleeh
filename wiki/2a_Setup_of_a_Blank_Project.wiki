@@ -73,7 +73,9 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/ManageP
 
 In Project Items tab, you can rename the project targets _Target1_ into _bleeh_ and add a new groups named _Lib_. Here will be placed the source library files. 
 Finally rename _Source Group 1_ to _Source_. Here will be placed the main source .c or .cpp files besides the header .h files.
----
+
+----
+
 == Setup of Blinky example from blank project ==
 
 To create a working project add a new main.c file into the main project's folder. In uVision, right-click on _bleeh/Source_ folder and select _Add New Item to Group 'Source'_. Select _C file (.c)_ and name it _main.c_. 
@@ -189,7 +191,9 @@ void nrf_delay(uint32_t t_delay)
 }}}
 
 Now save and rebuild all!
----
+
+----
+
 == Download code to flash memory ==
 
 Finally go to download code into nRF51822. 
