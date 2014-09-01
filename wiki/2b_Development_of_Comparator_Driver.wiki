@@ -18,6 +18,7 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/debounc
 
 The R-C circuit has a charge-time-constant tc=10 ms and a discharge-time-constant td=20 ms thus the mechanical bounces are bypassed and button presses could be detected.
 
+P0.03 correspond to the ADC/LPCOMP input 4 (AIN4).
 ----
 
 == The comparator's driver ==
