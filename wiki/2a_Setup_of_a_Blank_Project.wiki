@@ -193,7 +193,7 @@ void nrf_delay(uint32_t t_delay)
 
 Now save and rebuild all!
 
-The complete project is available in r89 or [https://code.google.com/p/nrf51822-bleeh/source/browse/#svn%2Ftags%2F2a_BlankProject here].
+The complete project is available [https://code.google.com/p/nrf51822-bleeh/source/browse/#svn%2Ftags%2F2a_BlankProject here].
 
 ----
 
