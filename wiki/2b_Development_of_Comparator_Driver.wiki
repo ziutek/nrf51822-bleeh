@@ -8,6 +8,8 @@ Here is described the development of LPCOMP driver, the Low Power Comparator per
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/LPCOMP.png
 
+Every time VIN+ rises above VIN- (the button is pressed->upward crossing), LED 0 of the board will change his state. According to this specifications a simple circuit was build.
+  
 ----
 
 == The circuit to test the comparator ==
@@ -18,9 +20,11 @@ P3 is the on-board 2x5 male pin header of the PCA10001.
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/debouncingRCcircuit.png
 
 The R-C circuit has a charge-time-constant tc=10 ms and a discharge-time-constant td=20 ms thus the mechanical bounces are bypassed and button presses could be detected.
-
-P0.03 correspond to the ADC/LPCOMP input 4 (AIN4).
+Once the button is pressed, a positive 3 V  voltage is at pin P0.03 and the upward crossing will generate an UP event of LPCOMP. This event will change the state of LED 0.
+_NOTE: P0.03 correspond to the ADC/LPCOMP input 4 (AIN4)._
 
 ----
 
 == The comparator's driver ==
+
+The [https://www.nordicsemi.com/eng/nordic/download_resource/20337/10/53074698 nRF51 Series Reference Manual], in chapter 31, describe the Low Power Comparator characteristics. Thus, 
