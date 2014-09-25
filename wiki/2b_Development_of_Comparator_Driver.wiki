@@ -33,3 +33,42 @@ Starting from the blank project of task [https://code.google.com/p/nrf51822-blee
  * nrf51_LPCOMP.c
  * nrf51_LPCOMP.h
 place the first in the main project's directory and the second in the Include directory.
+
+The hardware abstraction layer CMSIS provide different solutions. One of these is a software structure to easily interact with comparator: 
+{{{
+/* ================================================================================ */
+/* ================                     LPCOMP                     ================ */
+/* ================================================================================ */
+
+
+/**
+  * @brief Low power comparator. (LPCOMP)
+  */
+
+typedef struct {                                    /*!< LPCOMP Structure                                                      */
+  __O  uint32_t  TASKS_START;                       /*!< Start the comparator.                                                 */
+  __O  uint32_t  TASKS_STOP;                        /*!< Stop the comparator.                                                  */
+  __O  uint32_t  TASKS_SAMPLE;                      /*!< Sample comparator value.                                              */
+  __I  uint32_t  RESERVED0[61];
+  __IO uint32_t  EVENTS_READY;                      /*!< LPCOMP is ready and output is valid.                                  */
+  __IO uint32_t  EVENTS_DOWN;                       /*!< Input voltage crossed the threshold going down.                       */
+  __IO uint32_t  EVENTS_UP;                         /*!< Input voltage crossed the threshold going up.                         */
+  __IO uint32_t  EVENTS_CROSS;                      /*!< Input voltage crossed the threshold in any direction.                 */
+  __I  uint32_t  RESERVED1[60];
+  __IO uint32_t  SHORTS;                            /*!< Shortcuts for the LPCOMP.                                             */
+  __I  uint32_t  RESERVED2[64];
+  __IO uint32_t  INTENSET;                          /*!< Interrupt enable set register.                                        */
+  __IO uint32_t  INTENCLR;                          /*!< Interrupt enable clear register.                                      */
+  __I  uint32_t  RESERVED3[61];
+  __I  uint32_t  RESULT;                            /*!< Result of last compare.                                               */
+  __I  uint32_t  RESERVED4[63];
+  __IO uint32_t  ENABLE;                            /*!< Enable the LPCOMP.                                                    */
+  __IO uint32_t  PSEL;                              /*!< Input pin select.                                                     */
+  __IO uint32_t  REFSEL;                            /*!< Reference select.                                                     */
+  __IO uint32_t  EXTREFSEL;                         /*!< External reference select.                                            */
+  __I  uint32_t  RESERVED5[4];
+  __IO uint32_t  ANADETECT;                         /*!< Analog detect configuration.                                          */
+  __I  uint32_t  RESERVED6[694];
+  __IO uint32_t  POWER;                             /*!< Peripheral power control.                                             */
+} NRF_LPCOMP_Type;
+}}}
