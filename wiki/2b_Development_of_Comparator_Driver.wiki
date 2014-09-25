@@ -29,6 +29,6 @@ _NOTE: P0.03 correspond to the ADC/LPCOMP input 4 (AIN4)._
 
 The [https://www.nordicsemi.com/eng/nordic/download_resource/20337/10/53074698 nRF51 Series Reference Manual], in chapter 31, describe the Low Power Comparator characteristics. Thus, I develop the driver following this manual.
 
-Starting from the blank project of task 2a_Setup_of_a_Blank_Project , let's to create two new files:
+Starting from the blank project of task [https://code.google.com/p/nrf51822-bleeh/wiki/2a_Setup_of_a_Blank_Project 2a] , let's to create two new files:
  * nrf51_LPCOMP.c
  * nrf51_LPCOMP.h
