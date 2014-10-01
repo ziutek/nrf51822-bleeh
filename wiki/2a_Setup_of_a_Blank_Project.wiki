@@ -10,7 +10,7 @@ Finally will be described the steps to download the code into the board.
 
 ----
 
-== The setup of a blank project ==
+== Setup of a blank project ==
 
 In uVision 5.10, you can create a new project clicking on _Project->New uVision Project..._. A window will shown. Chose the project folder (create one if no exists) and create the project file (with extension .uvprojx).
 
