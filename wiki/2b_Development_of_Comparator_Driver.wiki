@@ -32,7 +32,7 @@ The [https://www.nordicsemi.com/eng/nordic/download_resource/20337/10/53074698 n
 Starting from the blank project of task [https://code.google.com/p/nrf51822-bleeh/wiki/2a_Setup_of_a_Blank_Project 2a], let's to create two new files:
  * nrf51_LPCOMP.c
  * nrf51_LPCOMP.h
-place the first in the main project's directory and the second in the Include directory.
+place the first in the main project's directory and the second in the Include directory, then, in uVision, add nrf51_LPCOMP.c to project.
 
 The hardware abstraction layer CMSIS provide different solutions. One of these is a software structure to easily interact with comparator: 
 {{{
