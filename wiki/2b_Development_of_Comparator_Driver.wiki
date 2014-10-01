@@ -72,3 +72,5 @@ typedef struct {                                    /*!< LPCOMP Structure       
   __IO uint32_t  POWER;                             /*!< Peripheral power control.                                             */
 } NRF_LPCOMP_Type;
 }}}
+
+The above structure is a part of file nrf51.h, a CMSIS:CORE component.
