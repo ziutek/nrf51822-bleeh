@@ -12,7 +12,7 @@ Every time VIN+ rises above VIN- (the button is pressed->upward crossing), LED 0
   
 ----
 
-== The circuit to test the comparator ==
+== Circuit setup ==
 
 To emulate the voltage pulse due to the crossing of the magnet above the coil was build a simple circuit. The circuit consists of a button (SW1) to trigger a positive voltage (Vcc=3 V) on a MCU's comparator pin (P0.03) and a one-pole RC circuit (R1 and C1) that remove the button's bounces.
 P3 is the on-board 2x5 male pin header of the PCA10001.
@@ -25,7 +25,7 @@ _NOTE: P0.03 correspond to the ADC/LPCOMP input 4 (AIN4)._
 
 ----
 
-== The comparator's driver ==
+== Comparator's driver ==
 
 The [https://www.nordicsemi.com/eng/nordic/download_resource/20337/10/53074698 nRF51 Series Reference Manual], in chapter 31, describe the Low Power Comparator characteristics. Thus, I develop the driver following this manual.
 
