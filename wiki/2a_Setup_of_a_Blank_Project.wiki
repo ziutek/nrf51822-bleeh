@@ -217,3 +217,5 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/JLinkSe
 Here tick _Reset and Run_ and click ok.
 Finally, in main window of uVision, press the _Load_ button https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/downloadButton.png to download the code into the nRF51822.
 The leds will start to blink!!
+
+Working code of this task is in  [https://code.google.com/p/nrf51822-bleeh/source/browse/#svn%2Ftags%2F2a_BlankProject *svn/tags/2a_BlankProject*].
