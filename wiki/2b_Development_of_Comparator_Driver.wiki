@@ -111,3 +111,8 @@ However it's also essential to enable interrupt on LPCOMP CROSS event and enable
     NRF_LPCOMP->TASKS_START = 1;
    }
 }}}
+
+To handle the interrupt is predefined a special ISR function. It can be found in Device:Startup Component of CMSIS-CORE namely *arm_startup_nrf51.s* at row 93:
+{{{
+DCD      LPCOMP_IRQHandler ;LPCOMP
+}}} 
