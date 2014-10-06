@@ -1,6 +1,6 @@
 --cpu Cortex-M0
+".\nrf51_lpcomp.o"
 ".\main.o"
-".\nrf_delay_l85.o"
 ".\arm_startup_nrf51.o"
 ".\system_nrf51.o"
 --strict --scatter ".\bleeh.sct"

@@ -76,6 +76,48 @@
         <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
       <CpuCode>0</CpuCode>
+      <Books>
+        <Book>
+          <Number>0</Number>
+          <Title>nRF51822_PS v2.0.pdf</Title>
+          <Path>C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\Mod_BLE\Nordic\nRF51822\nRF51822_PS v2.0.pdf</Path>
+        </Book>
+        <Book>
+          <Number>1</Number>
+          <Title>nRF51_Series_Reference_Manual_v2.1.pdf</Title>
+          <Path>C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\Mod_BLE\Nordic\nRF51822\nRF51_Series_Reference_Manual_v2.1.pdf</Path>
+        </Book>
+        <Book>
+          <Number>2</Number>
+          <Title>nRF51822_Evaluation_Kit User_Guide v1.2.pdf</Title>
+          <Path>C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\Mod_BLE\Nordic\nRF51822\nRF51822_Evaluation_Kit User_Guide v1.2.pdf</Path>
+        </Book>
+        <Book>
+          <Number>3</Number>
+          <Title>S110_SoftDevice_Specification_v1.3A.pdf</Title>
+          <Path>C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\Mod_BLE\Nordic\nRF51822\S110_SoftDevice_Specification_v1.3A.pdf</Path>
+        </Book>
+        <Book>
+          <Number>4</Number>
+          <Title>Cortex_m0_generic_User_Guide.pdf</Title>
+          <Path>C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\Mod_BLE\Nordic\nRF51822\Cortex_m0_generic_User_Guide.pdf</Path>
+        </Book>
+        <Book>
+          <Number>5</Number>
+          <Title>\ARM ARMv6-M Architecture Reference Manual.pdf</Title>
+          <Path>C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\Mod_BLE\Nordic\nRF51822\ARM_Cortex_M0\ARM ARMv6-M Architecture Reference Manual.pdf</Path>
+        </Book>
+        <Book>
+          <Number>6</Number>
+          <Title>ARM Cortex_m0_Generic_User_Guide.pdf</Title>
+          <Path>C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\Mod_BLE\Nordic\nRF51822\ARM_Cortex_M0\ARM Cortex_m0_Generic_User_Guide.pdf</Path>
+        </Book>
+        <Book>
+          <Number>7</Number>
+          <Title>ARM Technical Reference Manual Cortex M0.pdf</Title>
+          <Path>C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\Mod_BLE\Nordic\nRF51822\ARM_Cortex_M0\ARM Technical Reference Manual Cortex M0.pdf</Path>
+        </Book>
+      </Books>
       <DllOpt>
         <SimDllName>SARMCM3.DLL</SimDllName>
         <SimDllArguments> </SimDllArguments>
@@ -173,13 +215,19 @@
         <aPa1>0</aPa1>
         <AscS4>0</AscS4>
         <aSer4>0</aSer4>
-        <StkLoc>0</StkLoc>
+        <StkLoc>1</StkLoc>
         <TrcWin>0</TrcWin>
         <newCpu>0</newCpu>
         <uProt>0</uProt>
       </DebugFlag>
       <LintExecutable></LintExecutable>
       <LintConfigFile></LintConfigFile>
+      <SystemViewers>
+        <Entry>
+          <Name>System Viewer\LPCOMP</Name>
+          <WinId>35905</WinId>
+        </Entry>
+      </SystemViewers>
     </TargetOption>
   </Target>
 
@@ -197,8 +245,24 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>28</CurrentLine>
+      <TopLine>28</TopLine>
+      <CurrentLine>60</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\nrf51_LPCOMP.c</PathWithFileName>
+      <FilenameWithoutPath>nrf51_LPCOMP.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>2</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>1</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>6</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>20</TopLine>
+      <CurrentLine>56</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -213,22 +277,6 @@
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>0</RteFlg>
-    <File>
-      <GroupNumber>2</GroupNumber>
-      <FileNumber>2</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>21</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\Source\nrf_delay_l85.c</PathWithFileName>
-      <FilenameWithoutPath>nrf_delay_l85.c</FilenameWithoutPath>
-      <RteFlg>0</RteFlg>
-      <bShared>0</bShared>
-    </File>
   </Group>
 
   <Group>
@@ -251,10 +299,10 @@
       <FileType>2</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>50</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>346</TopLine>
-      <CurrentLine>349</CurrentLine>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s</PathWithFileName>
       <FilenameWithoutPath>arm_startup_nrf51.s</FilenameWithoutPath>
@@ -265,7 +313,7 @@
       <GroupNumber>4</GroupNumber>
       <FileNumber>4</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
