@@ -120,7 +120,7 @@ Finally in the ISR, before user code, is mandatory clear the event to capture fo
 {{{
 
 void LPCOMP_IRQHandler(void)
-	{
+       {
 	// Clear event
 	NRF_LPCOMP->EVENTS_CROSS = 0;
 
@@ -132,8 +132,8 @@ void LPCOMP_IRQHandler(void)
 
 	// Toggle pin to indicate triggering of event
 	nrf_gpio_pin_toggle(LED_1);
-
-}}}}
+       }
+}}}
 
 In main remember to initialize other peripheral or ports and initialize comparator peripheral before use it.
 
