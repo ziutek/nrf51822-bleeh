@@ -76,8 +76,8 @@ typedef struct {                                    /*!< LPCOMP Structure       
 The above structure is a part of file nrf51.h, a CMSIS:CORE component. It's a good help to write the comparator's initialization routine. 
 From the device datasheet, in the LPCOMP peripheral chapter, it-s clear how to init the peripheral:
 
-`The PSEL, REFSEL, and EXTREFSEL registers must be configured before the LPCOMP is enabled through the
-ENABLE register`
+_The PSEL, REFSEL, and EXTREFSEL registers must be configured before the LPCOMP is enabled through the
+ENABLE register_
 
 {{{
 //Configure LPCOMP - set reference input source to AIN pin 4 (P0.03)
