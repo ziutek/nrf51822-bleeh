@@ -112,7 +112,27 @@ However it's also essential to enable interrupt on LPCOMP CROSS event and enable
    }
 }}}
 
-To handle the interrupt is predefined a special ISR function. It can be found in Device:Startup Component of CMSIS-CORE namely *arm_startup_nrf51.s* at row 93:
+To handle the interrupt is predefined a special ISR function. The function's name can be found in Device:Startup Component of CMSIS-CORE namely in the file *arm_startup_nrf51.s*, at row 93:
 {{{
 DCD      LPCOMP_IRQHandler ;LPCOMP
 }}} 
+Finally in the ISR, before user code, is mandatory clear the event to capture following LPCOMP's interrupt. 
+{{{
+void LPCOMP_IRQHandler(void)
+	{
+	// Clear event
+	NRF_LPCOMP->EVENTS_CROSS = 0;
+
+	// Sample the LPCOMP stores its state in the RESULT register. 
+	// RESULT==0 means lower than reference voltage, 
+	// RESULT==1 means higher than reference voltage
+	NRF_LPCOMP->TASKS_SAMPLE = 1;
+	nrf_gpio_pin_write(LED_0, NRF_LPCOMP->RESULT);
+
+	// Toggle pin to indicate triggering of event
+	nrf_gpio_pin_toggle(LED_1);
+}}}}
+
+In main remember to initialize other peripheral or ports and initialize comparator peripheral before use it.
+
+Working code of this task is in  [].
