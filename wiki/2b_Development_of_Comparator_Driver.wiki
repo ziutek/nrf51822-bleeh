@@ -135,6 +135,6 @@ void LPCOMP_IRQHandler(void)
        }
 }}}
 
-In main remember to initialize other peripheral or ports and initialize comparator peripheral before use it.
+In main, remember to initialize other peripheral or ports and initialize comparator's peripheral before use it.
 
 Working code of this task is in  [https://code.google.com/p/nrf51822-bleeh/source/browse/#svn%2Ftags%2F2b_LPCOMP_driver svn/tags/2b_LPCOMP_driver].
