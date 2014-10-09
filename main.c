@@ -59,8 +59,7 @@ int main(void)
 	// LED 0 and LED 1 blink alternately.
 	while (true)
 	{
-		//Put CPU to sleep while waiting for interrupt to save power
-		__WFI();
+
 	}
 }
 
