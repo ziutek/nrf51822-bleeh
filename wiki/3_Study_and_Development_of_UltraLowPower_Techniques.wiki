@@ -1,6 +1,8 @@
 #summary Study and development of ultra-low-power techniques and evaluation of the energy consumption measuring input current.
 #labels Phase-QA
 
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/work-in-progress_BIG.png
+
 <wiki:toc max_depth="2" />
 
 = Introduction: Ultra Low Power =
