@@ -3,6 +3,17 @@
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/work-in-progress_BIG.png
 
+=TODO=
+ * 
+{{{
+	\todo 
+	   /* If desired, switch off the unused RAM to lower consumption by the use of RAMON register.
+       It can also be done in the application main() function. */
+      
+       Leggi tips & trick by Maurizio- TI
+
+}}}
+
 <wiki:toc max_depth="2" />
 
 = Introduction: Ultra Low Power =
@@ -17,11 +28,3 @@ Here is described the ......
 == Setup of circuit to measure low current ==
 == Measurement and comparison of energy consumption using ULP techniques or not==
 ----
-=TODO=
- * 
-{{{
-	\todo 
-	   /* If desired, switch off the unused RAM to lower consumption by the use of RAMON register.
-       It can also be done in the application main() function. */
-
-}}}
