@@ -9,8 +9,6 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/work-in
 	\todo 
 	   /* If desired, switch off the unused RAM to lower consumption by the use of RAMON register.
        It can also be done in the application main() function. */
-      
-       Leggi tips & trick by Maurizio- TI
 
 }}}
 
