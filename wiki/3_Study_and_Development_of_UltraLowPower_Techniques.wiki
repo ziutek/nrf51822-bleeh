@@ -3,15 +3,6 @@
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/work-in-progress_BIG.png
 
-=TODO=
- * 
-{{{
-	\todo 
-	   /* If desired, switch off the unused RAM to lower consumption by the use of RAMON register.
-       It can also be done in the application main() function. */
-
-}}}
-
 <wiki:toc max_depth="2" />
 
 = Introduction: Ultra Low Power =
@@ -39,7 +30,16 @@ setup, and Low Voltage mode setup thus, to preserve energy, DC/DC converter and 
 In firmware, different solutions will be applied. E.g. put the nRF51 in sleep mode during inactivity time, maintaining Real Time Clock and interrupt from LPCOMP on.
 These solutions is described in following paragraphs.
 
-===Power Management===
+===Hardware solutions: the power management and the choice of clock and timer===
+
+===Firmware solutions to ULP===
+
+{{{
+	\todo 
+	   /* If desired, switch off the unused RAM to lower consumption by the use of RAMON register.
+       It can also be done in the application main() function. */
+
+}}}
 
 As described, nRF51 internal DC/DC and LDO must be disabled.
 ----
