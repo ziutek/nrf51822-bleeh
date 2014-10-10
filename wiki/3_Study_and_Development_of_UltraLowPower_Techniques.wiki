@@ -1,4 +1,5 @@
 #summary Study and development of ultra-low-power techniques and evaluation of the energy consumption measuring input current.
+#labels Phase-QA
 
 <wiki:toc max_depth="2" />
 
