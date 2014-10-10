@@ -1,17 +1,21 @@
-#summary Study and development of ultra-low-power techniques and evaluation of the measuring current consumption techniques;
+#summary Study and development of ultra-low-power techniques and evaluation of the energy consumption measuring input current.
 
 <wiki:toc max_depth="2" />
 
-= Introduction =
+= Introduction: Ultra Low Power =
 Here is described the ......
 ----
 
-== Circuit setup ==
+== ULP techniques ==
+----
+= Timer driver development=
+----
+= Using of ULP techniques among two pulses, measuring time interval =
 
+== Setup of circuit to measure low current ==
+== Measurement and comparison of energy consumption using ULP techniques or not==
 ----
-= WORK IN PROGRESS =
-----
-==TODO==
+=TODO=
  * 
 {{{
 	\todo 
