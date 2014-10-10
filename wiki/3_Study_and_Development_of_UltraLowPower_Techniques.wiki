@@ -18,10 +18,11 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/work-in
 
 = Introduction: Ultra Low Power =
 Here is described the using of Ultra Low Power tecniques. These tips come from different sources and are joined together. Most useful tips come from:
- * [https://www.nordicsemi.com/eng/nordic/download_resource/20337/10/53074698 nRF51 Series Reference Manual V2.1]
+ * [https://www.nordicsemi.com/eng/nordic/download_resource/20337/10/53074698 nRF51 Series Reference Manual V2.1, Nordic Semiconductor]
  * [http://infocenter.arm.com/help/topic/com.arm.doc.dui0497a/DUI0497A_cortex_m0_r0p0_generic_ug.pdf CorteCortex™-M0 Devices-Generic User Guide (ARM DUI 0497A)]
  * [http://www.embedded.com/design/mcus-processors-and-socs/4230085/The-basics-of-low-power-programming-on-the-Cortex-M0 The basics of low-power programming on the Cortex-M0, Joseph Yiu, ARM Ltd.]
  * [http://processors.wiki.ti.com/index.php/ULP_Advisor ULP Advisor, Texas Instruments]
+ * [http://www.embedded.com/design/real-time-and-performance/4210470/1/Efficient-C-Code-for-ARM-Devices Energy efficient C code for ARM devices, Chris Shore, ARM]
 
 == ULP techniques ==
 ----
