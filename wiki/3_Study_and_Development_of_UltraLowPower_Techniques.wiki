@@ -24,6 +24,15 @@ Here is described the using of Ultra Low Power tecniques. These tips come from d
  * [http://processors.wiki.ti.com/index.php/ULP_Advisor ULP Advisor, Texas Instruments]
  * [http://www.embedded.com/design/real-time-and-performance/4210470/1/Efficient-C-Code-for-ARM-Devices Energy efficient C code for ARM devices, Chris Shore, ARM]
 
+Following, are developed timer's drivers. Finally they're used in a new project implementing ULP tecniques.
+At the end is designed a low-current measuring circuit and is used to evaluate energy consumption of the system.
+
+The firmware to be designed will sleep the CPU until a pulse is received from AIN4 (LPCOMP peripheral). This guarantee low power consumption during inactivity state but a timer must be on to measure time interval among two pulses. It's mandatory to use a low power timer/clock.
+When the second pulse is received, the delta-time is calculated and a speed-related-information could be extrapolated.
+During test phases, the current consumption are evaluated and compared among two different solutions: 
+ * using of ULP tecniques (e.g. sleep the CPU during inactivity state);
+ * not using of ULP tecniques;
+
 == ULP techniques ==
 ----
 = Timer driver development=
