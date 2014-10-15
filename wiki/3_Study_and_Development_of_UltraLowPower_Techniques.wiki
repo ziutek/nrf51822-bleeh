@@ -57,6 +57,7 @@ Unfortunately System OFF mode all timers are shut down although LPCOMP is on; th
 The system implements mechanisms to automatically switch on and off the appropriate power sources depending on how many peripherals are active, and how much power is needed at any given time. The power requirement of a peripheral is directly related to its activity level. 
 
 *Sub power modes*
+
 During CPU sleep, in System ON mode, the system can reside in one of the following two sub power modes:
 
  * Constant Latency
@@ -65,7 +66,19 @@ During CPU sleep, in System ON mode, the system can reside in one of the followi
 In Constant Latency mode the CPU wakeup latency and the PPI task response will be constant and kept at a minimum. This is secured by forcing a set of base resources while in sleep, see the device specific product specification for more information about which resources are forced on. The advantage of having a constant and predictable latency will be at the cost of having increased power consumption. The Constant Latency mode is selected by triggering the CONSTLAT task.
 
 In Low Power mode the automatic power management system, will be most effective and save most power. The advantage of having low power will be at the cost of having varying CPU wakeup latency and PPI task response. The Low Power mode is selected by triggering the LOWPWR task but, when the system enters ON mode, it will, by default, reside in the Low Power sub power mode.
-Definitely the configuration chosen is System ON mode-> Low Power.
+Definitely the configuration chosen is System ON mode->Low Power.
+
+ISO/IEC C cannot directly generate the WFI, WFE, and SEV ARM Cortex M0 instructions. The CMSIS provides the following intrinsic functions for these instructions:
+void __WFE(void) // Wait for Event
+void __WFI(void) // Wait for Interrupt
+void __SEV(void) // Send Event
+
+The interesting one is __WFI() that suspends execution until one of the following events occurs:
+• an exception
+• an interrupt becomes pending, which would preempt if PRIMASK was clear
+• a Debug Entry request, regardless of whether debug is enabled.
+_Note_
+_WFI is intended for power saving only. When writing software assume that WFI might behave as a NOP operation_
 
 ===The choice of clock and timer===
 ===Firmware solutions to ULP----CHANGE THIS TITLE----===
