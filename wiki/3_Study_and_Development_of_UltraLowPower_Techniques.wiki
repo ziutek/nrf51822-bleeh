@@ -69,9 +69,12 @@ In Low Power mode the automatic power management system, will be most effective 
 Definitely the configuration chosen is System ON mode->Low Power.
 
 ISO/IEC C cannot directly generate the WFI, WFE, and SEV ARM Cortex M0 instructions. The CMSIS provides the following intrinsic functions for these instructions:
+
+{{{
 void __WFE(void) // Wait for Event
 void __WFI(void) // Wait for Interrupt
 void __SEV(void) // Send Event
+}}}
 
 The interesting one in this context is __WFI() that suspends execution until one of the following events occurs:
  * an exception
