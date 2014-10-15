@@ -73,7 +73,7 @@ void __WFE(void) // Wait for Event
 void __WFI(void) // Wait for Interrupt
 void __SEV(void) // Send Event
 
-The interesting one is __WFI() that suspends execution until one of the following events occurs:
+The interesting one in this context is __WFI() that suspends execution until one of the following events occurs:
  * an exception
  * an interrupt becomes pending, which would preempt if PRIMASK was clear
  * a Debug Entry request, regardless of whether debug is enabled.
