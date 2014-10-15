@@ -74,11 +74,17 @@ void __WFI(void) // Wait for Interrupt
 void __SEV(void) // Send Event
 
 The interesting one is __WFI() that suspends execution until one of the following events occurs:
-• an exception
-• an interrupt becomes pending, which would preempt if PRIMASK was clear
-• a Debug Entry request, regardless of whether debug is enabled.
+ * an exception
+ * an interrupt becomes pending, which would preempt if PRIMASK was clear
+ * a Debug Entry request, regardless of whether debug is enabled.
+
 _Note_
 _WFI is intended for power saving only. When writing software assume that WFI might behave as a NOP operation_
+
+Thus, to enter in sleep mode, simply write:
+{{{
+__WFI();
+}}}
 
 ===The choice of clock and timer===
 ===Firmware solutions to ULP----CHANGE THIS TITLE----===
