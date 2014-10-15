@@ -57,8 +57,11 @@ The system implements mechanisms to automatically switch on and off the appropri
 
 *Sub power modes*
 During CPU sleep, in System ON mode, the system can reside in one of the following two sub power modes:
+
  - Constant Latency
+
  - Low Power
+
 In Constant Latency mode the CPU wakeup latency and the PPI task response will be constant and kept at a minimum. This is secured by forcing a set of base resources while in sleep, see the device specific product specification for more information about which resources are forced on. The advantage of having a constant and predictable latency will be at the cost of having increased power consumption. The Constant Latency mode is selected by triggering the CONSTLAT task.
 
 In Low Power mode the automatic power management system, will be most effective and save most power. The advantage of having low power will be at the cost of having varying CPU wakeup latency and PPI task response. The Low Power mode is selected by triggering the LOWPWR task.
