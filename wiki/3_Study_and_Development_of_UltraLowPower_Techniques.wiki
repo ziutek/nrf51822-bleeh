@@ -29,13 +29,16 @@ The choosing of this IC is related to its low voltage power supply and to SOC wa
 In firmware, different solutions will be applied. E.g. hold the nRF51 in sleep mode during inactivity time, maintain Real Time Clock and interrupt from LPCOMP on.
 These solutions is described in following paragraphs.
 
-===Hardware solutions: the power management and the choice of clock and timer===
+===Hardware solutions===
+====The power management====
 As mentioned, maximum power saving mode is Low Voltage mode. Unfortunately this mode could be reach only modifying circuit topology, as shown in following schematic:
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/LowPowerMode.png
-Since PCA10001 hasn't any DEC2 pin on external header, it's very difficult to apply this little change in circuit's topology thus I prefer use the internal LDO. This can be obtained disabling internal DC/DC and short-circuit SB1 (equal to short-circuit AVDD and VDD), as shown in following images:
+Since PCA10001 hasn't any DEC2 pin on external header, it's very difficult to apply this little change in circuit's topology thus I prefer use the internal LDO. This can be obtained disabling internal DC/DC and, eventually, short-circuited SB1 (equal to short-circuited AVDD and VDD), as shown in following images:
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/InternalLDOOnly.png
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/SB1_link.png
+I've no short-circuited SB1 to preserve board integrity, so a small resistance (and energy wasting) is in series with supply current flowing. I think the resistance is the Rds resistance of a mosfet so it's in the order of tenth of milliohms. 
 
+===The choice of clock and timer===
 ===Firmware solutions to ULP===
 
 {{{
