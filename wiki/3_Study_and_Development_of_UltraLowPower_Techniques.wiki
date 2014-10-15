@@ -32,8 +32,9 @@ These solutions is described in following paragraphs.
 ===Hardware solutions: the power management and the choice of clock and timer===
 As mentioned, maximum power saving mode is Low Voltage mode. Unfortunately this mode could be reach only modifying circuit topology, as shown in following schematic:
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/LowPowerMode.png
-
+Since PCA10001 hasn't any DEC2 pin on external header, it's very difficult to apply this little change in circuit's topology thus I prefer use the internal LDO. This can be obtained disabling internal DC/DC and short-circuit SB1 (equal to short-circuit AVDD and VDD), as shown in following images:
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/InternalLDOOnly.png
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/SB1_link.png
 
 ===Firmware solutions to ULP===
 
