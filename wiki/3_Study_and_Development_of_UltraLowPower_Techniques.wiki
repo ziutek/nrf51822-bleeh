@@ -25,12 +25,15 @@ During test phases, the current consumption are evaluated and compared among two
 == ULP techniques ==
 
 Ultra Low Power techniques involve either hardware and firmware feature. 
-The choosing of this IC is related to its low voltage power supply and to SOC warranties such as low component count (due to integrated radio module). However the nRF51 supports three different power supply alternatives: internal DC/DC converter setup, internal LDO
-setup, and Low Voltage mode setup thus, to preserve energy, DC/DC converter and LDO must be disabled.
-In firmware, different solutions will be applied. E.g. put the nRF51 in sleep mode during inactivity time, maintaining Real Time Clock and interrupt from LPCOMP on.
+The choosing of this IC is related to its low voltage power supply and to SOC warranties such as low component count (due to integrated radio module). However the nRF51 supports three different power supply alternatives: internal DC/DC converter setup, internal LDO setup, and Low Voltage mode setup thus, to preserve energy, DC/DC converter and LDO must be disabled.
+In firmware, different solutions will be applied. E.g. hold the nRF51 in sleep mode during inactivity time, maintain Real Time Clock and interrupt from LPCOMP on.
 These solutions is described in following paragraphs.
 
 ===Hardware solutions: the power management and the choice of clock and timer===
+As mentioned, maximum power saving mode is Low Voltage mode. Unfortunately this mode could be reach only modifying circuit topology, as shown in following schematic:
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/LowPowerMode.png
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/InternalLDOOnly.png
 
 ===Firmware solutions to ULP===
 
