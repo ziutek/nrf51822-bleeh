@@ -94,9 +94,22 @@ The lowest possible sleep current while maintaining BLE connection timing is usi
 Thus, the total current consumption in sleep mode is about I_on + I_RTC + I_X32k + I_LPC, typical 2.3 + 0.2 + 0.4 + 0.5 = 3.4 µA where I_on is the SYSTEM-ON base current with 16 kB RAM enabled, I_RTC is the Timer (LFCLK source) current consumption, I_X32k is the run current for 32.768 kHz crystal oscillator and I_LPC is the run current for LPCOMP.
 When nRF51 is awake, is needed a 16 MHz clock to handle the CPU, thus a second clock must be activated during CPU elaboration and transceiver transmission. The second clock is the High Frequency Clock (HFCLK source). Let's go to choice the two clock sources with lower energy consumption regard their startup times.
 
- * Low frequency clock (LFCLK) - The system supports three LFCLK clock sources: the 32.768 kHz crystal oscillator, the 32.768 kHz RC oscillator, and the 32.768 kHz synthesized clock. The 32.768 kHz crystal oscillator requires an external AT-cut quartz crystal to be connected to the X L1 and X L 2 pins in parallel resonant mode. The PCA10001, fortunately, has this quartz crystal. 
-Since the low frequency clock is kept on either during CPU sleep and CPU off, I don't care about crystal start-up and de-bounce time. The current consumption of crystal oscillator is 0.4 uA typical and is lower than current consumption of RC oscillator (0.8 uA typical) thus I chose to use the external quartz crystal as source of low frequency clock even if the start-up time for crystal oscillator is 0.3 s versus a start-up time for RC oscillator of only 100 us. 
-The LFCLK clock is started by first selecting the preferred clock source in the LFCLKSRC register and then triggering the LFCLKSTART task. If the selected clock source cannot be started immediately the 32.768 kHz RC oscillator will start automatically and generate the LFCLK until the selected clock source is available.
+ * Low frequency clock (LFCLK) - The system supports three LFCLK clock sources: the 32.768 kHz crystal oscillator, the 32.768 kHz RC oscillator, and the 32.768 kHz synthesized clock. The 32.768 kHz crystal oscillator requires an external AT-cut quartz crystal to be connected to the X L1 and X L 2 pins in parallel resonant mode. The PCA10001, fortunately, has this quartz crystal. Since the low frequency clock is kept on either during CPU sleep and CPU off, I don't care about crystal start-up and de-bounce time. The current consumption of crystal oscillator is 0.4 uA typical and is lower than current consumption of RC oscillator (0.8 uA typical) thus I chose to use the external quartz crystal as source of low frequency clock even if the start-up time for crystal oscillator is 0.3 s versus a start-up time for RC oscillator of only 100 us. The LFCLK clock is started by first selecting the preferred clock source in the LFCLKSRC register and then triggering the LFCLKSTART task. If the selected clock source cannot be started immediately the 32.768 kHz RC oscillator will start automatically and generate the LFCLK until the selected clock source is available.
+Code for initialization of LFCLK is:
+
+{{{
+  // Select the preferred clock source as Cryatal Quartz
+  NRF_CLOCK->LFCLKSRC = (CLOCK_LFCLKSRC_SRC_Xtal << CLOCK_LFCLKSRC_SRC_Pos);
+  // Clear LFCLKSTARTED event
+  NRF_CLOCK->EVENTS_LFCLKSTARTED = 0;
+  // Trigger LFCLKSTART task
+  NRF_CLOCK->TASKS_LFCLKSTART = 1;
+
+  // Wait for the low frequency clock to start
+  while (NRF_CLOCK->EVENTS_LFCLKSTARTED == 0) {}
+}}}
+
+
 {{{ 
 //****************describe how to initialize timer, clk and LPCOMP****************//
 }}}
