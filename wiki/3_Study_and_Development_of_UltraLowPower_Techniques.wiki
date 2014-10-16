@@ -92,14 +92,11 @@ __WFI();
 ===RAM retention===
 Each of the available RAM blocks, can power up and down independently in both System ON and System OFF mode. nRF51822 has two 8 kB blocks. Code to enable RAM block 0 in OFF-mode and ON-mode and disable block 1 either in OFF-mode and ON-mode is below.
 {{{
-  // Ram block 0 ON in ON-MODE
-  NRF_POWER->RAMON=(POWER_RAMON_ONRAM0_RAM0On<<POWER_RAMON_ONRAM0_Pos);
-  // Ram block 1 OFF in ON-MODE	
-  NRF_POWER->RAMON=(POWER_RAMON_ONRAM1_RAM1Off<<POWER_RAMON_ONRAM1_Pos);
-  // Ram block 0 ON in OFF-MODE	
-  NRF_POWER->RAMON=(POWER_RAMON_OFFRAM0_RAM0Off<<POWER_RAMON_OFFRAM0_Pos);	
-  // Ram block 1 OFF in OFF-MODE	
-  NRF_POWER->RAMON=(POWER_RAMON_OFFRAM1_RAM1Off<<POWER_RAMON_OFFRAM1_Pos);
+	// Switch-off unused RAM blocks
+	NRF_POWER->RAMON= (POWER_RAMON_ONRAM0_RAM0On<<POWER_RAMON_ONRAM0_Pos)  		|		// Ram block 0  ON  in ON-MODE
+										(POWER_RAMON_ONRAM1_RAM1Off<<POWER_RAMON_ONRAM1_Pos) 		|		// Ram block 1 OFF  in ON-MODE
+										(POWER_RAMON_OFFRAM0_RAM0Off<<POWER_RAMON_OFFRAM0_Pos)  |		// Ram block 0 OFF in OFF-MODE	
+										(POWER_RAMON_OFFRAM1_RAM1Off<<POWER_RAMON_OFFRAM1_Pos)	;		// Ram block 1 OFF in OFF-MODE
 }}}
 This help to reduce current consumption due to RAM retention.
 
