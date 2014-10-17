@@ -94,28 +94,28 @@
         </Book>
         <Book>
           <Number>3</Number>
-          <Title>S110_SoftDevice_Specification_v1.3A.pdf</Title>
-          <Path>C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\Mod_BLE\Nordic\nRF51822\S110_SoftDevice_Specification_v1.3A.pdf</Path>
-        </Book>
-        <Book>
-          <Number>4</Number>
-          <Title>Cortex_m0_generic_User_Guide.pdf</Title>
-          <Path>C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\Mod_BLE\Nordic\nRF51822\Cortex_m0_generic_User_Guide.pdf</Path>
-        </Book>
-        <Book>
-          <Number>5</Number>
-          <Title>\ARM ARMv6-M Architecture Reference Manual.pdf</Title>
-          <Path>C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\Mod_BLE\Nordic\nRF51822\ARM_Cortex_M0\ARM ARMv6-M Architecture Reference Manual.pdf</Path>
-        </Book>
-        <Book>
-          <Number>6</Number>
           <Title>ARM Cortex_m0_Generic_User_Guide.pdf</Title>
           <Path>C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\Mod_BLE\Nordic\nRF51822\ARM_Cortex_M0\ARM Cortex_m0_Generic_User_Guide.pdf</Path>
         </Book>
         <Book>
-          <Number>7</Number>
+          <Number>4</Number>
           <Title>ARM Technical Reference Manual Cortex M0.pdf</Title>
           <Path>C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\Mod_BLE\Nordic\nRF51822\ARM_Cortex_M0\ARM Technical Reference Manual Cortex M0.pdf</Path>
+        </Book>
+        <Book>
+          <Number>5</Number>
+          <Title>S110_SoftDevice_Specification_v1 3</Title>
+          <Path>C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\Mod_BLE\Nordic\nRF51822\S110_SoftDevice_Specification_v1 3.pdf</Path>
+        </Book>
+        <Book>
+          <Number>6</Number>
+          <Title>ARM ARMv6-M Architecture Reference Manual</Title>
+          <Path>C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\Mod_BLE\Nordic\nRF51822\ARM_Cortex_M0\ARM ARMv6-M Architecture Reference Manual.pdf</Path>
+        </Book>
+        <Book>
+          <Number>7</Number>
+          <Title>The_Definitive_Guide_to_the_ARM_Cortex_M0</Title>
+          <Path>C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\Mod_BLE\Nordic\nRF51822\ARM_Cortex_M0\The_Definitive_Guide_to_the_ARM_Cortex_M0.pdf</Path>
         </Book>
       </Books>
       <DllOpt>
@@ -182,7 +182,7 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>JL2CM3</Key>
-          <Name>-U480206406 -O78 -S0 -A0 -C0 -JU1 -JI127.0.0.1 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(0BB11477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO15 -FD20000000 -FC1000 -FN1 -FF0nrf51xxx.flm -FS00 -FL0200000 -FP0($$Device:nRF51822_xxAA$Flash\nrf51xxx.flm)</Name>
+          <Name>-U480206406 -O78 -S0 -A0 -C0 -JU1 -JI-JP0 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(0BB11477) -L00(0) -TO18 -TC1000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB0 -TFE0 -FO31 -FD20000000 -FC1000 -FN1 -FF0nrf51xxx.flm -FS00 -FL0200000 -FP0($$Device:nRF51822_xxAA$Flash\nrf51xxx.flm)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -190,7 +190,56 @@
           <Name>-S0 -C0 -P0 -FD20000000 -FC1000 -FN1 -FF0nrf51xxx -FS00 -FL0200000 -FP0($$Device:nRF51822_xxAA$Flash\nrf51xxx.flm))</Name>
         </SetRegEntry>
       </TargetDriverDllRegistry>
-      <Breakpoint/>
+      <Breakpoint>
+        <Bp>
+          <Number>0</Number>
+          <Type>0</Type>
+          <LineNumber>66</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>1424</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>C:\Users\Luca\Dropbox\UniversitÃ \Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\bleeh\main.c\66</Expression>
+        </Bp>
+        <Bp>
+          <Number>1</Number>
+          <Type>0</Type>
+          <LineNumber>71</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>1430</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>C:\Users\Luca\Dropbox\UniversitÃ \Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\bleeh\main.c\71</Expression>
+        </Bp>
+        <Bp>
+          <Number>2</Number>
+          <Type>0</Type>
+          <LineNumber>73</LineNumber>
+          <EnabledFlag>1</EnabledFlag>
+          <Address>1436</Address>
+          <ByteObject>0</ByteObject>
+          <HtxType>0</HtxType>
+          <ManyObjects>0</ManyObjects>
+          <SizeOfObject>0</SizeOfObject>
+          <BreakByAccess>0</BreakByAccess>
+          <BreakIfRCount>1</BreakIfRCount>
+          <Filename>C:\Users\Luca\Dropbox\UniversitÃ \Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\main.c</Filename>
+          <ExecCommand></ExecCommand>
+          <Expression>\\bleeh\main.c\73</Expression>
+        </Bp>
+      </Breakpoint>
       <Tracepoint>
         <THDelay>0</THDelay>
       </Tracepoint>
@@ -214,7 +263,7 @@
         <aLa>0</aLa>
         <aPa1>0</aPa1>
         <AscS4>0</AscS4>
-        <aSer4>0</aSer4>
+        <aSer4>1</aSer4>
         <StkLoc>1</StkLoc>
         <TrcWin>0</TrcWin>
         <newCpu>0</newCpu>
@@ -224,8 +273,32 @@
       <LintConfigFile></LintConfigFile>
       <SystemViewers>
         <Entry>
-          <Name>System Viewer\LPCOMP</Name>
+          <Name>System Viewer\CLOCK</Name>
           <WinId>35905</WinId>
+        </Entry>
+        <Entry>
+          <Name>System Viewer\POWER</Name>
+          <WinId>35899</WinId>
+        </Entry>
+        <Entry>
+          <Name>System Viewer\RTC0</Name>
+          <WinId>35901</WinId>
+        </Entry>
+        <Entry>
+          <Name>System Viewer\RTC1</Name>
+          <WinId>35900</WinId>
+        </Entry>
+        <Entry>
+          <Name>System Viewer\TIMER0</Name>
+          <WinId>35904</WinId>
+        </Entry>
+        <Entry>
+          <Name>System Viewer\TIMER1</Name>
+          <WinId>35903</WinId>
+        </Entry>
+        <Entry>
+          <Name>System Viewer\TIMER2</Name>
+          <WinId>35902</WinId>
         </Entry>
       </SystemViewers>
     </TargetOption>
@@ -243,10 +316,10 @@
       <FileType>1</FileType>
       <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>0</ColumnNumber>
+      <ColumnNumber>3</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>28</TopLine>
-      <CurrentLine>60</CurrentLine>
+      <TopLine>16</TopLine>
+      <CurrentLine>43</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\nrf51_LPCOMP.c</PathWithFileName>
       <FilenameWithoutPath>nrf51_LPCOMP.c</FilenameWithoutPath>
@@ -259,13 +332,29 @@
       <FileType>1</FileType>
       <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>6</ColumnNumber>
+      <ColumnNumber>13</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>20</TopLine>
-      <CurrentLine>56</CurrentLine>
+      <TopLine>51</TopLine>
+      <CurrentLine>94</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
+      <RteFlg>0</RteFlg>
+      <bShared>0</bShared>
+    </File>
+    <File>
+      <GroupNumber>1</GroupNumber>
+      <FileNumber>3</FileNumber>
+      <FileType>1</FileType>
+      <tvExp>1</tvExp>
+      <Focus>0</Focus>
+      <ColumnNumber>0</ColumnNumber>
+      <tvExpOptDlg>0</tvExpOptDlg>
+      <TopLine>0</TopLine>
+      <CurrentLine>0</CurrentLine>
+      <bDave2>0</bDave2>
+      <PathWithFileName>.\nrf51_CLOCK.c</PathWithFileName>
+      <FilenameWithoutPath>nrf51_CLOCK.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -295,14 +384,14 @@
     <RteFlg>1</RteFlg>
     <File>
       <GroupNumber>4</GroupNumber>
-      <FileNumber>3</FileNumber>
+      <FileNumber>4</FileNumber>
       <FileType>2</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>50</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>338</TopLine>
+      <CurrentLine>349</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s</PathWithFileName>
       <FilenameWithoutPath>arm_startup_nrf51.s</FilenameWithoutPath>
@@ -311,14 +400,14 @@
     </File>
     <File>
       <GroupNumber>4</GroupNumber>
-      <FileNumber>4</FileNumber>
+      <FileNumber>5</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>0</TopLine>
-      <CurrentLine>0</CurrentLine>
+      <TopLine>74</TopLine>
+      <CurrentLine>112</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>RTE\Device\nRF51822_xxAA\system_nrf51.c</PathWithFileName>
       <FilenameWithoutPath>system_nrf51.c</FilenameWithoutPath>
