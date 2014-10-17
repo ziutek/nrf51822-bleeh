@@ -4,18 +4,23 @@
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
 C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\bleeh.uvprojx
-Project File Date:  10/16/2014
+Project File Date:  10/17/2014
 
 <h2>Output:</h2>
 Rebuild target 'bleeh'
 compiling nrf51_LPCOMP.c...
 compiling main.c...
 compiling nrf51_CLOCK.c...
+compiling SEGGER_RTT.c...
+compiling SEGGER_RTT_Printf.c...
+debug\SEGGER_RTT_Printf.c(299): warning:  #111-D: statement is unreachable
+          default:  goto FilterFieldWidth;                   break;
+debug\SEGGER_RTT_Printf.c: 1 warning, 0 errors
 assembling arm_startup_nrf51.s...
 compiling system_nrf51.c...
 linking...
-Program Size: Code=868 RO-data=1120 RW-data=4 ZI-data=4196  
-".\bleeh.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=3490 RO-data=1150 RW-data=128 ZI-data=5232  
+".\bleeh.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -41,8 +46,8 @@ Package Vendor: NordicSemiconductor
    * Component: ARM::CMSIS:CORE:3.20.0
 
    * Component: NordicSemiconductor::Device:Startup:1.0.0
-      Include file:  Device\Include\system_nrf51.h
       Source file:   Device\Source\system_nrf51.c
+      Include file:  Device\Include\system_nrf51.h
       Source file:   Device\Source\arm\arm_startup_nrf51.s
 Load "C:\\Users\\Luca\\Dropbox\\Università\\Reti e sistemi multimediali\\BEH\\nRF51822_bleeh__WorkingCopy\\trunk\\bleeh\\bleeh.axf" 
 Set JLink Project File to "C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\JLinkSettings.ini"
@@ -50,8 +55,8 @@ Set JLink Project File to "C:\Users\Luca\Dropbox\Università\Reti e sistemi multi
  
 JLink info:
 ------------
-DLL: V4.80g, compiled Feb 13 2014 20:50:02
-Firmware: J-Link OB-SAM3U128 V1 compiled Dec 11 2013 20:20:11
+DLL: V4.92 , compiled Sep 30 2014 09:33:42
+Firmware: J-Link OB-SAM3U128 V1 compiled Aug 22 2014 17:25:44
 Hardware: V1.00
 S/N : 480206406 
  

@@ -48,6 +48,14 @@
 #include "nrf51_LPCOMP.h"
 #include "nrf51_CLOCK.h"
 
+#include "debug\SEGGER_RTT.h"
+
+/***************************************************************************************************
+*__________________________________GLOBAL VARIABLE DEFINITIONS______________________________________
+***************************************************************************************************/
+	//definition and initialization of cnt variable for debug purposes (SEGGER RTT printf function)
+	uint32_t debug_cnt=0;
+
 /***************************************************************************************************
  * Main function
  *
@@ -92,6 +100,12 @@ int main(void)
 	while (true)
 	{
 		__WFI(); 
+		/*+++++++++++++++++++++++++++++++START-OF-DEBUG-CODE++++++++++++++++++++++++++++++++++++++++++*/
+		//
+		SEGGER_RTT_WriteString(0,"Hello World from SEGGER RTT!!\r\n");
+		SEGGER_RTT_printf(0, "debug_cnt=%d\r\n", debug_cnt++);
+		//
+		/*+++++++++++++++++++++++++++++++++END-OF-DEBUG-CODE++++++++++++++++++++++++++++++++++++++++++*/
 	}
 }
 

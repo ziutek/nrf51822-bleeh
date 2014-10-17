@@ -2,6 +2,8 @@
 ".\nrf51_lpcomp.o"
 ".\main.o"
 ".\nrf51_clock.o"
+".\segger_rtt.o"
+".\segger_rtt_printf.o"
 ".\arm_startup_nrf51.o"
 ".\system_nrf51.o"
 --strict --scatter ".\bleeh.sct"
