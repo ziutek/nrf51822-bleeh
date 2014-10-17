@@ -12,3 +12,4 @@
 .\main.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdbool.h
 .\main.o: .\Include\nrf51_LPCOMP.h
 .\main.o: .\Include\nrf51_CLOCK.h
+.\main.o: .\Include\debug\SEGGER_RTT.h

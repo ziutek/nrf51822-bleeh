@@ -10,7 +10,7 @@ I (C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Inc
 I (.\Include\nrf51_LPCOMP.h)(0x544000A3)
 I (.\Include\pca10001.h)(0x53B2B83E)
 I (.\Include\nrf_gpio.h)(0x53B2B83E)
-F (.\main.c)(0x54403CFF)(-c --cpu Cortex-M0 -g -O0 --apcs=interwork -I.\Include -I.\Include-I "C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include-D_RTE_ -DNRF51 -o .\main.o --omf_browse .\main.crf --depend .\main.d)
+F (.\main.c)(0x5440F681)(-c --cpu Cortex-M0 -g -O0 --apcs=interwork -I.\Include -I.\Include-I "C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include-D_RTE_ -DNRF51 -o .\main.o --omf_browse .\main.crf --depend .\main.d)
 I (.\Include\pca10001.h)(0x53B2B83E)
 I (.\Include\nrf_gpio.h)(0x53B2B83E)
 I (.\Include\nrf51.h)(0x53B2BA48)
@@ -23,6 +23,7 @@ I (C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Inc
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x52FE34EE)
 I (.\Include\nrf51_LPCOMP.h)(0x544000A3)
 I (.\Include\nrf51_CLOCK.h)(0x543FED48)
+I (.\Include\debug\SEGGER_RTT.h)(0x540A2C54)
 F (.\nrf51_CLOCK.c)(0x543FED48)(-c --cpu Cortex-M0 -g -O0 --apcs=interwork -I.\Include -I.\Include -I.\Include-I "C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include-D_RTE_ -DNRF51 -o .\nrf51_clock.o --omf_browse .\nrf51_clock.crf --depend .\nrf51_clock.d)
 I (.\Include\nrf51.h)(0x53B2BA48)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cm0.h)(0x512C80D2)
@@ -34,6 +35,15 @@ I (C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Inc
 I (.\Include\nrf51_CLOCK.h)(0x543FED48)
 I (.\Include\pca10001.h)(0x53B2B83E)
 I (.\Include\nrf_gpio.h)(0x53B2B83E)
+F (.\debug\SEGGER_RTT.c)(0x540A2C54)(-c --cpu Cortex-M0 -g -O0 --apcs=interwork -I.\Include\debug -I.\Include-I "C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include-D_RTE_ -DNRF51 -o .\segger_rtt.o --omf_browse .\segger_rtt.crf --depend .\segger_rtt.d)
+I (.\Include\debug\SEGGER_RTT_Conf.h)(0x540A2C54)
+I (.\Include\debug\SEGGER_RTT.h)(0x540A2C54)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x52FE34EE)
+F (.\debug\SEGGER_RTT_Printf.c)(0x540A2C54)(-c --cpu Cortex-M0 -g -O0 --apcs=interwork -I.\Include\debug -I.\Include-I "C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include-D_RTE_ -DNRF51 -o .\segger_rtt_printf.o --omf_browse .\segger_rtt_printf.crf --depend .\segger_rtt_printf.d)
+I (.\Include\debug\SEGGER_RTT.h)(0x540A2C54)
+I (.\Include\debug\SEGGER_RTT_Conf.h)(0x540A2C54)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x52FE34EE)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x52FE34EE)
 F (RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s)(0x53B10D4E)(--cpu Cortex-M0 -g --apcs=interwork -I "C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include--list .\arm_startup_nrf51.lst --xref -o .\arm_startup_nrf51.o --depend .\arm_startup_nrf51.d)
 F (RTE\Device\nRF51822_xxAA\system_nrf51.c)(0x53B10D4E)(-c --cpu Cortex-M0 -g -O0 --apcs=interwork -I.\Include-I "C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include-D_RTE_ -DNRF51 -o .\system_nrf51.o --omf_browse .\system_nrf51.crf --depend .\system_nrf51.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x52FE34EE)
