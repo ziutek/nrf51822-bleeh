@@ -597,10 +597,10 @@ ARM Macro Assembler    Page 10
               00000000 
 Command Line: --debug --xref --cpu=Cortex-M0 --apcs=interwork --depend=.\arm_st
 artup_nrf51.d -o.\arm_startup_nrf51.o -I"C:\Users\Luca\Dropbox\Università\Reti 
-e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\RTE" -IC:\Ke
-il_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include -IC:\Keil_v5\ARM\PACK\NordicSemic
-onductor\nRF_DeviceFamilyPack\1.1.1\Device\Include --list=.\arm_startup_nrf51.l
-st RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
+e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\branches\2b_plus_Segger_
+RTT\RTE" -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include -IC:\Keil_v5\ARM\
+PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include --list=.\arm
+_startup_nrf51.lst RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s
 
 
 

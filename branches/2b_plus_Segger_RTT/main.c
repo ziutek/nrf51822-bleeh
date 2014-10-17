@@ -36,6 +36,8 @@
 #include "nrf_gpio.h"
 #include "nrf51_LPCOMP.h"
 
+#include "SEGGER_RTT.h"
+
 /*****************************************************************************************************
  * Main function
  *
@@ -47,7 +49,7 @@
  ****************************************************************************************************/
 
 int main(void)
-{
+{	
 	// Configure LED-pins as outputs
 	nrf_gpio_cfg_output(LED_0);
 	nrf_gpio_cfg_output(LED_1);
@@ -59,7 +61,8 @@ int main(void)
 	// LED 0 and LED 1 blink alternately.
 	while (true)
 	{
-
+		__WFI();
+		SEGGER_RTT_WriteString(0, "Hello World from SEGGER!\r\n");
 	}
 }
 
