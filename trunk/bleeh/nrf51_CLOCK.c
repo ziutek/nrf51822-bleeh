@@ -1,16 +1,29 @@
 /***************************************************************************************************
 ** -------------------------------------------------------------------------------------------------
-** Filename: nrf51_LPCOMP.h																																																
+** Filename: nrf51_CLOCK.c																																																	
 ** -------------------------------------------------------------------------------------------------	
-** Description: comparator driver for Nordic Semiconductor nRF51822 																
+** Description: clock initialization functions for Nordic Semiconductor nRF51822 																
 ** -------------------------------------------------------------------------------------------------
 ** Author: Luca Buccolini																																						
 ** -------------------------------------------------------------------------------------------------
-** Date:	Oct 06, 2014    																																		
+** Date: Oct 16, 2014 																																				
 ** -------------------------------------------------------------------------------------------------
 ***************************************************************************************************/
 
-#include <pca10001.h>
+#include <nrf51.h>
+#include <nrf51_bitfields.h>
+#include "nrf51_CLOCK.h"
 
-void LPCOMP_init (void);
-void LPCOMP_IRQHandler(void);
+void LFCLOCK_init(void)
+{
+	//Select the preferred low frequency clock source as Cryatal Quartz
+	NRF_CLOCK->LFCLKSRC = (CLOCK_LFCLKSRC_SRC_Xtal << CLOCK_LFCLKSRC_SRC_Pos);
+	//Clear LFCLKSTARTED event
+	NRF_CLOCK->EVENTS_LFCLKSTARTED = 0;
+	//Trigger LFCLKSTART task	-> start Low Frequency Clock
+	NRF_CLOCK->TASKS_LFCLKSTART = 1;
+	// Wait for the low frequency clock to start
+	while (NRF_CLOCK->EVENTS_LFCLKSTARTED == 0) 
+	{
+	}
+}
