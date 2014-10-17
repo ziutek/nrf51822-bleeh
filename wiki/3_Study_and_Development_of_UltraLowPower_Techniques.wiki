@@ -127,6 +127,14 @@ The current consumption of high frequency crystal oscillator is 470 uA typical a
 No code is needed to setup HFCLK because RC oscillator is automatically started/restarted when no peripheral require HFCLK. E.g. in sleep mode.
 
 ====Timer====
+The choosing of timer is quite simple because nRF51 has two timer peripherals:
+ * Timers/Counters (TIMER): The timer/counter runs on the high-frequency clock source (HFCLK) and includes a 4 bit (1/2X) prescaler that can divide the HFCLK. Typical current consumption is 30 uA. Switch-on the high frequency clock also in sleep mode mean a constant high current consumption.
+ * Real Time Counter (RTC): The Real Time Counter (RTC) module provides a generic, low power timer on the low-frequency clock source (LFCLK). The RTC features a 24 bit COUNTER, 12 bit (1/X) prescaler, capture/compare registers, and a tick event generator for low power, tickless RTOS implementation. Typical current consumption is only 0.1 uA and require only low frequency clock that's already running in sleep mode.
+The schematic of RTC is shown below:
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/RTC_schematic.png
+
+
+
 
 
 {{{ 
