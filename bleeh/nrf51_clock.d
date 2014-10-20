@@ -1,4 +1,5 @@
 .\nrf51_clock.o: nrf51_CLOCK.c
+.\nrf51_clock.o: .\Include\nrf51_CLOCK.h
 .\nrf51_clock.o: .\Include\nrf51.h
 .\nrf51_clock.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cm0.h
 .\nrf51_clock.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdint.h
@@ -7,6 +8,3 @@
 .\nrf51_clock.o: .\Include\system_nrf51.h
 .\nrf51_clock.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include\nrf51_bitfields.h
 .\nrf51_clock.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cm0.h
-.\nrf51_clock.o: .\Include\nrf51_CLOCK.h
-.\nrf51_clock.o: .\Include\pca10001.h
-.\nrf51_clock.o: .\Include\nrf_gpio.h
