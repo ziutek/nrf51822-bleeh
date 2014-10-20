@@ -9,8 +9,11 @@
 ** Date:	Oct 06, 2014    																																		
 ** -------------------------------------------------------------------------------------------------
 ***************************************************************************************************/
-
-#include <pca10001.h>
-
-void LPCOMP_init (void);
-void LPCOMP_IRQHandler(void);
+#ifndef NRF51_LPCOMP_H
+	#define NRF51_LPCOMP_H
+	
+	void LPCOMP_init (void);
+	
+	void LPCOMP_IRQHandler(void);
+	
+#endif //#ifndef NRF51_LPCOMP_H

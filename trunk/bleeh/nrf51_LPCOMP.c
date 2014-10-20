@@ -6,14 +6,15 @@
 ** -------------------------------------------------------------------------------------------------
 ** Author: Luca Buccolini																																						
 ** -------------------------------------------------------------------------------------------------
-** Date:	Oct 06, 2014    																																		
+** Date:	Oct 18, 2014    																																		
 ** -------------------------------------------------------------------------------------------------
 ***************************************************************************************************/
 
-#include <nrf51.h>
-#include <nrf51_bitfields.h>
 #include "nrf51_LPCOMP.h"
 
+#include <nrf51.h>
+#include <nrf51_bitfields.h>
+#include <pca10001.h>
 
 /**
  * Initialize the comparator
@@ -27,8 +28,8 @@
  
  void LPCOMP_init (void)
 	{
-	//Enable interrupt on LPCOMP CROSS event
-	NRF_LPCOMP->INTENSET = LPCOMP_INTENSET_CROSS_Msk;
+	//Enable interrupt on LPCOMP UPWARD-CROSSING event
+	NRF_LPCOMP->INTENSET = LPCOMP_INTENCLR_UP_Msk;
 	//Enable the device-specific interrupt in the NVIC interrupt controller
 	NVIC_EnableIRQ(LPCOMP_IRQn);
 
@@ -54,19 +55,11 @@
  *					toggle LED_1 to indicate triggering of event	
  */
 //--------------------------------------------------------------------------------------------------
+	
 	 /* Interrupt handler for LPCOMP */
 void LPCOMP_IRQHandler(void)
 	{
 	// Clear event
-	NRF_LPCOMP->EVENTS_CROSS = 0;
-
-	// Sample the LPCOMP stores its state in the RESULT register. 
-	// RESULT==0 means lower than reference voltage, 
-	// RESULT==1 means higher than reference voltage
-	NRF_LPCOMP->TASKS_SAMPLE = 1;
-	nrf_gpio_pin_write(LED_0, NRF_LPCOMP->RESULT);
-
-	// Toggle pin to indicate triggering of event
-	nrf_gpio_pin_toggle(LED_1);
+	NRF_LPCOMP->EVENTS_UP = 0;
 	}
 //--------------------------------------------------------------------------------------------------

@@ -10,6 +10,8 @@
 .\main.o: C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include\nrf51_bitfields.h
 .\main.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cm0.h
 .\main.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdbool.h
+.\main.o: C:\Keil_v5\ARM\ARMCC\bin\..\include\stdlib.h
 .\main.o: .\Include\nrf51_LPCOMP.h
 .\main.o: .\Include\nrf51_CLOCK.h
+.\main.o: .\Include\nrf51_RTC.h
 .\main.o: .\Include\debug\SEGGER_RTT.h
