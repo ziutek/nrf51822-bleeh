@@ -217,7 +217,16 @@ The button was pressed with at different time. The time elapsed between two butt
 In time elapsed between two pulses the CPU should be sleeping as a "Waiting For Interrupt" (`__WFI()`) instruction is executed. A precise current measurement should reveal it.
 ----
 
-=Measure current consumption of nRF51=
+=Current consumption on nRF51=
+Current consumption on nRF51822 used should be given by:
+
+ * SYSTEM-ON base current with 16 kB RAM enabled (I use only 8 kB but this spec. is not available), I_ON= 2.6 uA.
+ * Real Time Counter (RTC) current, I_RTC= 0.1 uA.
+ * Run current for 32.768 kHz crystal oscillator, I_X32k= 0.4 uA
+ * Run current for LPCOMP, I_LPC= 0.5 uA.
+Thus, total current consumption in sleep mode should be: I_ON + I_RTC + I_X32k + I_LPC = 2.6 + 0.1 + 0.4 + 0.5 = 3.6 uA
+ 
+
 == Circuit setup to measure low current ==
-== Measurement and comparison of energy consumption among CPU active mode and CPU sleep mode==
+== Measurement and comparison of energy consumption among CPU-active-mode and CPU-sleep-mode==
 ----
