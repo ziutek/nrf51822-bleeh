@@ -207,7 +207,7 @@ Thanks to [https://www.segger.com/jlink-real-time-terminal.html SEGGER RTT] func
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/terminal_speed.png
 
-<wiki:video url="http://youtu.be/1cFkiIV8wbg"/>
+<wiki:video url="https://www.youtube.com/watch?v=1cFkiIV8wbg&feature=youtu.be"/>
 
 <wiki:video url="http://www.youtube.com/watch?v=3LkNlTNHZzE"/>
 
