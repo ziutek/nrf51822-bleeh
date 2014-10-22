@@ -137,15 +137,52 @@ The schematic of RTC is shown below:
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/RTC_schematic.png
 
+Code initialization for RTC is void as the default values of RTC peripheral matched the requisites. I.e. Prescaler is set to zero (RTC frequency is 32768 kHz), all events are disabled, etc. Thus `RTC0_init()` function do nothing.
+Once started, I chose to never stop the RTC0 counter as it drawn only 0.1 uA of current and because stopping and restarting RTC mean add some jitter/delay to counting (see paragraph 18.1.8 of [https://www.nordicsemi.com/eng/nordic/download_resource/20337/10/53074698 nRF51 Series Reference Manual V2.1]). This complicate precise delta time measurement. Only difference is an absolute value subtraction between actual counter value and previous counter value must be done in order to compute a positive delta-time.
+Following flow graph describe the algorithm to compute speed in km/h starting from measuring delta-time between two pulses at AIN4 (LPCOMP) port.
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/ComputeSpeed_Algorithm.png
+Below the C code of above flow graph.
 
+{{{
+/*+++++++++++++++++++++++++++++++++___START-OF-INFINITE-LOOP___+++++++++++++++++++++++++++++++++++*/
+	while (true)
+	{
+		__WFI(); 	// Wait-For-Interupt (CPU in sleep, Power-ON/Low Power Mode)
+		//Following code is executed when LPCOMP wake-up the CPU (up-crossing event triggered)
+		
+		if(!IsRTC0Running)	//Is first RTC0 counting, RTC0 is not running
+		{
+			//Start RTC0 counter
+			NRF_RTC0->TASKS_START=1;
+			//Clear flag
+			IsRTC0Running=1;
+		}
+		else	//RTC0 was already running
+		{
+			//compute delta time between two LPCOM upward crossing event
+			deltatime=abs(NRF_RTC0->COUNTER - PreviousRTC0CounterValue);	
+			
+			//update value of PreviuousRTC0CounterValue
+			PreviousRTC0CounterValue=NRF_RTC0->COUNTER;
+			
+			//Compute Speed in km/h from Delta Time in RTC0 ticks;
+			speed_kmh=SPEED_KMH(deltatime);
+			
+			//Print to SEGGER_RTT debugger tool the “speed”
+			/*++++++++++++++++++++++++++++___START-OF-DEBUG-CODE___+++++++++++++++++++++++++++++++++++++*/
+			//
+			//SEGGER_RTT_WriteString(0,"Hello World from SEGGER RTT!!\r\n");
+			SEGGER_RTT_printf(0, "debug_cnt=%d\r\n", debug_cnt++);
+			SEGGER_RTT_printf(0, "DeltaTime=%u\r\n", deltatime);
+			SEGGER_RTT_printf(0, "Speed_kmh=%.2u\r\n", speed_kmh);
+			//
+			/*++++++++++++++++++++++++++++++___END-OF-DEBUG-CODE___+++++++++++++++++++++++++++++++++++++*/
+		}
+		
+	
 
-
-
-
-
-{{{ 
-//****************describe how to initialize timer and LPCOMP****************//
-/* and how to shut down peripherals to lower current consumption*/
+	}
+/*+++++++++++++++++++++++++++++++++++___END-OF-INFINITE-LOOP___+++++++++++++++++++++++++++++++++++*/
 }}}
 
 ----
