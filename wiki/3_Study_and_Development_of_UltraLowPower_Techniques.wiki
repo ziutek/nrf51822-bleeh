@@ -209,6 +209,8 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/termina
 
 <wiki:video url="http://youtu.be/1cFkiIV8wbg"/>
 
+<wiki:video url="http://www.youtube.com/watch?v=3LkNlTNHZzE"/>
+
 ----
 
 =Measure current consumption of nRF51=
