@@ -192,6 +192,17 @@ Below the C code of above flow graph.
 /*+++++++++++++++++++++++++++++++++++___END-OF-INFINITE-LOOP___+++++++++++++++++++++++++++++++++++*/
 }}}
 
+where `SPEED_KMH()` depends on tyre circumference and RTC resolution. It was built using the following macros:
+{{{
+/***************************************************************************************************
+*_____________________________________________MACRO_________________________________________________
+***************************************************************************************************/
+#define TYRE_CIRCUMFERENCE_M 2070E-3
+#define RTC0_RESOLUTION_S 30.517E-6
+#define SPEED_MS(dt) ((TYRE_CIRCUMFERENCE_M)/(dt*RTC0_RESOLUTION_S))
+#define SPEED_KMH(dt) (SPEED_MS(dt)*3.6)			
+}}}
+
 ----
 
 =Measure current consumption of nRF51=
