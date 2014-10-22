@@ -218,7 +218,7 @@ In time elapsed between two pulses the CPU should be sleeping as a "Waiting For 
 ----
 
 =Current consumption on nRF51=
-Current consumption on nRF51822 used should be given by:
+Current consumption on nRF51822 in ON-mode, during CPU sleeping should be given by:
 
  * SYSTEM-ON base current with 16 kB RAM enabled (I use only 8 kB but this spec. is not available), I_ON = 2.6 uA.
  * Real Time Counter (RTC) current, I_RTC = 0.1 uA.
@@ -227,10 +227,10 @@ Current consumption on nRF51822 used should be given by:
 Thus, total current consumption in ON mode (CPU sleeping) should be: I_ON + I_RTC + I_X32k + I_LPC = 2.6 + 0.1 + 0.4 + 0.5 = 3.6 uA
 
 While the total current consumption in ON-mode when the CPU is running, is given by:
- * Total current consumption in sleep mode I_TSLP = 3.6 uA
+ * Total current consumption in sleep mode I_TOT_SLP = 3.6 uA
  * Run current for 16 MHz RC oscillator, I_RC16M = 750 uA
  * Run current at 16 MHz executing code from flash memory, I_CPU_FLASH = 4.4 mA
-Thus, total current consumption in ON mode (CPU running) should be: I_TSLP + I_RC16M + I_CPU_FLASH = 3.6 + 750 + 4400 = 5.154 mA
+Thus, total current consumption in ON mode (CPU running) should be: I_TOT_SLP + I_RC16M + I_CPU_FLASH = 3.6 + 750 + 4400 = 5.154 mA
 
 
 == Circuit setup to measure low current ==
