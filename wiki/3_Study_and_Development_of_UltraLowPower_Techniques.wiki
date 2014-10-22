@@ -140,7 +140,9 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/RTC_sch
 Code initialization for RTC is void as the default values of RTC peripheral matched the requisites. I.e. Prescaler is set to zero (RTC frequency is 32768 kHz), all events are disabled, etc. Thus `RTC0_init()` function do nothing.
 Once started, I chose to never stop the RTC0 counter as it drawn only 0.1 uA of current and because stopping and restarting RTC mean add some jitter/delay to counting (see paragraph 18.1.8 of [https://www.nordicsemi.com/eng/nordic/download_resource/20337/10/53074698 nRF51 Series Reference Manual V2.1]). This complicate precise delta time measurement. Only difference is an absolute value subtraction between actual counter value and previous counter value must be done in order to compute a positive delta-time.
 Following flow graph describe the algorithm to compute speed in km/h starting from measuring delta-time between two pulses at AIN4 (LPCOMP) port.
+
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/ComputeSpeed_Algorithm.png
+
 Below the C code of above flow graph.
 
 {{{
