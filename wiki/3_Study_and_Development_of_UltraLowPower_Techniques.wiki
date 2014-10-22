@@ -203,6 +203,10 @@ where `SPEED_KMH()` depends on tyre circumference and RTC resolution. It was bui
 #define SPEED_KMH(dt) (SPEED_MS(dt)*3.6)			
 }}}
 
+Thanks to [https://www.segger.com/jlink-real-time-terminal.html SEGGER RTT] functionality of the build-in debugger, it's easy to print the variables value to the terminal (I'm using [http://www.putty.org/ PuTTY]).
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/terminal_speed.png
+
 ----
 
 =Measure current consumption of nRF51=
