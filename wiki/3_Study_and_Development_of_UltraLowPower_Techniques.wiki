@@ -205,11 +205,8 @@ where `SPEED_KMH()` depends on tyre circumference and RTC resolution. It was bui
 
 Thanks to [https://www.segger.com/jlink-real-time-terminal.html SEGGER RTT] functionality of the build-in debugger, it's easy to print the variables value to the terminal (I'm using [http://www.putty.org/ PuTTY]).
 
-https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/terminal_speed.png
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/terminal_speed.png <wiki:video url="https://www.youtube.com/watch?v=1cFkiIV8wbg&feature=youtu.be"/>
 
-<wiki:video url="https://www.youtube.com/watch?v=1cFkiIV8wbg&feature=youtu.be"/>
-
-<wiki:video url="http://www.youtube.com/watch?v=3LkNlTNHZzE"/>
 
 ----
 
