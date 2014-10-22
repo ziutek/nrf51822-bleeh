@@ -3,7 +3,7 @@
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/work-in-progress_BIG.png
 
-<wiki:toc max_depth="2" />
+<wiki:toc max_depth="4" />
 
 = Introduction: Ultra Low Power =
 Here is described the using of Ultra Low Power tecniques. These tips come from different sources and are joined together. Most useful tips come from:
