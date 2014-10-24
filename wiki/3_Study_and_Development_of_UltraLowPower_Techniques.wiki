@@ -210,10 +210,10 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/termina
 <wiki:video url="https://www.youtube.com/watch?v=1cFkiIV8wbg&feature=youtu.be"/>
 
 In video, three new lines appear each time the button is pressed that is each time the bicycle's wheel rotates at 360'. The lines are: 
- * debug_cnt=x: it's a counter of happened interrupt;
- * DeltaTime=y: it's the elapsed time between two pulses (interrupts), expressed in tick. 1 tick= 30.517E-6 s
- * Speed_kmh=z: it's the estimated speed in km/h rounded to unit.
-The button was pressed with at different time. The time elapsed between two button's push is correctly calculated and the speed in km/h corresponds to this delta-time.
+ * debug_cnt=x: it's a counter of occurred interrupt;
+ * DeltaTime=y: it's the elapsed time among two pulses (interrupts), expressed in tick. 1 tick= 30.517E-6 s
+ * Speed_kmh=z: it's the estimated speed in km/h, rounded to unit.
+The button was pressed with at different time. The time elapsed between two occurring button presses is correctly calculated and the speed in km/h corresponds to this delta-time.
 In time elapsed between two pulses the CPU should be sleeping as a "Waiting For Interrupt" (`__WFI()`) instruction is executed. A precise current measurement should reveal it.
 ----
 
