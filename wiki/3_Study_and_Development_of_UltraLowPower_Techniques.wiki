@@ -92,6 +92,10 @@ Thus, to enter in sleep mode, simply write:
 __WFI();
 }}}
 
+===Run code from RAM===
+Analyzing nRF51 product specification document, in chapter 8.4, it's easy to see the difference in current consumption between running code from flash memory and running code from RAM. In first case, typical current consumption is 4.4 mA @ 16 MHz instead, executing code from RAM, due to drawn only a current of 2.4 mA from power supply @ 16 MHz.
+Well, thus move code from FLASH to RAM memory is a to-do thing (if S110 SoftDevice stack permits it)! 
+
 ===RAM retention===
 Each of the available RAM blocks, can power up and down independently in both System ON and System OFF mode. nRF51822 has two 8 kB blocks. Code to enable RAM block 0 in OFF-mode and ON-mode and disable block 1 either in OFF-mode and ON-mode is below.
 {{{
@@ -234,5 +238,19 @@ Thus, total current consumption in ON mode (CPU running) should be: I_TOT_SLP + 
 
 
 == Circuit setup to measure low current ==
+Measuring such low current is a challenge with traditional instruments thus an express instruments was build. 
+It is a set of two op-amp (LTC2054) performing a current sense amplifier across a 10 ohm resistor. Current sensing circuit is applied in low-side; meaning 10 ohm resistor is between real GND and circuit GND. Following image represent the circuit.
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/CurrentSensing_circuit.png
+
+Current drained to circuit produce a voltage drop across the resistor. This voltage drop is proportional to current consumption of nRF51 circuit and it's negligible compared to 1.8 V supply. The little voltage drop is then amplified by two op-amps with a 221 [V/V] gain each-one producing a total gain of 221*221=48841 [V/V]. Trans-impedance gain is voltage gain * resistor value that is 48841*10=488410 [V/A]. 
+
+Further a power supply regulator to set a 1.8 V precise working voltage was build.
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/PreciseVoltegeRegulator_circuit.png
+
+
+Transimpedance GAIN is given by the following:
+ 
 == Measurement and comparison of energy consumption among CPU-active-mode and CPU-sleep-mode==
 ----
