@@ -243,17 +243,16 @@ It is a set of two op-amp (LTC2054) performing a current sense amplifier across 
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/CurrentSensing_circuit.png
 
-The nRF51 current consumption produce a voltage drop across the resistor. This voltage drop is negligible compared to 1.8 V supply and is amplified by two op-amps with a 221 [V/V] gain each one, producing a total gain of gain=221*221=48841 [V/V] and an intermediate gain=221 [V/V]. Total trans-impedance gain is T_gain_sleep=48841*10=488410 [V/A] and intermediate trans-impedance gain is T_gain_on=221*10=2210 [V/A].
+The nRF51 current consumption produce a voltage drop across the 10 ohm resistor. This voltage drop is negligible compared to 1.8 V supply and is amplified by two op-amps providing two difference trans-impedance gains. One for measure current consumption during CPU in sleep-mode (T_gain_sleep=506230 [V/A]), the second for measure current consumption during CPU running (T_gain_on=230 [V/A]). Two different measurement point are provided due to high dynamic range of the current consumption.
 
-Expected current consumption in sleep mode, should give an output voltage of T_gain_sleep*i=488410*3.6E-6=1.758 [V]
-Instead, expected current consumption in on mode, should give an output voltage of T_gain_on*i=221*5.154E-3=
+Expected current consumption in sleep mode, should give an output voltage of T_gain_sleep*i=506230*3.6E-6=1.822 [V] @ out_sleep node.
+Instead, expected current consumption in on mode, should give an output voltage of T_gain_on*i=230*5.154E-3=1.185 [V] @ out_on node.
 
 Further a power supply regulator to set a 1.8 V precise working voltage was build.
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/PreciseVoltegeRegulator_circuit.png
 
 
-Transimpedance GAIN is given by the following:
  
 == Measurement and comparison of energy consumption among CPU-active-mode and CPU-sleep-mode==
 ----
