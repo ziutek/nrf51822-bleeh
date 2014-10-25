@@ -256,10 +256,13 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/Precise
 Current consumption measurement are also provided with board ( see [https://www.nordicsemi.com/eng/user/login/?next=Products/Bluetooth-Smart-Bluetooth-low-energy/nRF51822-Evaluation-Kit?resource=18974 Evaluation Kit User Guide] paragraph 5.1.11),  however must be fitted a 0402 smd 10 ohm resitor in the board. I've not such a small resistor. 
 Besides, since I need to power the circuit from an external 1.8 V regulator, I chose to insert an external 10 ohm current-sense-resistor and measure voltage drop across it. Thus, connection to PCA-10001 board are at pin 2 (1.8 V) and pin 4 (GND) of header P1 unlike connections suggested on EK User Guide.
 
-*********immagine del le connessioni allla board per misurare la corrente (pin 2 e 4); metti la rsensing e 1.8V supply!!*****************
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/PCA10001_power_supply_circuitry.png
+
+Connections to PCA10001 board are shown below where P1.2 and P1.4 are pin 2 and pin 4 of pin-header P1:
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/current_measurement_circuitry.png
 
 This is because i want to supply 1.8 V directly to nRF51 chip, without any protection diode inserted. In fact, voltage drop across diode lead to supply nRF51 with a lower voltage and power measurement will be wrong. 
 
- 
 == Measurement and comparison of energy consumption among CPU-active-mode and CPU-sleep-mode==
 ----
