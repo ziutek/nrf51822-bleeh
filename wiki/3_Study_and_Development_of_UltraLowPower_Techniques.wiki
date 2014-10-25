@@ -239,7 +239,7 @@ Thus, total current consumption in ON mode (CPU running) should be: I_TOT_SLP + 
 
 == Circuit setup to measure low current ==
 Measuring such low current is a challenge with traditional instruments thus an express instruments was build. 
-It is a set of two op-amp (LTC2054) performing a current sense amplifier across a 10 ohm resistor. Current sensing circuit is applied in low-side; meaning 10 ohm resistor is between real GND and circuit GND (labeled as "*in*" in figure). Following image represent the circuit.
+It is a set of two op-amp (LTC2054) performing a current sense amplifier across a 10 ohm resistor. Current sensing circuit is applied in low-side; meaning 10 ohm resistor is between real GND and circuit GND (labeled as "*in*" in figure). nRF51 board is represented as a current generator, I1 in following circuit:
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/CurrentSensing_circuit.png
 
@@ -252,6 +252,13 @@ Further a power supply regulator to set a 1.8 V precise working voltage was buil
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/PreciseVoltegeRegulator_circuit.png
 
+===Connetion to nRF51 EvaluationKit board (PCA-10001)===
+Current consumption measurement are also provided with board ( see [https://www.nordicsemi.com/eng/user/login/?next=Products/Bluetooth-Smart-Bluetooth-low-energy/nRF51822-Evaluation-Kit?resource=18974 Evaluation Kit User Guide] paragraph 5.1.11),  however must be fitted a 0402 smd 10 ohm resitor in the board. I've not such a small resistor. 
+Besides, since I need to power the circuit from an external 1.8 V regulator, I chose to insert an external 10 ohm current-sense-resistor and measure voltage drop across it. Thus, connection to PCA-10001 board are at pin 2 (1.8 V) and pin 4 (GND) of header P1 unlike connections suggested on EK User Guide.
+
+*********immagine del le connessioni allla board per misurare la corrente (pin 2 e 4); metti la rsensing e 1.8V supply!!*****************
+
+This is because i want to supply 1.8 V directly to nRF51 chip, without any protection diode inserted. In fact, voltage drop across diode lead to supply nRF51 with a lower voltage and power measurement will be wrong. 
 
  
 == Measurement and comparison of energy consumption among CPU-active-mode and CPU-sleep-mode==
