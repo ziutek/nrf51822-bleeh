@@ -239,11 +239,14 @@ Thus, total current consumption in ON mode (CPU running) should be: I_TOT_SLP + 
 
 == Circuit setup to measure low current ==
 Measuring such low current is a challenge with traditional instruments thus an express instruments was build. 
-It is a set of two op-amp (LTC2054) performing a current sense amplifier across a 10 ohm resistor. Current sensing circuit is applied in low-side; meaning 10 ohm resistor is between real GND and circuit GND. Following image represent the circuit.
+It is a set of two op-amp (LTC2054) performing a current sense amplifier across a 10 ohm resistor. Current sensing circuit is applied in low-side; meaning 10 ohm resistor is between real GND and circuit GND (labeled as "*in*" in figure). Following image represent the circuit.
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/CurrentSensing_circuit.png
 
-Current drained to circuit produce a voltage drop across the resistor. This voltage drop is proportional to current consumption of nRF51 circuit and it's negligible compared to 1.8 V supply. The little voltage drop is then amplified by two op-amps with a 221 [V/V] gain each-one producing a total gain of 221*221=48841 [V/V]. Trans-impedance gain is voltage gain * resistor value that is 48841*10=488410 [V/A]. 
+The nRF51 current consumption produce a voltage drop across the resistor. This voltage drop is negligible compared to 1.8 V supply and is amplified by two op-amps with a 221 [V/V] gain each one, producing a total gain of gain=221*221=48841 [V/V] and an intermediate gain=221 [V/V]. Total trans-impedance gain is T_gain_sleep=48841*10=488410 [V/A] and intermediate trans-impedance gain is T_gain_on=221*10=2210 [V/A].
+
+Expected current consumption in sleep mode, should give an output voltage of T_gain_sleep*i=488410*3.6E-6=1.758 [V]
+Instead, expected current consumption in on mode, should give an output voltage of T_gain_on*i=221*5.154E-3=
 
 Further a power supply regulator to set a 1.8 V precise working voltage was build.
 
