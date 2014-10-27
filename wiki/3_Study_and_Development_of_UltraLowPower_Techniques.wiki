@@ -266,6 +266,6 @@ This is because i want to supply 1.8 V directly to nRF51 chip, without any prote
 
 == Measurement and comparison of energy consumption among CPU-active-mode and CPU-sleep-mode==
 In order to measure current consumption, a new firmware was build. In fact, measure such a low current with high dynamic range is a hard challenge with hobbyist tools.The application will stay in ON-mode all time but, every time the external button is pressed, the state will change among CPU-sleeping and CPU-ON. Current measurement in this two states are performed with a digital multimeter (UNI-T UT61-E). Measurement resolutions are:
- * 10 nA with an accuracy of (0.5% + 10 counts) when measuring micro-ampere.
- * 1 uA with an accuracy of (0.5% + 10 counts) when measuring milli-ampere.  
+ * 10 nA with an accuracy of (0.5% + 10 counts) when measuring micro-ampere i.e. in CPU-sleep mode;
+ * 1 uA with an accuracy of (0.5% + 10 counts) when measuring milli-ampere i.e. in CPU-ON mode;
 ----
