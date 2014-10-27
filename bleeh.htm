@@ -3,9 +3,9 @@
 <title>Static Call Graph - [.\bleeh.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\bleeh.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5040049: Last Updated: Mon Oct 27 11:38:42 2014
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5040049: Last Updated: Mon Oct 27 19:10:56 2014
 <BR><P>
-<H3>Maximum Stack Usage =        384 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
+<H3>Maximum Stack Usage =        360 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
 __rt_entry_main &rArr; main &rArr; SEGGER_RTT_printf &rArr; SEGGER_RTT_vprintf &rArr; _PrintInt &rArr; _PrintUnsigned &rArr; _StoreChar &rArr; SEGGER_RTT_Write &rArr; __aeabi_memcpy
 <P>
@@ -173,7 +173,7 @@ Global Symbols
 <P><STRONG><a name="[73]"></a>__rt_entry_postsh_1</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtentry2.o(.ARM.Collect$$rtentry$$00000009))
 
 <P><STRONG><a name="[2f]"></a>__rt_entry_main</STRONG> (Thumb, 0 bytes, Stack size unknown bytes, rtentry2.o(.ARM.Collect$$rtentry$$0000000D))
-<BR><BR>[Stack]<UL><LI>Max Depth = 384 + Unknown Stack Size
+<BR><BR>[Stack]<UL><LI>Max Depth = 360 + Unknown Stack Size
 <LI>Call Chain = __rt_entry_main &rArr; main &rArr; SEGGER_RTT_printf &rArr; SEGGER_RTT_vprintf &rArr; _PrintInt &rArr; _PrintUnsigned &rArr; _StoreChar &rArr; SEGGER_RTT_Write &rArr; __aeabi_memcpy
 </UL>
 <BR>[Calls]<UL><LI><a href="#[31]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;exit
@@ -196,71 +196,88 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_exit
 </UL>
 
-<P><STRONG><a name="[4c]"></a>__aeabi_memcpy4</STRONG> (Thumb, 56 bytes, Stack size 0 bytes, rt_memcpy.o(.emb_text))
-<BR><BR>[Called By]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<P><STRONG><a name="[4e]"></a>__aeabi_memcpy4</STRONG> (Thumb, 56 bytes, Stack size 0 bytes, rt_memcpy.o(.emb_text))
+<BR><BR>[Called By]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
 
 <P><STRONG><a name="[76]"></a>__aeabi_memcpy8</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, rt_memcpy.o(.emb_text), UNUSED)
 
-<P><STRONG><a name="[36]"></a>LPCOMP_init</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, nrf51_lpcomp.o(.text))
+<P><STRONG><a name="[39]"></a>LPCOMP_init</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, nrf51_lpcomp.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[1d]"></a>LPCOMP_IRQHandler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, nrf51_lpcomp.o(.text))
+<P><STRONG><a name="[1d]"></a>LPCOMP_IRQHandler</STRONG> (Thumb, 72 bytes, Stack size 8 bytes, nrf51_lpcomp.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = LPCOMP_IRQHandler &rArr; nrf_delay &rArr; __aeabi_dmul
+</UL>
+<BR>[Calls]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_delay
+<LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_gpio_pin_clear
+<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_gpio_pin_write
+</UL>
 <BR>[Address Reference Count : 1]<UL><LI> arm_startup_nrf51.o(RESET)
 </UL>
-<P><STRONG><a name="[30]"></a>main</STRONG> (Thumb, 190 bytes, Stack size 24 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 384<LI>Call Chain = main &rArr; SEGGER_RTT_printf &rArr; SEGGER_RTT_vprintf &rArr; _PrintInt &rArr; _PrintUnsigned &rArr; _StoreChar &rArr; SEGGER_RTT_Write &rArr; __aeabi_memcpy
+<P><STRONG><a name="[30]"></a>main</STRONG> (Thumb, 102 bytes, Stack size 0 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 360<LI>Call Chain = main &rArr; SEGGER_RTT_printf &rArr; SEGGER_RTT_vprintf &rArr; _PrintInt &rArr; _PrintUnsigned &rArr; _StoreChar &rArr; SEGGER_RTT_Write &rArr; __aeabi_memcpy
 </UL>
-<BR>[Calls]<UL><LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
-<LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2uiz
-<LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ddiv
-<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_printf
-<LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC0_init
-<LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LFCLOCK_init
-<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LPCOMP_init
+<BR>[Calls]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_printf
+<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_WriteString
+<LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RTC0_init
+<LI><a href="#[3a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LFCLOCK_init
+<LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LPCOMP_init
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
 
-<P><STRONG><a name="[37]"></a>LFCLOCK_init</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, nrf51_clock.o(.text))
+<P><STRONG><a name="[3a]"></a>LFCLOCK_init</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, nrf51_clock.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[38]"></a>RTC0_init</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, nrf51_rtc.o(.text))
+<P><STRONG><a name="[3b]"></a>RTC0_init</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, nrf51_rtc.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[3e]"></a>SEGGER_RTT_Read</STRONG> (Thumb, 190 bytes, Stack size 40 bytes, segger_rtt.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<P><STRONG><a name="[38]"></a>nrf_delay</STRONG> (Thumb, 56 bytes, Stack size 40 bytes, nrf_delay_l85.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = nrf_delay &rArr; __aeabi_dmul
 </UL>
-<BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_GetKey
+<BR>[Calls]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
+<LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
+<LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2uiz
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LPCOMP_IRQHandler
 </UL>
 
-<P><STRONG><a name="[40]"></a>SEGGER_RTT_Write</STRONG> (Thumb, 318 bytes, Stack size 40 bytes, segger_rtt.o(.text))
+<P><STRONG><a name="[41]"></a>SEGGER_RTT_Read</STRONG> (Thumb, 190 bytes, Stack size 40 bytes, segger_rtt.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+</UL>
+<BR>[Called By]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_GetKey
+</UL>
+
+<P><STRONG><a name="[43]"></a>SEGGER_RTT_Write</STRONG> (Thumb, 318 bytes, Stack size 40 bytes, segger_rtt.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = SEGGER_RTT_Write &rArr; __aeabi_memcpy
 </UL>
-<BR>[Calls]<UL><LI><a href="#[3f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
+<BR>[Calls]<UL><LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy
 </UL>
-<BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_vprintf
-<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_StoreChar
-<LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_WriteString
-</UL>
-
-<P><STRONG><a name="[41]"></a>SEGGER_RTT_WriteString</STRONG> (Thumb, 26 bytes, Stack size 16 bytes, segger_rtt.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_Write
-<LI><a href="#[42]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_strlen
+<BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_vprintf
+<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_StoreChar
+<LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_WriteString
 </UL>
 
-<P><STRONG><a name="[43]"></a>SEGGER_RTT_GetKey</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, segger_rtt.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_Read
+<P><STRONG><a name="[3d]"></a>SEGGER_RTT_WriteString</STRONG> (Thumb, 26 bytes, Stack size 16 bytes, segger_rtt.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = SEGGER_RTT_WriteString &rArr; SEGGER_RTT_Write &rArr; __aeabi_memcpy
 </UL>
-<BR>[Called By]<UL><LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_WaitKey
+<BR>[Calls]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_Write
+<LI><a href="#[44]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_strlen
+</UL>
+<BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[44]"></a>SEGGER_RTT_WaitKey</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, segger_rtt.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_GetKey
+<P><STRONG><a name="[45]"></a>SEGGER_RTT_GetKey</STRONG> (Thumb, 30 bytes, Stack size 16 bytes, segger_rtt.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_Read
+</UL>
+<BR>[Called By]<UL><LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_WaitKey
+</UL>
+
+<P><STRONG><a name="[46]"></a>SEGGER_RTT_WaitKey</STRONG> (Thumb, 14 bytes, Stack size 8 bytes, segger_rtt.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_GetKey
 </UL>
 
 <P><STRONG><a name="[77]"></a>SEGGER_RTT_HasKey</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, segger_rtt.o(.text), UNUSED)
@@ -269,21 +286,21 @@ Global Symbols
 
 <P><STRONG><a name="[79]"></a>SEGGER_RTT_ConfigDownBuffer</STRONG> (Thumb, 84 bytes, Stack size 20 bytes, segger_rtt.o(.text), UNUSED)
 
-<P><STRONG><a name="[49]"></a>SEGGER_RTT_vprintf</STRONG> (Thumb, 520 bytes, Stack size 136 bytes, segger_rtt_printf.o(.text))
+<P><STRONG><a name="[4b]"></a>SEGGER_RTT_vprintf</STRONG> (Thumb, 520 bytes, Stack size 136 bytes, segger_rtt_printf.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 328<LI>Call Chain = SEGGER_RTT_vprintf &rArr; _PrintInt &rArr; _PrintUnsigned &rArr; _StoreChar &rArr; SEGGER_RTT_Write &rArr; __aeabi_memcpy
 </UL>
-<BR>[Calls]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_PrintInt
-<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_PrintUnsigned
-<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_StoreChar
-<LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_Write
+<BR>[Calls]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_PrintInt
+<LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_PrintUnsigned
+<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_StoreChar
+<LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_Write
 </UL>
-<BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_printf
+<BR>[Called By]<UL><LI><a href="#[3c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_printf
 </UL>
 
-<P><STRONG><a name="[3d]"></a>SEGGER_RTT_printf</STRONG> (Thumb, 28 bytes, Stack size 32 bytes, segger_rtt_printf.o(.text))
+<P><STRONG><a name="[3c]"></a>SEGGER_RTT_printf</STRONG> (Thumb, 28 bytes, Stack size 32 bytes, segger_rtt_printf.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 360<LI>Call Chain = SEGGER_RTT_printf &rArr; SEGGER_RTT_vprintf &rArr; _PrintInt &rArr; _PrintUnsigned &rArr; _StoreChar &rArr; SEGGER_RTT_Write &rArr; __aeabi_memcpy
 </UL>
-<BR>[Calls]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_vprintf
+<BR>[Calls]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_vprintf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
@@ -411,27 +428,27 @@ Global Symbols
 <P><STRONG><a name="[24]"></a>SystemInit</STRONG> (Thumb, 38 bytes, Stack size 8 bytes, system_nrf51.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = SystemInit
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;is_manual_peripheral_setup_needed
-<LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;is_disabled_in_debug_needed
+<BR>[Calls]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;is_manual_peripheral_setup_needed
+<LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;is_disabled_in_debug_needed
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> arm_startup_nrf51.o(.text)
 </UL>
-<P><STRONG><a name="[3f]"></a>__aeabi_memcpy</STRONG> (Thumb, 130 bytes, Stack size 24 bytes, rt_memcpy.o(.text))
+<P><STRONG><a name="[42]"></a>__aeabi_memcpy</STRONG> (Thumb, 130 bytes, Stack size 24 bytes, rt_memcpy.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 24<LI>Call Chain = __aeabi_memcpy
 </UL>
-<BR>[Calls]<UL><LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
+<BR>[Calls]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_memcpy4
 </UL>
-<BR>[Called By]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_Write
-<LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_Read
+<BR>[Called By]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_Write
+<LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_Read
 </UL>
 
 <P><STRONG><a name="[7b]"></a>__rt_memcpy</STRONG> (Thumb, 0 bytes, Stack size 24 bytes, rt_memcpy.o(.text), UNUSED)
 
 <P><STRONG><a name="[7c]"></a>__aeabi_uidiv</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, aeabi_sdiv.o(.text), UNUSED)
 
-<P><STRONG><a name="[47]"></a>__aeabi_uidivmod</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, aeabi_sdiv.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_PrintInt
-<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_PrintUnsigned
+<P><STRONG><a name="[49]"></a>__aeabi_uidivmod</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, aeabi_sdiv.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_PrintInt
+<LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_PrintUnsigned
 </UL>
 
 <P><STRONG><a name="[7d]"></a>__aeabi_idiv</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, aeabi_sdiv.o(.text), UNUSED)
@@ -444,30 +461,16 @@ Global Symbols
 
 <P><STRONG><a name="[81]"></a>__rt_heap_expand$2region</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
 
-<P><STRONG><a name="[3b]"></a>__aeabi_ddiv</STRONG> (Thumb, 0 bytes, Stack size 88 bytes, ddiv.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = __aeabi_ddiv
-</UL>
-<BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-</UL>
-
-<P><STRONG><a name="[4e]"></a>_ddiv</STRONG> (Thumb, 1072 bytes, Stack size 88 bytes, ddiv.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[4d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_drdiv
-</UL>
-
-<P><STRONG><a name="[4d]"></a>_drdiv</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, ddiv.o(.text), UNUSED)
-<BR><BR>[Calls]<UL><LI><a href="#[4e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_ddiv
-</UL>
-
-<P><STRONG><a name="[3c]"></a>__aeabi_d2uiz</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, dfixui.o(.text))
+<P><STRONG><a name="[40]"></a>__aeabi_d2uiz</STRONG> (Thumb, 0 bytes, Stack size 8 bytes, dfixui.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_d2uiz
 </UL>
-<BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_delay
 </UL>
 
 <P><STRONG><a name="[82]"></a>_dfixu</STRONG> (Thumb, 64 bytes, Stack size 8 bytes, dfixui.o(.text), UNUSED)
 
 <P><STRONG><a name="[50]"></a>__aeabi_i2d_normalise</STRONG> (Thumb, 66 bytes, Stack size 0 bytes, dflti.o(.text))
-<BR><BR>[Called By]<UL><LI><a href="#[39]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
+<BR><BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2d
 <LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d
 </UL>
 
@@ -477,18 +480,18 @@ Global Symbols
 
 <P><STRONG><a name="[83]"></a>_dflt</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, dflti.o(.text), UNUSED)
 
-<P><STRONG><a name="[39]"></a>__aeabi_ui2d</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, dflti.o(.text))
+<P><STRONG><a name="[3e]"></a>__aeabi_ui2d</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, dflti.o(.text))
 <BR><BR>[Calls]<UL><LI><a href="#[50]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2d_normalise
 </UL>
-<BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_delay
 </UL>
 
 <P><STRONG><a name="[84]"></a>_dfltu</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, dflti.o(.text), UNUSED)
 
-<P><STRONG><a name="[3a]"></a>__aeabi_dmul</STRONG> (Thumb, 0 bytes, Stack size 48 bytes, dmul.o(.text))
+<P><STRONG><a name="[3f]"></a>__aeabi_dmul</STRONG> (Thumb, 0 bytes, Stack size 48 bytes, dmul.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = __aeabi_dmul
 </UL>
-<BR>[Called By]<UL><LI><a href="#[30]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
+<BR>[Called By]<UL><LI><a href="#[38]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_delay
 </UL>
 
 <P><STRONG><a name="[85]"></a>_dmul</STRONG> (Thumb, 592 bytes, Stack size 48 bytes, dmul.o(.text), UNUSED)
@@ -531,45 +534,58 @@ Global Symbols
 <H3>
 Local Symbols
 </H3>
-<P><STRONG><a name="[42]"></a>_strlen</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, segger_rtt.o(.text), UNUSED)
-<BR><BR>[Called By]<UL><LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_WriteString
+<P><STRONG><a name="[36]"></a>nrf_gpio_pin_write</STRONG> (Thumb, 34 bytes, Stack size 16 bytes, nrf51_lpcomp.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = nrf_gpio_pin_write
+</UL>
+<BR>[Calls]<UL><LI><a href="#[37]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_gpio_pin_clear
+</UL>
+<BR>[Called By]<UL><LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LPCOMP_IRQHandler
 </UL>
 
-<P><STRONG><a name="[45]"></a>_StoreChar</STRONG> (Thumb, 68 bytes, Stack size 16 bytes, segger_rtt_printf.o(.text))
+<P><STRONG><a name="[37]"></a>nrf_gpio_pin_clear</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, nrf51_lpcomp.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[1d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;LPCOMP_IRQHandler
+<LI><a href="#[36]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;nrf_gpio_pin_write
+</UL>
+
+<P><STRONG><a name="[44]"></a>_strlen</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, segger_rtt.o(.text))
+<BR><BR>[Called By]<UL><LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_WriteString
+</UL>
+
+<P><STRONG><a name="[47]"></a>_StoreChar</STRONG> (Thumb, 68 bytes, Stack size 16 bytes, segger_rtt_printf.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = _StoreChar &rArr; SEGGER_RTT_Write &rArr; __aeabi_memcpy
 </UL>
-<BR>[Calls]<UL><LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_Write
+<BR>[Calls]<UL><LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_Write
 </UL>
-<BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_vprintf
-<LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_PrintInt
-<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_PrintUnsigned
+<BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_vprintf
+<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_PrintInt
+<LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_PrintUnsigned
 </UL>
 
-<P><STRONG><a name="[46]"></a>_PrintUnsigned</STRONG> (Thumb, 284 bytes, Stack size 56 bytes, segger_rtt_printf.o(.text))
+<P><STRONG><a name="[48]"></a>_PrintUnsigned</STRONG> (Thumb, 284 bytes, Stack size 56 bytes, segger_rtt_printf.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = _PrintUnsigned &rArr; _StoreChar &rArr; SEGGER_RTT_Write &rArr; __aeabi_memcpy
 </UL>
-<BR>[Calls]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
-<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_StoreChar
+<BR>[Calls]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
+<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_StoreChar
 </UL>
-<BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_vprintf
-<LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_PrintInt
+<BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_vprintf
+<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_PrintInt
 </UL>
 
-<P><STRONG><a name="[48]"></a>_PrintInt</STRONG> (Thumb, 268 bytes, Stack size 56 bytes, segger_rtt_printf.o(.text))
+<P><STRONG><a name="[4a]"></a>_PrintInt</STRONG> (Thumb, 268 bytes, Stack size 56 bytes, segger_rtt_printf.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 192<LI>Call Chain = _PrintInt &rArr; _PrintUnsigned &rArr; _StoreChar &rArr; SEGGER_RTT_Write &rArr; __aeabi_memcpy
 </UL>
-<BR>[Calls]<UL><LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
-<LI><a href="#[46]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_PrintUnsigned
-<LI><a href="#[45]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_StoreChar
+<BR>[Calls]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_uidivmod
+<LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_PrintUnsigned
+<LI><a href="#[47]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_StoreChar
 </UL>
-<BR>[Called By]<UL><LI><a href="#[49]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_vprintf
+<BR>[Called By]<UL><LI><a href="#[4b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SEGGER_RTT_vprintf
 </UL>
 
-<P><STRONG><a name="[4b]"></a>is_disabled_in_debug_needed</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, system_nrf51.o(.text))
+<P><STRONG><a name="[4d]"></a>is_disabled_in_debug_needed</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, system_nrf51.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
 </UL>
 
-<P><STRONG><a name="[4a]"></a>is_manual_peripheral_setup_needed</STRONG> (Thumb, 104 bytes, Stack size 0 bytes, system_nrf51.o(.text))
+<P><STRONG><a name="[4c]"></a>is_manual_peripheral_setup_needed</STRONG> (Thumb, 104 bytes, Stack size 0 bytes, system_nrf51.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[24]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemInit
 </UL>
 <P>

@@ -14,4 +14,5 @@
 .\main.o: .\Include\nrf51_LPCOMP.h
 .\main.o: .\Include\nrf51_CLOCK.h
 .\main.o: .\Include\nrf51_RTC.h
+.\main.o: .\Include\nrf_delay_l85.h
 .\main.o: .\Include\debug\SEGGER_RTT.h
