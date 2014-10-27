@@ -240,13 +240,13 @@ Thus, total current consumption in ON mode (CPU running) should be: I_TOT_SLP + 
 == Circuit setup to measure low current ==
 Measuring such low current is a challenge with traditional instruments and some high performances current sense amplifier are needed. However, without these, it's possible to perform some quasi-static measurement. In detail the measurement is split in two state: CPU on mode and CPU in sleep mode. No transition among these two states are evaluated.
 
-Evaluation board are not powered by USB but by a special 1.8 V voltage regulator was build. This copy the real conditions of the working environment.
+Evaluation board is not powered by USB but by a special 1.8 V voltage regulator based on famous LM317. This copy the real conditions of the working environment.
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/PreciseVoltegeRegulator_circuit.png
 
-===Connection to measuer low current on nRF51 EvaluationKit board (PCA-10001)===
-Current consumption measurement are also provided with board ( see [https://www.nordicsemi.com/eng/user/login/?next=Products/Bluetooth-Smart-Bluetooth-low-energy/nRF51822-Evaluation-Kit?resource=18974 Evaluation Kit User Guide] paragraph 5.1.11),  however must be fitted a 0402 smd 10 ohm resitor in the board. I've not such a small resistor. 
-Besides, since I need to power the circuit from an external 1.8 V regulator, I chose to insert an ammeter in the power supply chain. Thus, connection to PCA-10001 board are at pin 2 (1.8 V) and pin 4 (GND) of header P1 unlike connections suggested on EK User Guide.
+===Connection to evaluation board (PCA-10001)===
+Current consumption measurement are provided within the board (see [https://www.nordicsemi.com/eng/user/login/?next=Products/Bluetooth-Smart-Bluetooth-low-energy/nRF51822-Evaluation-Kit?resource=18974 Evaluation Kit User Guide] paragraph 5.1.11) however, to correctly measure current consumption, a 0402 smd 10 ohm resitor must be fitted. I've not such a small resistor. 
+Besides, since I need to power the circuit from an external 1.8 V regulator, I chose to insert an ammeter (my DMM UT-61E) in the power supply chain. Thus, connection to PCA-10001 board are at pin 2 (1.8 V) and pin 4 (GND) of header P1 unlike connections suggested on EK User Guide.
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/PCA10001_power_supply_circuitry.png
 
@@ -254,10 +254,14 @@ Connections to PCA10001 board are shown below where P1.2 and P1.4 are pin 2 and 
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/current_measurement_circuitry.png
 
-This is because i want to supply 1.8 V directly to nRF51 chip, without any protection diode inserted. In fact, voltage drop across diode lead to supply nRF51 with a lower voltage and power measurement will be wrong. 
+This is because i want to supply 1.8 V directly to nRF51 chip, without any protection diode inserted. In fact, voltage drop across diode lead to power the nRF51822 with lower voltage and power measurement will be wrong. 
 
 == Measurement and comparison of energy consumption among CPU-active-mode and CPU-sleep-mode==
-In order to measure current consumption, a new firmware was build. In fact, measure such a low current with high dynamic range is a hard challenge with hobbyist tools.The application will stay in ON-mode all time but, every time the external button is pressed, the state will change among CPU-sleeping and CPU-ON. Current measurement in this two states are performed with a digital multimeter (UNI-T UT61-E). Measurement resolutions are:
+In order to measure current consumption, a new firmware was build. In fact, as described, measure such a low current with high dynamic range is a hard challenge with hobbyist tools. The application will stay in ON-mode all time but, every time the external button is pressed, the state will change among CPU-sleeping and CPU-ON. Current measurement in this two states are performed with a digital multimeter (UNI-T UT61-E). Measurement resolutions are:
  * 10 nA with an accuracy of (0.5% + 10 counts) when measuring micro-ampere i.e. in CPU-sleep mode;
  * 1 uA with an accuracy of (0.5% + 10 counts) when measuring milli-ampere i.e. in CPU-ON mode;
+
+Real measurement are:
+
+ * 
 ----
