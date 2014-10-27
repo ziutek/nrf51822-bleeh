@@ -238,23 +238,15 @@ Thus, total current consumption in ON mode (CPU running) should be: I_TOT_SLP + 
 
 
 == Circuit setup to measure low current ==
-Measuring such low current is a challenge with traditional instruments thus an express instruments was build. 
-It is a set of two op-amp (LTC2054) performing a current sense amplifier across a 10 ohm resistor. Current sensing circuit is applied in low-side; meaning 10 ohm resistor is between real GND and circuit GND (labeled as "*in*" in figure). nRF51 board is represented as a current generator, I1 in following circuit:
+Measuring such low current is a challenge with traditional instruments and some high performances current sense amplifier are needed. However, without these, it's possible to perform some quasi-static measurement. In detail the measurement is split in two state: CPU on mode and CPU in sleep mode. No transition among these two states are evaluated.
 
-https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/CurrentSensing_circuit.png
-
-The nRF51 current consumption produce a voltage drop across the 10 ohm resistor. This voltage drop is negligible compared to 1.8 V supply and is amplified by two op-amps providing two difference trans-impedance gains. One for measure current consumption during CPU in sleep-mode (T_gain_sleep=506230 [V/A]), the second for measure current consumption during CPU running (T_gain_on=230 [V/A]). Two different measurement point are provided due to high dynamic range of the current consumption.
-
-Expected current consumption in sleep mode, should give an output voltage of T_gain_sleep*i=506230*3.6E-6=1.822 [V] @ out_sleep node.
-Instead, expected current consumption in on mode, should give an output voltage of T_gain_on*i=230*5.154E-3=1.185 [V] @ out_on node.
-
-Further a power supply regulator to set a 1.8 V precise working voltage was build.
+Evaluation board are not powered by USB but by a special 1.8 V voltage regulator was build. This copy the real conditions of the working environment.
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/PreciseVoltegeRegulator_circuit.png
 
-===Connetion to nRF51 EvaluationKit board (PCA-10001)===
+===Connection to measuer low current on nRF51 EvaluationKit board (PCA-10001)===
 Current consumption measurement are also provided with board ( see [https://www.nordicsemi.com/eng/user/login/?next=Products/Bluetooth-Smart-Bluetooth-low-energy/nRF51822-Evaluation-Kit?resource=18974 Evaluation Kit User Guide] paragraph 5.1.11),  however must be fitted a 0402 smd 10 ohm resitor in the board. I've not such a small resistor. 
-Besides, since I need to power the circuit from an external 1.8 V regulator, I chose to insert an external 10 ohm current-sense-resistor and measure voltage drop across it. Thus, connection to PCA-10001 board are at pin 2 (1.8 V) and pin 4 (GND) of header P1 unlike connections suggested on EK User Guide.
+Besides, since I need to power the circuit from an external 1.8 V regulator, I chose to insert an ammeter in the power supply chain. Thus, connection to PCA-10001 board are at pin 2 (1.8 V) and pin 4 (GND) of header P1 unlike connections suggested on EK User Guide.
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/PCA10001_power_supply_circuitry.png
 
