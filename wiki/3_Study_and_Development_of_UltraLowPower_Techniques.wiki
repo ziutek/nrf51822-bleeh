@@ -1,5 +1,5 @@
 #summary Study and development of ultra-low-power techniques and evaluation of the energy consumption measuring input current.
-#labels Phase-QA
+#labels Phase-QA,Featured,Phase-Design
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/work-in-progress_BIG.png
 
@@ -271,5 +271,5 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/3_curre
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/3_current_measurement_sleep.png
 
-Test firmware is located in []. 
+Test firmware is located in [https://code.google.com/p/nrf51822-bleeh/source/browse/#svn%2Fbranches%2F3b_current_measurement svn/branches/3b_current_measurement]. 
 ----
