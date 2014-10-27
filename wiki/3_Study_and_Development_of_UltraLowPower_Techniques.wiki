@@ -219,6 +219,8 @@ In video, three new lines appear each time the button is pressed that is each ti
  * Speed_kmh=z: it's the estimated speed in km/h, rounded to unit.
 The button was pressed with at different time. The time elapsed between two occurring button presses is correctly calculated and the speed in km/h corresponds to this delta-time.
 In time elapsed between two pulses the CPU should be sleeping as a "Waiting For Interrupt" (`__WFI()`) instruction is executed. A precise current measurement should reveal it.
+
+Firmware is located in [].
 ----
 
 =Current consumption on nRF51=
