@@ -61,7 +61,7 @@
 #define SPEED_KMH(dt) (SPEED_MS(dt)*3.6)
 
 /***************************************************************************************************
-*__________________________________GLOBAL VARIABLE DEFINITIONS______________________________________
+*__________________________________GLOBAL-VARIABLES-DEFINITION______________________________________
 ***************************************************************************************************/
 	//Definition and initialization of cnt variable for debug purposes (SEGGER RTT printf function)
 	uint32_t debug_cnt=0;
@@ -70,23 +70,16 @@
 	//Definition and initialization of previous counter value useful to compute delta time 
 	uint32_t PreviousRTC0CounterValue=0;
 	//Definition and initialization of DeltaTime and Speed variables
-	uint32_t DeltaTime=0;
-	float Speed_kmh=0;
-	
-/***************************************************************************************************
- * Main function
- *
- * @param  none
- * @return none
- *
- * @brief  Configures and enables the LPCOMP
- *
- **************************************************************************************************/
+	uint32_t deltatime=0;
+	uint32_t speed_kmh=0;
 
+/***************************************************************************************************
+*______________________________________________MAIN_________________________________________________
+***************************************************************************************************/
 int main(void)
 {
 	
-/*+++++++++++++++++++++++++++++++++__START-OF-POWER-CONFIGURATION__+++++++++++++++++++++++++++++++*/
+/*++++++++++++++++++++++++++++++++___START-OF-POWER-CONFIGURATION___++++++++++++++++++++++++++++++*/
 	
 	//Disable internal DC/DC step down
 	NRF_POWER->DCDCEN=POWER_DCDCEN_DCDCEN_Disabled;	
@@ -102,16 +95,9 @@ int main(void)
 										(POWER_RAMON_OFFRAM0_RAM0Off <<	POWER_RAMON_OFFRAM0_Pos)  |		// Ram block 0 OFF in OFF-MODE	
 										(POWER_RAMON_OFFRAM1_RAM1Off <<	POWER_RAMON_OFFRAM1_Pos)	;		// Ram block 1 OFF in OFF-MODE
 	
-	//Shut-down unused peripherals
-	//
-	//		--------------------->>>>>>>>>>> TO-DO!!!
-	//
-
 /*++++++++++++++++++++++++++++++++___END-OF-POWER-CONFIGURATION___++++++++++++++++++++++++++++++++*/
-
-	// Configure LED-pins as outputs
-	nrf_gpio_cfg_output(LED_0);
-	nrf_gpio_cfg_output(LED_1);
+	
+/*+++++++++++++++++++++++++++___START-OF-PERIPEHERALS-INITIALIZATION___+++++++++++++++++++++++++++*/
 	
 	//Initialize LPCOMP
 	LPCOMP_init();
@@ -121,12 +107,14 @@ int main(void)
 	
 	//Initialize RTC0 counter
 	RTC0_init();	//nothing to initialize: default value are OK!
+		
+/*+++++++++++++++++++++++++++++___END-OF-PERIPEHERALS-INITIALIZATION___+++++++++++++++++++++++++++*/
 	
 
 /*+++++++++++++++++++++++++++++++++___START-OF-INFINITE-LOOP___+++++++++++++++++++++++++++++++++++*/
 	while (true)
 	{
-		__WFI(); 
+		__WFI(); 	// Wait-For-Interupt (CPU in sleep, Power-ON/Low Power Mode)
 		//Following code is executed when LPCOMP wake-up the CPU (up-crossing event triggered)
 		
 		if(!IsRTC0Running)	//Is first RTC0 counting, RTC0 is not running
@@ -139,23 +127,24 @@ int main(void)
 		else	//RTC0 was already running
 		{
 			//compute delta time between two LPCOM upward crossing event
-			DeltaTime=abs(NRF_RTC0->COUNTER - PreviousRTC0CounterValue);	
+			deltatime=abs(NRF_RTC0->COUNTER - PreviousRTC0CounterValue);	
 			
 			//update value of PreviuousRTC0CounterValue
 			PreviousRTC0CounterValue=NRF_RTC0->COUNTER;
 			
-			//Convert DeltaTime to Speed in km/h;
-			Speed_kmh=SPEED_KMH(DeltaTime);
+			//Compute Speed in km/h from Delta Time in RTC0 ticks;
+			speed_kmh=SPEED_KMH(deltatime);
 			
-			//Print to SEGGER_RTT debugger tool the “speed”
-			/*+++++++++++++++++++++++++++++++START-OF-DEBUG-CODE++++++++++++++++++++++++++++++++++++++++++*/
+			
+			//Print to SEGGER_RTT-debugger-tool speed in km/h
+			/*++++++++++++++++++++++++++++___START-OF-DEBUG-CODE___+++++++++++++++++++++++++++++++++++++*/
 			//
-			//SEGGER_RTT_WriteString(0,"Hello World from SEGGER RTT!!\r\n");
 			SEGGER_RTT_printf(0, "debug_cnt=%d\r\n", debug_cnt++);
-			SEGGER_RTT_printf(0, "DeltaTime=%u\r\n", DeltaTime);
-			SEGGER_RTT_printf(0, "Speed_kmh=%.2u\r\n", Speed_kmh);
+			SEGGER_RTT_printf(0, "deltaTime=%u\r\n", deltatime);
+			SEGGER_RTT_printf(0, "speed_kmh=%.2u\r\n", speed_kmh);
 			//
-			/*+++++++++++++++++++++++++++++++++END-OF-DEBUG-CODE++++++++++++++++++++++++++++++++++++++++++*/	
+			/*++++++++++++++++++++++++++++++___END-OF-DEBUG-CODE___+++++++++++++++++++++++++++++++++++++*/
+			
 		}
 		
 	

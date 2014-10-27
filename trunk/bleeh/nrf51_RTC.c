@@ -28,11 +28,12 @@ void RTC0_init(void)
 										(RTC_EVTEN_COMPARE2_Disabled << RTC_EVTEN_COMPARE2_Pos) |
 										(RTC_EVTEN_COMPARE3_Disabled << RTC_EVTEN_COMPARE3_Pos) ;
 */
+
 //+++++++++++++++++++++++++++++++++++++++++++++...PRESCALER...++++++++++++++++++++++++++++++++++++++
 	// initialize PRESCALER value
-/*prescaler is set to 0 by default 	(nRF51 ref. manual v2.1, chapter 18.2.5, PRESCALER register). Uncomment (and modify) this is you want to set different value.
+	/*prescaler is set to 0 by default 	(nRF51 ref. manual v2.1, chapter 18.2.5, PRESCALER register). Uncomment (and modify) this is you want to set different value.
 	// 12-bit prescaler for COUNTER frequency (32768/(PRESCALER+1)). Must be written when RTC is STOPed.
-	NRF_RTC0->PRESCALER = ();
-*/
+	NRF_RTC0->PRESCALER = (0);
+	*/
 }
 
