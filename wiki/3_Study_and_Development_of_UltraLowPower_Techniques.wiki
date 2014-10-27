@@ -265,4 +265,7 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/current
 This is because i want to supply 1.8 V directly to nRF51 chip, without any protection diode inserted. In fact, voltage drop across diode lead to supply nRF51 with a lower voltage and power measurement will be wrong. 
 
 == Measurement and comparison of energy consumption among CPU-active-mode and CPU-sleep-mode==
+In order to measure current consumption, a new firmware was build. In fact, measure such a low current with high dynamic range is a hard challenge with hobbyist tools.The application will stay in ON-mode all time but, every time the external button is pressed, the state will change among CPU-sleeping and CPU-ON. Current measurement in this two states are performed with a digital multimeter (UNI-T UT61-E). Measurement resolutions are:
+ * 10 nA with an accuracy of (0.5% + 10 counts) when measuring micro-ampere.
+ * 1 uA with an accuracy of (0.5% + 10 counts) when measuring milli-ampere.  
 ----
