@@ -263,5 +263,13 @@ In order to measure current consumption, a new firmware was build. In fact, as d
 
 Real measurement are:
 
- * 
+ * *System-ON, CPU ON*: 4.319 ± 0.032  mA (estimated current consumption was 5.154 mA);
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/3_current_measurement_ON.png
+
+ * *System-ON, CPU sleep (Low Power mode)*: 3.05 ± 0.116 uA (estimated current consumption was 3.6 uA);
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/3_current_measurement_sleep.png
+
+Test firmware is located in []. 
 ----
