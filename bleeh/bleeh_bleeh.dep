@@ -1,68 +1,68 @@
 Dependencies for Project 'bleeh', Target 'bleeh': (DO NOT MODIFY !)
-F (.\nrf51_LPCOMP.c)(0x544389C7)(-c --cpu Cortex-M0 -g -O0 --apcs=interwork -I.\Include -I.\Include-I "C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include-D_RTE_ -DNRF51 -o .\nrf51_lpcomp.o --omf_browse .\nrf51_lpcomp.crf --depend .\nrf51_lpcomp.d)
-I (.\Include\nrf51_LPCOMP.h)(0x54422C71)
-I (.\Include\nrf51.h)(0x53B2BA48)
-I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cm0.h)(0x512C80D2)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x52FE34EE)
-I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmInstr.h)(0x51BAB7D4)
-I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmFunc.h)(0x512C80D2)
-I (.\Include\system_nrf51.h)(0x53B2BA48)
-I (C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include\nrf51_bitfields.h)(0x53B10D4E)
-I (.\Include\pca10001.h)(0x53B2B83E)
-I (.\Include\nrf_gpio.h)(0x53B2B83E)
-F (.\main.c)(0x54457475)(-c --cpu Cortex-M0 -g -O0 --apcs=interwork -I.\Include -I.\Include-I "C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include-D_RTE_ -DNRF51 -o .\main.o --omf_browse .\main.crf --depend .\main.d)
-I (.\Include\pca10001.h)(0x53B2B83E)
-I (.\Include\nrf_gpio.h)(0x53B2B83E)
-I (.\Include\nrf51.h)(0x53B2BA48)
-I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cm0.h)(0x512C80D2)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x52FE34EE)
-I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmInstr.h)(0x51BAB7D4)
-I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmFunc.h)(0x512C80D2)
-I (.\Include\system_nrf51.h)(0x53B2BA48)
-I (C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include\nrf51_bitfields.h)(0x53B10D4E)
-I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x52FE34EE)
-I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x52FE34EE)
-I (.\Include\nrf51_LPCOMP.h)(0x54422C71)
-I (.\Include\nrf51_CLOCK.h)(0x54422E51)
-I (.\Include\nrf51_RTC.h)(0x54427AB3)
-I (.\Include\debug\SEGGER_RTT.h)(0x540A2C54)
-F (.\nrf51_CLOCK.c)(0x54422EEE)(-c --cpu Cortex-M0 -g -O0 --apcs=interwork -I.\Include -I.\Include -I.\Include-I "C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include-D_RTE_ -DNRF51 -o .\nrf51_clock.o --omf_browse .\nrf51_clock.crf --depend .\nrf51_clock.d)
-I (.\Include\nrf51_CLOCK.h)(0x54422E51)
-I (.\Include\nrf51.h)(0x53B2BA48)
-I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cm0.h)(0x512C80D2)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x52FE34EE)
-I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmInstr.h)(0x51BAB7D4)
-I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmFunc.h)(0x512C80D2)
-I (.\Include\system_nrf51.h)(0x53B2BA48)
-I (C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include\nrf51_bitfields.h)(0x53B10D4E)
-F (.\nrf51_RTC.c)(0x54423286)(-c --cpu Cortex-M0 -g -O0 --apcs=interwork -I.\Include -I.\Include-I "C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include-D_RTE_ -DNRF51 -o .\nrf51_rtc.o --omf_browse .\nrf51_rtc.crf --depend .\nrf51_rtc.d)
-I (.\Include\nrf51_RTC.h)(0x54427AB3)
-I (.\Include\nrf51.h)(0x53B2BA48)
-I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cm0.h)(0x512C80D2)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x52FE34EE)
-I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmInstr.h)(0x51BAB7D4)
-I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmFunc.h)(0x512C80D2)
-I (.\Include\system_nrf51.h)(0x53B2BA48)
-I (C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include\nrf51_bitfields.h)(0x53B10D4E)
-F (.\debug\SEGGER_RTT.c)(0x540A2C54)(-c --cpu Cortex-M0 -g -O0 --apcs=interwork -I.\Include\debug -I.\Include-I "C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include-D_RTE_ -DNRF51 -o .\segger_rtt.o --omf_browse .\segger_rtt.crf --depend .\segger_rtt.d)
-I (.\Include\debug\SEGGER_RTT_Conf.h)(0x540A2C54)
-I (.\Include\debug\SEGGER_RTT.h)(0x540A2C54)
-I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x52FE34EE)
-F (.\debug\SEGGER_RTT_Printf.c)(0x540A2C54)(-c --cpu Cortex-M0 -g -O0 --apcs=interwork -I.\Include\debug -I.\Include-I "C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include-D_RTE_ -DNRF51 -o .\segger_rtt_printf.o --omf_browse .\segger_rtt_printf.crf --depend .\segger_rtt_printf.d)
-I (.\Include\debug\SEGGER_RTT.h)(0x540A2C54)
-I (.\Include\debug\SEGGER_RTT_Conf.h)(0x540A2C54)
-I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x52FE34EE)
-I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x52FE34EE)
-F (RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s)(0x53B10D4E)(--cpu Cortex-M0 -g --apcs=interwork -I "C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include--list .\arm_startup_nrf51.lst --xref -o .\arm_startup_nrf51.o --depend .\arm_startup_nrf51.d)
-F (RTE\Device\nRF51822_xxAA\system_nrf51.c)(0x53B10D4E)(-c --cpu Cortex-M0 -g -O0 --apcs=interwork -I.\Include-I "C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include-D_RTE_ -DNRF51 -o .\system_nrf51.o --omf_browse .\system_nrf51.crf --depend .\system_nrf51.d)
-I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x52FE34EE)
-I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x52FE34EE)
-I (.\Include\nrf.h)(0x53B2BA48)
-I (.\Include\nrf51.h)(0x53B2BA48)
-I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cm0.h)(0x512C80D2)
-I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmInstr.h)(0x51BAB7D4)
-I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmFunc.h)(0x512C80D2)
-I (.\Include\system_nrf51.h)(0x53B2BA48)
-I (C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include\nrf51_bitfields.h)(0x53B10D4E)
-I (.\Include\nrf51_deprecated.h)(0x53B2BA48)
-I (.\Include\compiler_abstraction.h)(0x53B2BA48)
+F (.\nrf51_LPCOMP.c)(0x54437BB7)(-c --cpu Cortex-M0 -g -O0 --apcs=interwork -I.\Include -I.\Include-I "C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include-D_RTE_ -DNRF51 -o .\nrf51_lpcomp.o --omf_browse .\nrf51_lpcomp.crf --depend .\nrf51_lpcomp.d)
+I (.\Include\nrf51_LPCOMP.h)(0x54421E61)
+I (.\Include\nrf51.h)(0x53B2AC38)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cm0.h)(0x512C72C2)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x52FE26DE)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmInstr.h)(0x51BAA9C4)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmFunc.h)(0x512C72C2)
+I (.\Include\system_nrf51.h)(0x53B2AC38)
+I (C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include\nrf51_bitfields.h)(0x53B0FF3E)
+I (.\Include\pca10001.h)(0x53B2AA2E)
+I (.\Include\nrf_gpio.h)(0x53B2AA2E)
+F (.\main.c)(0x544E20AC)(-c --cpu Cortex-M0 -g -O0 --apcs=interwork -I.\Include -I.\Include-I "C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include-D_RTE_ -DNRF51 -o .\main.o --omf_browse .\main.crf --depend .\main.d)
+I (.\Include\pca10001.h)(0x53B2AA2E)
+I (.\Include\nrf_gpio.h)(0x53B2AA2E)
+I (.\Include\nrf51.h)(0x53B2AC38)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cm0.h)(0x512C72C2)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x52FE26DE)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmInstr.h)(0x51BAA9C4)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmFunc.h)(0x512C72C2)
+I (.\Include\system_nrf51.h)(0x53B2AC38)
+I (C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include\nrf51_bitfields.h)(0x53B0FF3E)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x52FE26DE)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x52FE26DE)
+I (.\Include\nrf51_LPCOMP.h)(0x54421E61)
+I (.\Include\nrf51_CLOCK.h)(0x54422041)
+I (.\Include\nrf51_RTC.h)(0x54426CA3)
+I (.\Include\debug\SEGGER_RTT.h)(0x540A1E44)
+F (.\nrf51_CLOCK.c)(0x544220DE)(-c --cpu Cortex-M0 -g -O0 --apcs=interwork -I.\Include -I.\Include -I.\Include-I "C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include-D_RTE_ -DNRF51 -o .\nrf51_clock.o --omf_browse .\nrf51_clock.crf --depend .\nrf51_clock.d)
+I (.\Include\nrf51_CLOCK.h)(0x54422041)
+I (.\Include\nrf51.h)(0x53B2AC38)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cm0.h)(0x512C72C2)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x52FE26DE)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmInstr.h)(0x51BAA9C4)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmFunc.h)(0x512C72C2)
+I (.\Include\system_nrf51.h)(0x53B2AC38)
+I (C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include\nrf51_bitfields.h)(0x53B0FF3E)
+F (.\nrf51_RTC.c)(0x54476E42)(-c --cpu Cortex-M0 -g -O0 --apcs=interwork -I.\Include -I.\Include-I "C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include-D_RTE_ -DNRF51 -o .\nrf51_rtc.o --omf_browse .\nrf51_rtc.crf --depend .\nrf51_rtc.d)
+I (.\Include\nrf51_RTC.h)(0x54426CA3)
+I (.\Include\nrf51.h)(0x53B2AC38)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cm0.h)(0x512C72C2)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x52FE26DE)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmInstr.h)(0x51BAA9C4)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmFunc.h)(0x512C72C2)
+I (.\Include\system_nrf51.h)(0x53B2AC38)
+I (C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include\nrf51_bitfields.h)(0x53B0FF3E)
+F (.\debug\SEGGER_RTT.c)(0x540A1E44)(-c --cpu Cortex-M0 -g -O0 --apcs=interwork -I.\Include\debug -I.\Include-I "C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include-D_RTE_ -DNRF51 -o .\segger_rtt.o --omf_browse .\segger_rtt.crf --depend .\segger_rtt.d)
+I (.\Include\debug\SEGGER_RTT_Conf.h)(0x540A1E44)
+I (.\Include\debug\SEGGER_RTT.h)(0x540A1E44)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x52FE26DE)
+F (.\debug\SEGGER_RTT_Printf.c)(0x540A1E44)(-c --cpu Cortex-M0 -g -O0 --apcs=interwork -I.\Include\debug -I.\Include-I "C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include-D_RTE_ -DNRF51 -o .\segger_rtt_printf.o --omf_browse .\segger_rtt_printf.crf --depend .\segger_rtt_printf.d)
+I (.\Include\debug\SEGGER_RTT.h)(0x540A1E44)
+I (.\Include\debug\SEGGER_RTT_Conf.h)(0x540A1E44)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x52FE26DE)
+I (C:\Keil_v5\ARM\ARMCC\include\stdarg.h)(0x52FE26DE)
+F (RTE\Device\nRF51822_xxAA\arm_startup_nrf51.s)(0x53B0FF3E)(--cpu Cortex-M0 -g --apcs=interwork -I "C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include--list .\arm_startup_nrf51.lst --xref -o .\arm_startup_nrf51.o --depend .\arm_startup_nrf51.d)
+F (RTE\Device\nRF51822_xxAA\system_nrf51.c)(0x53B0FF3E)(-c --cpu Cortex-M0 -g -O0 --apcs=interwork -I.\Include-I "C:\Users\Luca\Dropbox\Università\Reti e sistemi multimediali\BEH\nRF51822_bleeh__WorkingCopy\trunk\bleeh\RTE"-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include-I C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include-D_RTE_ -DNRF51 -o .\system_nrf51.o --omf_browse .\system_nrf51.crf --depend .\system_nrf51.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x52FE26DE)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x52FE26DE)
+I (.\Include\nrf.h)(0x53B2AC38)
+I (.\Include\nrf51.h)(0x53B2AC38)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cm0.h)(0x512C72C2)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmInstr.h)(0x51BAA9C4)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\3.20.4\CMSIS\Include\core_cmFunc.h)(0x512C72C2)
+I (.\Include\system_nrf51.h)(0x53B2AC38)
+I (C:\Keil_v5\ARM\PACK\NordicSemiconductor\nRF_DeviceFamilyPack\1.1.1\Device\Include\nrf51_bitfields.h)(0x53B0FF3E)
+I (.\Include\nrf51_deprecated.h)(0x53B2AC38)
+I (.\Include\compiler_abstraction.h)(0x53B2AC38)
