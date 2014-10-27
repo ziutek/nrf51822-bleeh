@@ -49,6 +49,7 @@
 #include "nrf51_LPCOMP.h"
 #include "nrf51_CLOCK.h"
 #include "nrf51_RTC.h"
+#include "nrf_delay_l85.h"
 
 #include "debug\SEGGER_RTT.h"
 
@@ -65,13 +66,9 @@
 ***************************************************************************************************/
 	//Definition and initialization of cnt variable for debug purposes (SEGGER RTT printf function)
 	uint32_t debug_cnt=0;
-	//Definition and initialization of RTC0-started flag
-	uint32_t IsRTC0Running=0;
-	//Definition and initialization of previous counter value useful to compute delta time 
-	uint32_t PreviousRTC0CounterValue=0;
-	//Definition and initialization of DeltaTime and Speed variables
-	uint32_t deltatime=0;
-	uint32_t speed_kmh=0;
+	
+	//Definition and initialization of CPU_status flag
+	bool CPU_status=true;
 
 /***************************************************************************************************
 *______________________________________________MAIN_________________________________________________
@@ -98,6 +95,8 @@ int main(void)
 /*++++++++++++++++++++++++++++++++___END-OF-POWER-CONFIGURATION___++++++++++++++++++++++++++++++++*/
 	
 /*+++++++++++++++++++++++++++___START-OF-PERIPEHERALS-INITIALIZATION___+++++++++++++++++++++++++++*/
+	//initialize LED_0 port 
+	nrf_gpio_cfg_output(LED_0);
 	
 	//Initialize LPCOMP
 	LPCOMP_init();
@@ -114,42 +113,24 @@ int main(void)
 /*+++++++++++++++++++++++++++++++++___START-OF-INFINITE-LOOP___+++++++++++++++++++++++++++++++++++*/
 	while (true)
 	{
-		__WFI(); 	// Wait-For-Interupt (CPU in sleep, Power-ON/Low Power Mode)
-		//Following code is executed when LPCOMP wake-up the CPU (up-crossing event triggered)
+			__nop();
 		
-		if(!IsRTC0Running)	//Is first RTC0 counting, RTC0 is not running
+		if(!CPU_status)
 		{
-			//Start RTC0 counter
-			NRF_RTC0->TASKS_START=1;
-			//Clear flag
-			IsRTC0Running=1;
-		}
-		else	//RTC0 was already running
-		{
-			//compute delta time between two LPCOM upward crossing event
-			deltatime=abs(NRF_RTC0->COUNTER - PreviousRTC0CounterValue);	
-			
-			//update value of PreviuousRTC0CounterValue
-			PreviousRTC0CounterValue=NRF_RTC0->COUNTER;
-			
-			//Compute Speed in km/h from Delta Time in RTC0 ticks;
-			speed_kmh=SPEED_KMH(deltatime);
-			
-			
-			//Print to SEGGER_RTT-debugger-tool speed in km/h
-			/*++++++++++++++++++++++++++++___START-OF-DEBUG-CODE___+++++++++++++++++++++++++++++++++++++*/
-			//
-			SEGGER_RTT_printf(0, "debug_cnt=%d\r\n", debug_cnt++);
-			SEGGER_RTT_printf(0, "deltaTime=%u\r\n", deltatime);
-			SEGGER_RTT_printf(0, "speed_kmh=%.2u\r\n", speed_kmh);
-			//
-			/*++++++++++++++++++++++++++++++___END-OF-DEBUG-CODE___+++++++++++++++++++++++++++++++++++++*/
-			
+			//		//Print to SEGGER_RTT-debugger-tool the actual status of CPU
+		/*++++++++++++++++++++++++++++___START-OF-DEBUG-CODE___+++++++++++++++++++++++++++++++++++++*/
+		//
+		SEGGER_RTT_printf(0, "debug_cnt=%d\r\n", debug_cnt++);
+		SEGGER_RTT_WriteString(0,"CPU-sleep mode active!\r\n");
+		//
+		/*++++++++++++++++++++++++++++++___END-OF-DEBUG-CODE___+++++++++++++++++++++++++++++++++++++*/		
+			__wfi();
+		SEGGER_RTT_WriteString(0,"CPU-ON mode active!\r\n");
 		}
 		
-	
 
 	}
+	
 /*+++++++++++++++++++++++++++++++++++___END-OF-INFINITE-LOOP___+++++++++++++++++++++++++++++++++++*/
 }
 

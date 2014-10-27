@@ -3,6 +3,7 @@
 ".\main.o"
 ".\nrf51_clock.o"
 ".\nrf51_rtc.o"
+".\nrf_delay_l85.o"
 ".\segger_rtt.o"
 ".\segger_rtt_printf.o"
 ".\arm_startup_nrf51.o"

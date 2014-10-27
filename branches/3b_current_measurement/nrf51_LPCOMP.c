@@ -12,9 +12,17 @@
 
 #include "nrf51_LPCOMP.h"
 
+#include <stdbool.h>
 #include <nrf51.h>
 #include <nrf51_bitfields.h>
 #include <pca10001.h>
+#include "include\nrf_delay_l85.h"
+
+
+/***************************************************************************************************
+*__________________________________GLOBAL-VARIABLES-DECLARATION______________________________________
+***************************************************************************************************/
+	extern bool CPU_status;
 
 /**
  * Initialize the comparator
@@ -59,7 +67,17 @@
 	 /* Interrupt handler for LPCOMP */
 void LPCOMP_IRQHandler(void)
 	{
-	// Clear event
-	NRF_LPCOMP->EVENTS_UP = 0;
+		// Clear event
+		NRF_LPCOMP->EVENTS_UP = 0;
+		
+		//alternate the status of CPU: if previously was in sleep, then wake-up CPU in CPU-ON mode otherwise sleep it!
+		CPU_status^=true;	//CPU_status=1-> CPU in ON mode;   CPU_status=0-> CPU in sleep mode;
+		nrf_gpio_pin_write(LED_0,CPU_status);
+		nrf_delay(50);
+		nrf_gpio_pin_clear(LED_0);
+		nrf_delay(50);
+		nrf_gpio_pin_write(LED_0,CPU_status);
+		nrf_delay(50);
+		nrf_gpio_pin_clear(LED_0);
 	}
 //--------------------------------------------------------------------------------------------------
