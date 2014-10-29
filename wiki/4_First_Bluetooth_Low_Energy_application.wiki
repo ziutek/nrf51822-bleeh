@@ -1,6 +1,8 @@
 #summary Loading and analysis of first Bluetooth Low Energy application on PCA 10001 board
 #labels Featured,Phase-QA,Phase-Design
 
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/work-in-progress_BIG.png
+
 <wiki:toc max_depth="4" />
 
 = Introduction: Bluetooth Low Energy =
