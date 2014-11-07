@@ -38,3 +38,11 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/keyfob-
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/HRMBelt_Smartphone_BLE.png
 
+== Bluetooth Low Energy architecture ==
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/BLE_architecture.png
+
+It has tree main part: the controller, the host and the application.
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/BLE_architecture.png
+
