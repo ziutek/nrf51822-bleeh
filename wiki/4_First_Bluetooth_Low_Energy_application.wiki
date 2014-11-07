@@ -5,7 +5,9 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/work-in
 
 <wiki:toc max_depth="4" />
 
-= Introduction: Bluetooth Low Energy =
+= Introduction =
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/Bluetooth_Smart_Logo.svg.png
 
 Bluetooth standard is a standard for personal area network allowing short range and low power. Effective ranges varies from 1 meter to 100 meter.
 Bluetooth uses a radio technology called frequency hopping spread spectrum (FHSS) allowing to make a very robust link. It operates in the ISM 2.4 GHz band.
@@ -18,7 +20,5 @@ Since 1999 the SIG (Special Interest Group) has released 4 different major speci
 Bluetooth low energy is not backward compatible with the older version thus SIG introduces two new terms for separate them:
  * Bluetooth Smart (4.0): Single Mode, LE only radio;
  * Bluetooth Smart Ready (4.0): Dual mode, BR/EDR and LE dual radio;
-
-https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/Bluetooth_Smart_Logo.svg.png
 
 The nRF51822 support only Bluetooth low energy mode.
