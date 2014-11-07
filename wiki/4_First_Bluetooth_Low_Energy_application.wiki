@@ -47,10 +47,7 @@ It has tree main part: the controller, the host and the application.
 
 Is the physical device that can transmit and receive radio signals and understand how the signals can be interpreted. It is composed by:
  * *Physical Layer (PHY)*, the nRF51 series radio module;
- * *Link Layer (LL)*, the most complex part of BLE. It has 5 main states:Standby, Advertising, Scanning, Initiating, Connection. * * *Advertising*: the device is transmitting advertising packets; the only way a device can be discovered in BLE is if it is advertising and to connect to a device it must be discovered first. Advertising mode is also used for broadcasting data.
--*Scanning*: the device scans for advertising packets. Are possible _passive scanning_ (only receive adv. data) and _active scanning_ (scanner requests are sent to adv devices to obtain additional scanner response data.
-- *Initiating* state, the device scans for advertising packets and then sends out a connect request to the advertiser. The device will then move to the connection state;
--*Connection* state, has two sub-states: master and slave;
+ * *Link Layer (LL)*, the most complex part of BLE. It has 5 main states:Standby, Advertising, Scanning, Initiating, Connection. *-Advertising*: the device is transmitting advertising packets; the only way a device can be discovered in BLE is if it is advertising and to connect to a device it must be discovered first. Advertising mode is also used for broadcasting data. *-Scanning*: the device scans for advertising packets. Are possible _passive scanning_ (only receive adv. data) and _active scanning_ (scanner requests are sent to adv devices to obtain additional scanner response data. *-Initiating* state, the device scans for advertising packets and then sends out a connect request to the advertiser. The device will then move to the connection state; *-Connection* state, has two sub-states: master and slave;
 
 Packet structure is composed by two types of packets: Advertising packets understandable by all devices and Data packets are understandable only by 2 devices, master and slave.
 
