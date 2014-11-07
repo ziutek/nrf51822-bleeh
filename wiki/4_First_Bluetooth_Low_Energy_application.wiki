@@ -65,6 +65,7 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/slave_m
 
 thus the devices becomes master and slave. 
 
+The advertising data is send over three different channels named advertising channels. They're channel 37, 38 and 39, located at 2402 MHz, 2426 MHz and 2480 MHz to be immune to domestic Wi-Fi interferences .    
 E.g....
 
 ===The Host===
