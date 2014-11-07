@@ -49,11 +49,16 @@ Is the physical device that can transmit and receive radio signals and understan
  * *Physical Layer (PHY)*, the nRF51 series radio module;
  * *Link Layer (LL)*, the most complex part of BLE. It has 5 main states:Standby, Advertising, Scanning, Initiating, Connection. *-Advertising*: the device is transmitting advertising packets; the only way a device can be discovered in BLE is if it is advertising and to connect to a device it must be discovered first. Advertising mode is also used for broadcasting data. *-Scanning*: the device scans for advertising packets. Are possible _passive scanning_ (only receive adv. data) and _active scanning_ (scanner requests are sent to adv devices to obtain additional scanner response data. *-Initiating* state, the device scans for advertising packets and then sends out a connect request to the advertiser. The device will then move to the connection state; *-Connection* state, has two sub-states: master and slave;
 
-Packet structure is composed by two types of packets: Advertising packets understandable by all devices and Data packets are understandable only by 2 devices, master and slave.
-
+Packet structure is composed by two types of packets: Advertising packets understandable by all devices and Data packets understandable only by 2 devices, master and slave.
 BLE utilizes 40 channel separated by 2 MHz (instead of the classic 1 MHz) : 3 adv channels and 37 data channels.
-
-Link layer is also responsible for establishment and management of connections.
+Link layer is also responsible for establishment and management of connections. An example is shown below.
 
 E.g....
-;
+
+===The Host===
+The Host is a software stack: manage how two or more devices communicate each others. It is composed by following blocks:
+ * Logical Link Control and Adaptation Layer Protocol (L2CAP), provides multiplexing between the higher layer protocols. This enables multiple applications to utilize the same lower layer links.
+ * Security Manager (SM), is responsible for device pairing and key distribution.
+ * Attribute Protocol (ATT), define a set of rules for accessing data on a device. Defines how a client can find and access the attributes on a server.
+ * Generic Attribute Profile (GATT),  describes a service framework using the attribute protocol for discovering services, and for reading and writing characteristic values on a peer device. It interfaces with the application through the application’s profiles. The application profile itself defines the collection of attributes and any permission needed for these attributes to be used in the communication.
+ * Generic Access Profile (GAP), defines the generic procedures related to the discovery of BLE devices and link management aspects of connecting to other LE devices.  The GAP provides an interface for the application to configure and enables different modes of operation, e.g. advertising or scanning, and also to initiate, establish, and manage connection with other devices.
