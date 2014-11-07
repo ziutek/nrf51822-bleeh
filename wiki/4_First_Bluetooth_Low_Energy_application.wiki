@@ -43,7 +43,7 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/keyfob-
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/BLE_architecture.png
 
 It has tree main part: the controller, the host and the application.
- === The Controller===
+=== The Controller===
 
 Is the physical device that can transmit and receive radio signals and understand how the signals can be interpreted. It is composed by:
  * *Physical Layer (PHY)*, the nRF51 series radio module;
@@ -52,6 +52,8 @@ Is the physical device that can transmit and receive radio signals and understan
 Packet structure is composed by two types of packets: Advertising packets understandable by all devices and Data packets understandable only by 2 devices, master and slave.
 BLE utilizes 40 channel separated by 2 MHz (instead of the classic 1 MHz) : 3 adv channels and 37 data channels.
 Link layer is also responsible for establishment and management of connections. An example is shown below.
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/adv_scan_BLE.png
 
 E.g....
 
