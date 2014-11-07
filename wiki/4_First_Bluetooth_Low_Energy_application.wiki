@@ -55,6 +55,16 @@ Link layer is also responsible for establishment and management of connections. 
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/adv_scan_BLE.png
 
+The two BLE devices in above image are an advertiser, that is a device with the link layer in the advertising state (it sends out advertising packets) and a scanner, that is a device in scanning state (maybe active or a passive scanner which receive only adv. packets).
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/adv_init_BLE.png
+
+A device in the initiating state that receive advertising packets could send a connection request to advertiser and move into the connection state.
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/slave_master_BLE.png
+
+thus the devices becomes master and slave. 
+
 E.g....
 
 ===The Host===
