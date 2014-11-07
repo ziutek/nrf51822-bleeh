@@ -21,3 +21,20 @@ Bluetooth low energy is not backward compatible with the older version thus SIG 
  * Bluetooth Smart Ready (4.0): Dual mode, BR/EDR and LE dual radio;
 
 The nRF51822 support only Bluetooth low energy mode.
+
+Bluetooth Low Energy is particularly suitable for low energy because it uses small packet to transmit information (only 27 bytes), has short TX and RX windows, there is always a race to idle (turn the radio ON as seldom as possible and turn OFF the radio as soon as possible). A connection is accomplished in only 6 ms with fast tear down (hundred of ms with Bluetooth classic). It also has a low memory footprint (8 kB RAM on nRF51822). Finally the protocol is stateless creating every request as independent transaction.
+
+== BLE profiles ==
+Profiles are definitions of possible application and specifies general behaviors that devices can use to communicate. Some examples are:
+ * Hid over GATT: human Interface Device
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/pc-mouse_BLE.png
+
+ * Heart Rate: Used in sport and medicine
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/keyfob-tablet_BLE.png
+
+ * Proximity: proximity monitoring of two device
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/HRMBelt_Smartphone_BLE.png
+
