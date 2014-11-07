@@ -5,7 +5,8 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/work-in
 
 <wiki:toc max_depth="4" />
 
-=Introduction=https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/Bluetooth_Smart_Logo.svg.png
+= Introduction =
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/Bluetooth_Smart_Logo.svg.png
 
 Bluetooth standard is a standard for personal area network allowing short range and low power. Effective ranges varies from 1 meter to 100 meter.
 Bluetooth uses a radio technology called frequency hopping spread spectrum (FHSS) allowing to make a very robust link. It operates in the ISM 2.4 GHz band.
