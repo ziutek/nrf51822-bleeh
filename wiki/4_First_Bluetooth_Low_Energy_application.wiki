@@ -65,8 +65,27 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/slave_m
 
 thus the devices becomes master and slave. 
 
-The advertising data is send over three different channels named advertising channels. They're channel 37, 38 and 39, located at 2402 MHz, 2426 MHz and 2480 MHz to be immune to domestic Wi-Fi interferences .    
-E.g....
+The advertising data is send over three different channels named advertising channels. They're channel 37, 38 and 39, located at 2402 MHz, 2426 MHz and 2480 MHz to be immune to domestic Wi-Fi interference.   
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/scanning_BLE.png
+
+Above is shown how the advertising and scanning work. The device in advertising mode (in image) has an advertising interval of 20 ms, and it send one advertiser packet on channel 37, 38 and 39 (all advertising channels). The device in scanning mode has a scan interval of 50 ms and a scan window of 25 ms. It start scanning at 0 ms and scan on channel 37 until 25 ms. It receive two packets in this channel. Afterwards it shut-down radio for 25 ms, then the scanner jump to channel 38 and scan there for another 25 ms; the same with channel 39 and so on, restarting with channel 37. 
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/advertising_rxPeriod_BLE.png
+
+As shown in detail in above image each advertiser, after sent an advertising packet, has a receive window (RX period) in which it listen for connection request. If a connection request is received on that channel, it acts as shown below.
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/advertising_ConnDONE_BLE.png
+
+Previous image represent the situation where there is an initiator instead of a scanner and it want to establish a connection. The initiator, after received an advertising packet, send a connection request (CREQ) on the same channel during RX period. If a connection request is received, advertiser stop immediately. this is followed by a mandatory delay of 1.25 ms and a transmit window offset; then the transmit windows is opened and slave turns on its receiver and waits for a packet from the master. If it receives a packet, the slave responds, and a connection is estabilished.
+
+Once the connection is established the master transfer packets to the slave at certain interval called the connection interval. Then the slave respond to packets from the master.
+Multiple packets can be sent every connection interval (6 maximum). this is shown in image below.
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/Conn_timings_M-S.png
+
+The connection interval can be from 7.5 ms to 4 seconds.
+The slave latency is a feature of the slave to ignore a certain number of packets from the master saving some power.
 
 ===The Host===
 The Host is a software stack: manage how two or more devices communicate each others. It is composed by following blocks:
