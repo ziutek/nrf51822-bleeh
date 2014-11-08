@@ -151,7 +151,7 @@ The UUID in the characteristic declaration must be the same UUID that holds the 
 
 The characteristic value (the white row in the above table) is just an ordinary attribute.
 
-Any attribute within a characteristic definition that is not the characteristic value, is by definition a *descriptor*. A descriptor is an additional attribute that provides more information about a characteristic, for instance a human-readable description of the characteristic. See fourth row on table below. The descriptor associate an human readable text string ("Bedroom") to related characteristic 
+Any attribute within a characteristic definition that is not the characteristic value, is by definition a *descriptor*. A [https://developer.bluetooth.org/gatt/descriptors/Pages/DescriptorsHomePage.aspx descriptor] is an additional attribute that provides more information about a characteristic, for instance a human-readable description of the characteristic. See fourth row on table below. The descriptor associate an human readable text string ("Bedroom") to related characteristic 
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/GATT_characteristic_Descriptor_CCCD_BLE.png
 
@@ -173,6 +173,7 @@ Defines the generic procedures related to the discovery of BLE devices and link 
 The application profile defines the collection of attributes and any permission needed for these attributes to be used in the communication.
 
 =Bibliography=
+ # [https://developer.bluetooth.org Bluetooth Developer Portal]
  # [http://www.eetimes.com/document.asp?doc_id=1278927 Bluetooth 4.0: An introduction to Bluetooth Low Energy—Part I], Mikhail Galeev, Z-Focus Consulting.
  # [http://www.eetimes.com/document.asp?doc_id=1278966 Bluetooth 4.0: An introduction to Bluetooth Low Energy—Part II], Mikhail Galeev, Z-Focus Consulting.
  # [https://www.nordicsemi.com/eng/nordic/download_resource/24020/5/78061434 nAN-36_v1.1-Creating Bluetooth low energy applications using nRF51822 Application Note v1.1],  Nordic Semiconductor. 
