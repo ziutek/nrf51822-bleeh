@@ -112,7 +112,7 @@ The server sends *notification* to the client to inform it that a particular att
 An *attribute* can be look that as a piece of labelled addressable data. An attribute has four values associated with it: 
  * handle: uniquely identifies an attribute on a server allowing the client to reference it;
  * type: specifies what the attribute represents defined by universally unique identifier (UUID).  A UUID is a 128-bit number that is globally unique and is used to identify an attribute type;
- * value: is the state data, the actual data.
+ * value: is the state data, the actual data [0-512] bytes.
  * permissions: let us know if the attribute can be readable, writable or both.  
 Image below shown the architecture of four different attributes, note that each row corresponds to one attribute. 
 
@@ -122,12 +122,56 @@ Services, characteristic and descriptor are explained in detail below.
  
 ====Generic Attribute Profile (GATT)====
 
-Describes a service framework using the attribute protocol for discovering services, and for reading and writing characteristic values on a peer device. It interfaces with the application through the application’s profiles. The application profile itself defines the collection of attributes and any permission needed for these attributes to be used in the communication.
+Defines a hierarchical grouping of attributes and procedures for discovery and access. It interfaces with the application through the application’s profiles. Generic Attribute Profile (GATT) is built on top of the Attribute Protocol (ATT) and establishes common operations and a framework for the data transported and stored by the Attribute Protocol. GATT defines two roles: Server and Client. The device holding data is the GATT Server, while the device accessing it is the GATT Client.
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/GATT_hierarchy_BLE.png
+
+The GATT *Profile* specifies the structure in which profile data is exchanged (see above image). This structure defines basic elements such as services and characteristics, used in a profile. The top level of the hierarchy is a profile. A profile is composed of one or more services necessary to fulfill a use case. E.g. Heart rate profile requires the sensor to have Heart Rate Service and Device Information Service. A profile is just defined a set of services. 
+
+A profile document includes information on services that are required or optional for that particular profile as well as how the peers will interact with each other. This includes both which GAP and GATT Roles the devices will be in during data exchange. Therefore, this document will often contain information on what kind of advertising and connection intervals should be used, whether security is required, and similar.
+
+A GATT Server organizes data in what is called an attribute table and it is the attributes that contain the actual data, following there is an example:
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/GATT_attributetable_BLE.png
+
+It should be noted that a profile does not have an attribute in the attribute table.
+
+Each row of previous table is an *attribute*; as was described in ATT section, attribute has a handle, a UUID, and a value. A handle is the index in the GATT table for the attribute and is unique for each attribute in a device. The UUID contains information on the type of data within the attribute, which is key information for understanding the bytes that are contained in the value of the attribute. There may be many attributes in a GATT table with the same UUID.
+
+A *characteristic* consists of at least two attributes: a characteristic declaration and an attribute that holds the value for the characteristic. It could optionally contain descriptors that describe the value or permit configuration of the server with respect to the characteristic value.
+All data that will be transferred through a GATT Service must be mapped to a set of characteristics. It is a good idea to consider bundling the data up so that each characteristic is a self-contained, single instance data point. For example, if some pieces of data always change together, it will often make sense to collect them in one characteristic.
+A characteristic is a value used in a service along with properties and configuration information about how the value is accessed and information about how the value is displayed or represented. 
+A characteristic declaration contains the characteristic properties, the handle of the characteristic value and the UUID.
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/GATT_characteristic_BLE.png
+
+The characteristic properties determine if the characteristic value can be read, written, notified, indicated or broadcast-ed. Be aware that some of the properties requires certain descriptors to be available.  
+The handle of the characteristic value is the handle of the attribute that contains the characteristic value.
+The UUID in the characteristic declaration must be the same UUID that holds the characteristic value.
+
+The characteristic value is just an ordinary attribute.
+
+Any attribute within a characteristic definition that is not the characteristic value, is by definition a *descriptor*. A descriptor is an additional attribute that provides more information about a characteristic, for instance a human-readable description of the characteristic.
+However, there is one special descriptor that is worth mentioning in particular: the Client Characteristic Configuration Descriptor (*CCCD*). This descriptor is added for any characteristic that supports the Notify or Indicate properties. 
+Writing a ‘1’ to the CCCD enables notifications, while writing a ‘2’ enables indications. Writing a ‘0’ disables both notifications and indications.
+
+A *service* consists of one or more characteristics, and is a logical collection of related characteristics. GATT services typically include pieces of related functionality - such as a particular sensor’s readings and settings or the inputs and outputs of a Human Interface Device. Organizing related characteristics into services is both useful and practical, since it promotes a clearer separation based on logical and use-case defined boundaries and helps code reuse across different applications. The GATT-based SIG profiles and services make good use of this approach, and it is recommended to follow their strategy for user-defined profiles.
+
+GATT procedures can be spitted into three types: 
+ * _Discovery_ : used to discover the services, the characteristics and the attributes on a server; 
+ * _Client initiated_ : used to read or write the attributes on a server;
+ * _Server initiated_ : used to send data without a client asked for it directly.
+
+
 
 ====Generic Access Profile (GAP)====
 
 Defines the generic procedures related to the discovery of BLE devices and link management aspects of connecting to other LE devices.  The GAP provides an interface for the application to configure and enables different modes of operation, e.g. advertising or scanning, and also to initiate, establish, and manage connection with other devices.
+
+==Application profiles and services==
+The application profile defines the collection of attributes and any permission needed for these attributes to be used in the communication.
+
 =Bibliography=
  # [http://www.eetimes.com/document.asp?doc_id=1278927 Bluetooth 4.0: An introduction to Bluetooth Low Energy—Part I], Mikhail Galeev, Z-Focus Consulting.
  # [http://www.eetimes.com/document.asp?doc_id=1278966 Bluetooth 4.0: An introduction to Bluetooth Low Energy—Part II], Mikhail Galeev, Z-Focus Consulting.
- # [https://www.nordicsemi.com/eng/nordic/download_resource/24020/5/78061434 nAN-36_v1.1-Creating Bluetooth low energy applications using nRF51822 Application Note v1.1],  Nordic Semiconductor.
+ # [https://www.nordicsemi.com/eng/nordic/download_resource/24020/5/78061434 nAN-36_v1.1-Creating Bluetooth low energy applications using nRF51822 Application Note v1.1],  Nordic Semiconductor. 
