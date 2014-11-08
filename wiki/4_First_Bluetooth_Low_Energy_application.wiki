@@ -65,11 +65,11 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/slave_m
 
 thus the devices becomes master and slave. 
 
-The advertising data is send over three different channels named advertising channels. They're channel 37, 38 and 39, located at 2402 MHz, 2426 MHz and 2480 MHz to be immune to domestic Wi-Fi interference.   
+The advertising data is send over three different channels named advertising channels. They're channel 37, 38 and 39, located at 2402 MHz, 2426 MHz and 2480 MHz to be immune to domestic Wi-Fi interference. Advertising intervals can be set in a range of 20 ms to 10 s. It specifies the interval between consecutive advertising packets. Here an example.
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/scanning_BLE.png
 
-Above is shown how the advertising and scanning work. The device in advertising mode (in image) has an advertising interval of 20 ms, and it send one advertiser packet on channel 37, 38 and 39 (all advertising channels). The device in scanning mode has a scan interval of 50 ms and a scan window of 25 ms. It start scanning at 0 ms and scan on channel 37 until 25 ms. It receive two packets in this channel. Afterwards it shut-down radio for 25 ms, then the scanner jump to channel 38 and scan there for another 25 ms; the same with channel 39 and so on, restarting with channel 37. 
+Above is shown as example how the advertising and scanning work. The device in advertising mode (in image) has an advertising interval of 20 ms, and it send one advertiser packet on channel 37, 38 and 39 (all advertising channels). The device in scanning mode has a scan interval of 50 ms and a scan window of 25 ms. It start scanning at 0 ms and scan on channel 37 until 25 ms. It receive two packets in this channel. Afterwards it shut-down radio for 25 ms, then the scanner jump to channel 38 and scan there for another 25 ms; the same with channel 39 and so on, restarting with channel 37. 
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/advertising_rxPeriod_BLE.png
 
