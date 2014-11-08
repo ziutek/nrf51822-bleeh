@@ -165,6 +165,8 @@ GATT procedures can be spitted into three types:
  * _Client initiated_ : used to read or write the attributes on a server;
  * _Server initiated_ : used to send data without a client asked for it directly.
 
+Minimum number of attributes on an attributes table to accomplished a connection is six.They're 
+
 ====Generic Access Profile (GAP)====
 
 Defines the generic procedures related to the discovery of BLE devices and link management aspects of connecting to other LE devices.  The GAP provides an interface for the application to configure and enables different modes of operation, e.g. advertising or scanning, and also to initiate, establish, and manage connection with other devices.
