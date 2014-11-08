@@ -98,4 +98,4 @@ The Host is a software stack: manage how two or more devices communicate each ot
 =Bibliography=
  # [http://www.eetimes.com/document.asp?doc_id=1278927 Bluetooth 4.0: An introduction to Bluetooth Low Energy—Part I], Mikhail Galeev, Z-Focus Consulting.
  # [http://www.eetimes.com/document.asp?doc_id=1278966 Bluetooth 4.0: An introduction to Bluetooth Low Energy—Part II], Mikhail Galeev, Z-Focus Consulting.
- # [https://www.nordicsemi.com/eng/nordic/download_resource/24020/5/78061434 Creating Bluetooth low energy applications using nRF51822 Application Note v1.1, Nordic Semiconductor]
+ # [https://www.nordicsemi.com/eng/nordic/download_resource/24020/5/78061434 Creating Bluetooth low energy applications using nRF51822 Application Note v1.1],  Nordic Semiconductor
