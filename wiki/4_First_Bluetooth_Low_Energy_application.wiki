@@ -138,10 +138,10 @@ It should be noted that a profile does not have an attribute in the attribute ta
 
 Each row of previous table is an *attribute*; as was described in ATT section, attribute has a handle, a UUID, and a value. A handle is the index in the GATT table for the attribute and is unique for each attribute in a device. The UUID contains information on the type of data within the attribute, which is key information for understanding the bytes that are contained in the value of the attribute. There may be many attributes in a GATT table with the same UUID.
 
-A *characteristic* consists of at least two attributes: a characteristic declaration and an attribute that holds the value for the characteristic. It could optionally contain descriptors that describe the value or permit configuration of the server with respect to the characteristic value.
+A *characteristic* consists of at least two attributes: a characteristic declaration (the light-blue row in the table below) and an attribute that holds the value for the characteristic (the white row in the table below). It could optionally contain descriptors that describe the value or permit configuration of the server with respect to the characteristic value.
 All data that will be transferred through a GATT Service must be mapped to a set of characteristics. It is a good idea to consider bundling the data up so that each characteristic is a self-contained, single instance data point. For example, if some pieces of data always change together, it will often make sense to collect them in one characteristic.
 A characteristic is a value used in a service along with properties and configuration information about how the value is accessed and information about how the value is displayed or represented. 
-A characteristic declaration contains the characteristic properties, the handle of the characteristic value and the UUID.
+A characteristic declaration (the light-blue row in the table below) contains the characteristic properties, the handle of the characteristic value and the UUID.
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/GATT_characteristic_BLE.png
 
@@ -149,10 +149,13 @@ The characteristic properties determine if the characteristic value can be read,
 The handle of the characteristic value is the handle of the attribute that contains the characteristic value.
 The UUID in the characteristic declaration must be the same UUID that holds the characteristic value.
 
-The characteristic value is just an ordinary attribute.
+The characteristic value (the white row in the above table) is just an ordinary attribute.
 
-Any attribute within a characteristic definition that is not the characteristic value, is by definition a *descriptor*. A descriptor is an additional attribute that provides more information about a characteristic, for instance a human-readable description of the characteristic.
-However, there is one special descriptor that is worth mentioning in particular: the Client Characteristic Configuration Descriptor (*CCCD*). This descriptor is added for any characteristic that supports the Notify or Indicate properties. 
+Any attribute within a characteristic definition that is not the characteristic value, is by definition a *descriptor*. A descriptor is an additional attribute that provides more information about a characteristic, for instance a human-readable description of the characteristic. See fourth row on table below. The descriptor associate an human readable text string ("Bedroom") to related characteristic 
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/GATT_characteristic_Descriptor_CCCD_BLE.png
+
+However, there is one special descriptor that is worth mentioning in particular: the Client Characteristic Configuration Descriptor (*CCCD*). This descriptor is added for any characteristic that supports the Notify or Indicate properties. A CCCD is in the last row of the above table.  
 Writing a ‘1’ to the CCCD enables notifications, while writing a ‘2’ enables indications. Writing a ‘0’ disables both notifications and indications.
 
 A *service* consists of one or more characteristics, and is a logical collection of related characteristics. GATT services typically include pieces of related functionality - such as a particular sensor’s readings and settings or the inputs and outputs of a Human Interface Device. Organizing related characteristics into services is both useful and practical, since it promotes a clearer separation based on logical and use-case defined boundaries and helps code reuse across different applications. The GATT-based SIG profiles and services make good use of this approach, and it is recommended to follow their strategy for user-defined profiles.
@@ -161,8 +164,6 @@ GATT procedures can be spitted into three types:
  * _Discovery_ : used to discover the services, the characteristics and the attributes on a server; 
  * _Client initiated_ : used to read or write the attributes on a server;
  * _Server initiated_ : used to send data without a client asked for it directly.
-
-
 
 ====Generic Access Profile (GAP)====
 
