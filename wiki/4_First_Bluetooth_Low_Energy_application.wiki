@@ -100,15 +100,25 @@ Is responsible for device pairing and key distribution. The security manager pro
 
 ====Attribute Protocol (ATT)==== 
 
-Define a set of rules for accessing data on a device (the server). Defines how a client can find and access the attributes on a server. Allows an attribute server to expose a set of attributes and their associated values to an attribute client. These attributes can be discovered, read, and written by peer devices. It is structured in six basic operations: request, respone, command, indication, confirmation, notification. 
-An *attribute* can be look that as a piece of labelled addressable data. An attribute has three values associated with it: 
+Define a set of rules for accessing data on a device (the server). Defines how a client can find and access the attributes on a server. Allows an attribute server to expose a set of attributes and their associated values to an attribute client. These attributes can be discovered, read, and written by peer devices. It is structured in six basic operations: request, response, command, indication, confirmation, notification.
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/attribute_operations_BLE.png
+
+The client sends a *request* to the server that the server has to do something. The server sends back a *response*. 
+The client can also sends commands to the server. *Commands* are used when a clients wants the server to do something but it doesn't need an immediately response.
+*Indications* are send by a server to a client to inform it that a particular attribute has a given value. Indications are similar to requests because indications needs a confirmation.
+The server sends *notification* to the client to inform it that a particular attribute has a given value. Notifications are similar to commands because they don't need a response.
+ 
+An *attribute* can be look that as a piece of labelled addressable data. An attribute has four values associated with it: 
  * handle: uniquely identifies an attribute on a server allowing the client to reference it;
  * type: specifies what the attribute represents defined by universally unique identifier (UUID).  A UUID is a 128-bit number that is globally unique and is used to identify an attribute type;
  * value: is the state data, the actual data.
-Attributes also have permissions, letting us know if it can be readable, writable or both.  
-Image below shown the architecture of attributes, note that each row corresponds to one attribute. 
+ * permissions: let us know if the attribute can be readable, writable or both.  
+Image below shown the architecture of four different attributes, note that each row corresponds to one attribute. 
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/attribute_BLE.png
+
+Services, characteristic and descriptor are explained in detail below.
  
 ====Generic Attribute Profile (GATT)====
 
