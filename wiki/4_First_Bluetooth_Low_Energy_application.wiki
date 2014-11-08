@@ -65,7 +65,7 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/slave_m
 
 thus the devices becomes master and slave. 
 
-The advertising data is send over three different channels named advertising channels. They're channel 37, 38 and 39, located at 2402 MHz, 2426 MHz and 2480 MHz to be immune to domestic Wi-Fi interference. Advertising intervals can be set in a range of 20 ms to 10 s. It specifies the interval between consecutive advertising packets. Here an example.
+The advertising data is send over three different channels named advertising channels. They're channel 37, 38 and 39, located at 2402 MHz, 2426 MHz and 2480 MHz to be immune to domestic Wi-Fi interference. Advertising intervals can be set in a range of 20 ms to 10 s. It specifies the interval between consecutive advertising packets. For scanner mode, BLE specifies a scan window, which determines the duration of the scan as well as the scan interval, meaning how often it repeats. Here an example.
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/scanning_BLE.png
 
