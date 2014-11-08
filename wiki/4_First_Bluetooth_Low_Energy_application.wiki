@@ -100,16 +100,23 @@ Is responsible for device pairing and key distribution. The security manager pro
 
 ====Attribute Protocol (ATT)==== 
 
-Define a set of rules for accessing data on a device (the server). Defines how a client can find and access the attributes on a server. Allows an attribute server to expose a set of attributes and their associated values to an attribute client. These attributes can be discovered, read, and written by peer devices. It is structured in six basic operations: request, respone, command, indication, confirmation, notification. The attribute protocol and the attributes are described in details below.
+Define a set of rules for accessing data on a device (the server). Defines how a client can find and access the attributes on a server. Allows an attribute server to expose a set of attributes and their associated values to an attribute client. These attributes can be discovered, read, and written by peer devices. It is structured in six basic operations: request, respone, command, indication, confirmation, notification. 
+An *attribute* can be look that as a piece of labelled addressable data. An attribute has three values associated with it: 
+ * handle: uniquely identifies an attribute on a server allowing the client to reference it;
+ * type: specifies what the attribute represents defined by universally unique identifier (UUID).  A UUID is a 128-bit number that is globally unique and is used to identify an attribute type;
+ * value: is the state data, the actual data.
+Attributes also have permissions, letting us know if it can be readable, writable or both.  
+Image below shown the architecture of attributes, note that each row corresponds to one attribute. 
 
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/attribute_BLE.png
+ 
 ====Generic Attribute Profile (GATT)====
 
-Describes a service framework using the attribute protocol for discovering services, and for reading and writing characteristic values on a peer device. It interfaces with the application through the application’s profiles. The application profile itself defines the collection of attributes and any permission needed for these attributes to be used in the communication. The generic attribute profile is described in detail below.
+Describes a service framework using the attribute protocol for discovering services, and for reading and writing characteristic values on a peer device. It interfaces with the application through the application’s profiles. The application profile itself defines the collection of attributes and any permission needed for these attributes to be used in the communication.
 
 ====Generic Access Profile (GAP)====
 
-Defines the generic procedures related to the discovery of BLE devices and link management aspects of connecting to other LE devices.  The GAP provides an interface for the application to configure and enables different modes of operation, e.g. advertising or scanning, and also to initiate, establish, and manage connection with other devices. The generic access profile is described in detail below.
-
+Defines the generic procedures related to the discovery of BLE devices and link management aspects of connecting to other LE devices.  The GAP provides an interface for the application to configure and enables different modes of operation, e.g. advertising or scanning, and also to initiate, establish, and manage connection with other devices.
 =Bibliography=
  # [http://www.eetimes.com/document.asp?doc_id=1278927 Bluetooth 4.0: An introduction to Bluetooth Low Energy—Part I], Mikhail Galeev, Z-Focus Consulting.
  # [http://www.eetimes.com/document.asp?doc_id=1278966 Bluetooth 4.0: An introduction to Bluetooth Low Energy—Part II], Mikhail Galeev, Z-Focus Consulting.
