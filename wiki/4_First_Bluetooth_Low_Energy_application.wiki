@@ -79,13 +79,13 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/adverti
 
 Previous image represent the situation where there is an initiator instead of a scanner and it want to establish a connection. The initiator, after received an advertising packet, send a connection request (CREQ) on the same channel during RX period. If a connection request is received, advertiser stop immediately. this is followed by a mandatory delay of 1.25 ms and a transmit window offset; then the transmit windows is opened and slave turns on its receiver and waits for a packet from the master. If it receives a packet, the slave responds, and a connection is estabilished.
 
-Once the connection is established the master transfer packets to the slave at certain interval called the connection interval. Then the slave respond to packets from the master.
-Multiple packets can be sent every connection interval (6 maximum). this is shown in image below.
+When a connection is established, the initiator device (which will become a master) supplies the advertising device (which will become a slave device) with a set of critical data defining the channel and timing of the master-slave data exchange. In particular, this data specifies two important parameters: connection interval and slave latency. The connection interval determines the time between the start of the data packet exchange sequence called connection events. Latency, on the other hand, is a number of communication intervals that a slave may ignore without losing the connection. It gives the slave an opportunity to optimize and preserve power consumption. Once a connection is established, the slave may request an update of communication parameters to better fit the slave application. This is shown in below image.
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/Conn_timings_M-S.png
 
-The connection interval can be from 7.5 ms to 4 seconds.
-The slave latency is a feature of the slave to ignore a certain number of packets from the master saving some power.
+The connection interval can be from 7.5 ms to 4 seconds. Multiple packets can be sent every connection interval (6 maximum).
+
+Each communication event is started by the master transmission and it serves as an anchor point to calculate the time for the next event. During a communication event, the master and slave alternate sending and receiving packets until either side stops sending packets. The current event is considered closed and the data exchange is suspended until the next communication event.
 
 ===The Host===
 The Host is a software stack: manage how two or more devices communicate each others. It is composed by following blocks:
