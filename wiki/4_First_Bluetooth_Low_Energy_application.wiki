@@ -38,6 +38,8 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/HRMBelt
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/keyfob-tablet_BLE.png
 
+In detail, profiles are specifications that describe two or more devices with one or more services on each device. Profiles also describe how the device should be discoverable and connectable trough the GAP and GATT features. A profile also describe what services are required in each device. The application can implement one of the standard profiles defined by Bluetooth SIG or one can implement a proprietary profile creating your own specification for device behavior and included services.
+
 == Bluetooth Low Energy architecture ==
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/BLE_architecture.png
@@ -167,11 +169,23 @@ GATT procedures can be spitted into three types:
  * _Client initiated_ : used to read or write the attributes on a server;
  * _Server initiated_ : used to send data without a client asked for it directly.
 
-Minimum number of attributes on an attributes table to accomplished a connection is six.They're 
+Minimum number of services on a server is two: 
+ * Generic Access Profile (GAP) service;
+ * Generic Attribute Profile service (GATT);
+These uses six attributes (note the GATT service has no characteristics):
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/minimum_requisites_BLE.png
 
 ====Generic Access Profile (GAP)====
 
 Defines the generic procedures related to the discovery of BLE devices and link management aspects of connecting to other LE devices.  The GAP provides an interface for the application to configure and enables different modes of operation, e.g. advertising or scanning, and also to initiate, establish, and manage connection with other devices.
+GAP defines four roles:
+ * Broadcaster: transmits advertising packets, it's never in a connection.
+ * Observer: scans for advertising packets, it's never in a connection.
+ * Peripheral: transmits advertising packets and has a slave role in a connection.
+ * Central: scans for advertising packets and initiate a connection; it has a master role in a connection.
+
+There are also a number of modes and procedures defined within the General Access Profiles. The modes describe how the device can be discovered and connected to and if it can be bonded with. The procedures are connected to the different modes.
 
 ==Application profiles and services==
 The application profile defines the collection of attributes and any permission needed for these attributes to be used in the communication.
