@@ -42,20 +42,21 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/keyfob-
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/BLE_architecture.png
 
-It has tree main part: the controller, the host and the application.
+Bluetooth Low Energy has tree main part: the controller, the host and the application.
+
 === The Controller===
 
 Is the physical device that can transmit and receive radio signals and understand how the signals can be interpreted. It is composed by:
  * *Physical Layer (PHY)*, the nRF51 series radio module;
- * *Link Layer (LL)*, the most complex part of BLE. It has 5 main states:Standby, Advertising, Scanning, Initiating, Connection. *-Advertising*: the device is transmitting advertising packets; the only way a device can be discovered in BLE is if it is advertising and to connect to a device it must be discovered first. Advertising mode is also used for broadcasting data. *-Scanning*: the device scans for advertising packets. Are possible _passive scanning_ (only receive adv. data) and _active scanning_ (scanner requests are sent to adv devices to obtain additional scanner response data. *-Initiating* state, the device scans for advertising packets and then sends out a connect request to the advertiser. The device will then move to the connection state; *-Connection* state, has two sub-states: master and slave;
+ * *Link Layer (LL)*, the most complex part of BLE. It has 5 main states:Standby, Advertising, Scanning, Initiating, Connection. *-Advertising*: the device is transmitting advertising packets; the only way a device can be discovered in BLE is if it is advertising and to connect to a device it must be discovered first. Advertising mode is also used for broadcasting data. *-Scanning*: the device scans for advertising packets. Are possible _passive scanning_ (only receive adv. data) and _active scanning_ (scanner requests are sent to adv. devices to obtain additional scanner response data. *-Initiating* state, the device scans for advertising packets and then sends out a connect request to the advertiser. The device will then move to the connection state; *-Connection* state, has two sub-states: master and slave;
 
 Packet structure is composed by two types of packets: Advertising packets understandable by all devices and Data packets understandable only by 2 devices, master and slave.
-BLE utilizes 40 channel separated by 2 MHz (instead of the classic 1 MHz) : 3 adv channels and 37 data channels.
+BLE utilizes 40 channel separated by 2 MHz (instead of the classic 1 MHz) : 3 advertising channels and 37 data channels.
 Link layer is also responsible for establishment and management of connections. An example is shown below.
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/adv_scan_BLE.png
 
-The two BLE devices in above image are an advertiser, that is a device with the link layer in the advertising state (it sends out advertising packets) and a scanner, that is a device in scanning state (maybe active or a passive scanner which receive only adv. packets).
+The two BLE devices in above image are: an advertiser, that is a device with the link layer in the advertising state (it sends out advertising packets) and a scanner, that is a device in scanning state (maybe active or a passive scanner which receive only adv. packets).
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/adv_init_BLE.png
 
@@ -69,7 +70,7 @@ The advertising data is send over three different channels named advertising cha
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/scanning_BLE.png
 
-Above is shown as example how the advertising and scanning work. The device in advertising mode (in image) has an advertising interval of 20 ms, and it send one advertiser packet on channel 37, 38 and 39 (all advertising channels). The device in scanning mode has a scan interval of 50 ms and a scan window of 25 ms. It start scanning at 0 ms and scan on channel 37 until 25 ms. It receive two packets in this channel. Afterwards it shut-down radio for 25 ms, then the scanner jump to channel 38 and scan there for another 25 ms; the same with channel 39 and so on, restarting with channel 37. 
+Above is shown as example how the advertising and scanning work. The device in advertising mode (in image) has an advertising interval of 20 ms, and it send one advertiser packet on channel 37, 38 and 39 (all advertising channels). The device in scanning mode has a scan interval of 50 ms and a scan window of 25 ms. It start scanning at 0 ms and scan on channel 37 until 25 ms. It receive two packets in this channel. Afterwards it shut-down radio for 25 ms. Then the scanner jump to channel 38 and scan there for another 25 ms; the same with channel 39 and so on, restarting with channel 37. 
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/advertising_rxPeriod_BLE.png
 
@@ -77,7 +78,7 @@ As shown in detail in above image each advertiser, after sent an advertising pac
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/advertising_ConnDONE_BLE.png
 
-Previous image represent the situation where there is an initiator instead of a scanner and it want to establish a connection. The initiator, after received an advertising packet, send a connection request (CREQ) on the same channel during RX period. If a connection request is received, advertiser stop immediately. this is followed by a mandatory delay of 1.25 ms and a transmit window offset; then the transmit windows is opened and slave turns on its receiver and waits for a packet from the master. If it receives a packet, the slave responds, and a connection is estabilished.
+Previous image represent the situation where there is an initiator instead of a scanner and it want to establish a connection. The initiator, after received an advertising packet, send a connection request (CREQ) on the same channel (ch. 38) during RX period. If a connection request is received, advertiser stop immediately. this is followed by a mandatory delay of 1.25 ms and a transmit window offset; then the transmit windows is opened and slave turns on its receiver and waits for a packet from the master. If it receives a packet, the slave responds, and a connection is estabilished.
 
 When a connection is established, the initiator device (which will become a master) supplies the advertising device (which will become a slave device) with a set of critical data defining the channel and timing of the master-slave data exchange. In particular, this data specifies two important parameters: connection interval and slave latency. The connection interval determines the time between the start of the data packet exchange sequence called connection events. Latency, on the other hand, is a number of communication intervals that a slave may ignore without losing the connection. It gives the slave an opportunity to optimize and preserve power consumption. Once a connection is established, the slave may request an update of communication parameters to better fit the slave application. This is shown in below image.
 
@@ -108,6 +109,7 @@ The client sends a *request* to the server that the server has to do something. 
 The client can also sends commands to the server. *Commands* are used when a clients wants the server to do something but it doesn't need an immediately response.
 *Indications* are send by a server to a client to inform it that a particular attribute has a given value. Indications are similar to requests because indications needs a confirmation.
 The server sends *notification* to the client to inform it that a particular attribute has a given value. Notifications are similar to commands because they don't need a response.
+
  
 An *attribute* can be look that as a piece of labelled addressable data. An attribute has four values associated with it: 
  * handle: uniquely identifies an attribute on a server allowing the client to reference it;
@@ -151,7 +153,7 @@ The UUID in the characteristic declaration must be the same UUID that holds the 
 
 The characteristic value (the white row in the above table) is just an ordinary attribute.
 
-Any attribute within a characteristic definition that is not the characteristic value, is by definition a *descriptor*. A [https://developer.bluetooth.org/gatt/descriptors/Pages/DescriptorsHomePage.aspx descriptor] is an additional attribute that provides more information about a characteristic, for instance a human-readable description of the characteristic. See fourth row on table below. The descriptor associate an human readable text string ("Bedroom") to related characteristic 
+Any attribute within a characteristic definition that is not the characteristic value is, by definition, a *descriptor*. A [https://developer.bluetooth.org/gatt/descriptors/Pages/DescriptorsHomePage.aspx descriptor] is an additional attribute that provides more information about a characteristic, for instance a human-readable description of the characteristic. See fourth row on table below. The descriptor associate an human readable text string ("Bedroom") to related characteristic 
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/GATT_characteristic_Descriptor_CCCD_BLE.png
 
