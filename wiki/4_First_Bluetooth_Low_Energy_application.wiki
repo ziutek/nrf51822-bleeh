@@ -188,6 +188,8 @@ GAP defines four roles:
 There are also a number of modes and procedures defined within the General Access Profiles. The modes describe how the device can be discovered and connected to and if it can be bonded with. The procedures are connected to the different modes.
 
 ==Application profiles and services==
+
+To use Bluetooth® wireless technology, a device must be able to interpret certain Bluetooth profiles. Bluetooth profiles are definitions of possible applications and specify general behaviors that Bluetooth enabled devices use to communicate with other Bluetooth devices. There is a wide range of Bluetooth profiles describing many different types of applications or use cases for devices. By following the guidance provided by the Bluetooth specification, developers can create applications to work with other Bluetooth devices.
 The application profile defines the collection of attributes and any permission needed for these attributes to be used in the communication.
 
 =Bibliography=
