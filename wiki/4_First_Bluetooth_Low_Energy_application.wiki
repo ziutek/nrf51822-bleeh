@@ -7,7 +7,7 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/work-in
 
 = Introduction =
 To start with Bluetooth Smart a simple but complete application was provided by Nordic Semiconductor. It can be found on GitHub, at [https://github.com/NordicSemiconductor/nrf51-ble-app-lbs https://github.com/NordicSemiconductor/nrf51-ble-app-lbs]. [http://www.nordicsemi.com/eng/content/download/34055/573345/file/nAN-36_v1.1.pdf Here] is available the related application note (nAN-36).
-Minimum requisites to understand the application is to have some knowledge about Bluetooth_Smart_Overview [ Bluetooth Smart technology].
+Minimum requisites to understand the application is to have some knowledge about[https://code.google.com/p/nrf51822-bleeh/wiki/Bluetooth_Smart_Overview Bluetooth Smart technology].
 
 = The Led Button application=
 The LED Button application example was created in order to give you an environment where you can learn how to use Bluetooth low energy on the nRF51822 chip. It is a simple BLE application that demonstrates bidirectional communication over BLE. When it is running, you will be able to toggle an LED output on the nRF51822 chip from the Central, and receive a notification when button input on nRF51822 is pressed. 
