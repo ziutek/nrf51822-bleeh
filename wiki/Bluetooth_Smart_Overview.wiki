@@ -1,4 +1,4 @@
-#summary Loading and analysis of first Bluetooth Low Energy application on PCA 10001 board
+#summary overview on Bluetooth Low Energy (v4.0) technology
 #labels Featured
 
 <wiki:toc max_depth="4" />
