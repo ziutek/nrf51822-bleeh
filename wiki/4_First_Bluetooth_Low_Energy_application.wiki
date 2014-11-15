@@ -13,5 +13,19 @@ Minimum requisites to understand the application is to have some knowledge about
 The LED Button application example was created in order to give you an environment where you can learn how to use Bluetooth low energy on the nRF51822 chip. It is a simple BLE application that demonstrates bidirectional communication over BLE. When it is running, you will be able to toggle an LED output on the nRF51822 chip from the Central, and receive a notification when button input on nRF51822 is pressed. 
 The application is implemented in one service, with two characteristics—the LED characteristic, which can be used to control the LED remotely through the write without response operation, and the Button characteristic, which sends a notification when the button is pressed or released.
 
+== Download firmware into evaluation board PCA10001 ==
+There are some simple steps to follow. Note that I've SDK v6.0.0 and SoftDevice S110 v7.1.
+ # 
+ # 
+ # 
+ # 
+ # 
+ # 
+
+{{{
+//I clone the repository on GitHub, which is the accompanying code for the Application Note nAN-36 "Creating Bluetooth Low Energy Applications Using nRF51822", in the //nrf51822/Board/pca10001/s110/ folder. Though I can successfully build the project, I can not download the image the the PCA10001 target board. The log is as shown //below:
+}}}
+
+
 Starting from this example could be developed the final "BLEEH" application to sense bicycle's speed and send speed-data to external devices such as Bluetooth Smart Ready smartphones.
 Probably I need to use the Button characteristic and remove LED characteristic besides to implement tips suggested on wiki page [https://code.google.com/p/nrf51822-bleeh/wiki/Bluetooth_Smart_and_Low_Power_considerations Bluetooth_Smart_and_Low_Power_considerations] of this project.
