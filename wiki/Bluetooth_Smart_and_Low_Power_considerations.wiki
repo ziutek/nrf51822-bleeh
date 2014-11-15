@@ -1,4 +1,4 @@
-#some considerations about S110 software stack (BLE SW stack) and low energy features
+#summary some considerations about S110 software stack (BLE SW stack) and low energy features
 
 = Introduction =
 
