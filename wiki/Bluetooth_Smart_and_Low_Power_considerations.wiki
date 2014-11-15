@@ -4,11 +4,6 @@
 
 Here are indicated some tips and trick to minimize power consumption using S110 SoftDevice, according [https://devzone.nordicsemi.com/question/5186/how-to-minimize-current-consumption-for-ble-application-on-nrf51822/ Nordic Developer Zone Q&A site].
 
-
-= Useful tips about BLE =
- # 
- # 
-
 = Useful tips about S110 & power consumption=
  # *Choice of 32 kHz clock source*: already done; 32 kHz crystal oscillator is the better choice among three low frequency clock available (ext. crystal, RC oscillator and synthesized clock from 16 MHz).
  # *Use of timers*: If using BLE, use the application timers that are generally used in the BLE examples in the SDK. Those use the RTC1 in the background which is very power efficient. Look at i.e. the ble_app_hrs example which has several application timers implemented. Low power mode with BLE softdevice Most BLE examples in the SDK will include the power_manage call in the main function. This call uses the sd_app_event_wait() softdevice call (or power_manage()) which enables the System On low power mode, which keeps current consumption to a minimum.
