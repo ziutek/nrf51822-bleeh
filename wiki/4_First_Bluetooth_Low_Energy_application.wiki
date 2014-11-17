@@ -28,10 +28,19 @@ The analysis is done with help of Master Control Panel.
 Connect either devices to usb and open Master Control Panel application. Select as master emulator the serial port corresponding to serial number of embedded J-LINK of the USB dongle. In log table you must see a message claims the server has started.
 Clicking on Start discovery button the discovered device table will populate with the "LedButtonDemo" device information. This is the advertising data of evaluation board PCA10001.
 Now click on _Select device_ then on _Connect_ and on _Discover services_. You'll see the fundamentals primary services, GAP and GATT, together with the main service of the LedButtonDemo application. Grouped under services there are the corresponding characteristics declaration, characteristic definition (values) and some characteristic descriptors.
+Below are described these attributes.
 
 === Services ===
+As specified [https://code.google.com/p/nrf51822-bleeh/wiki/Bluetooth_Smart_Overview#Generic_Attribute_Profile_(GATT) here], in order to establish a connection, minimum number of services is two: GAP service and GATT service (highlighted in yellow in figure below).
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/LedButtonExample_attributes_BLE.png
+
+Furthermore, an additional service (highlighted in green) is provided to include data application.
 
 ==== Characteristics ====
+
+
+
 
 Starting from this example could be developed the final "BLEEH" application to sense bicycle's speed and send speed-data to external devices such as Bluetooth Smart Ready smartphones.
 Probably I need to use the Button characteristic and remove LED characteristic besides to implement tips suggested on wiki page [https://code.google.com/p/nrf51822-bleeh/wiki/Bluetooth_Smart_and_Low_Power_considerations Bluetooth_Smart_and_Low_Power_considerations] of this project.
