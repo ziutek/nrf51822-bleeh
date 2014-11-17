@@ -17,20 +17,13 @@ The application is implemented in one service, with two characteristics—the LE
 There are some simple steps to follow. Note that I've SDK v6.0.0 and SoftDevice S110 v7.1.0.
  # *Install* following Nordic Semiconductor software: [nRFgo Studio] and [Master Control Panel]. Download SoftDevice BLE protocol stack solution.
  # *Download* last SoftDevice sw stack on USB dongle (PCA10000): open nRFgo Studio and in device manager menu select nRF51 development dongle and its embedded J-Link programmer. Then select "Program SoftDevice" tab and browse for S110 hex file. Using S110 v7.1.0 its name is _s110_nrf51822_7.1.0_softdevice.hex_. Finally click on _Program_.
-
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/SD_download_BLE.png
-
  # *Download* application FW into usb dongle (PCA10000): open Master Control Panel and click on File->Flash programming... then select last FW (_MEFW nRF51822 0.10.0_).Finally click on _Program_. Now usb dongle is ready to work with Master Control Panel.
-
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/App_download_BLE.png
-
  # *Download* last SoftDevice sw stack on evaluation board (PCA10001): open nRFgo Studio and in device manager menu select nRF51 evaluation boards and its embedded J-Link programmer. Then select "Program SoftDevice" tab and browse for S110 hex file. Using S110 v7.1.0 its name is _s110_nrf51822_7.1.0_softdevice.hex_. Finally click on _Program_.
  # Setup proper Flash and RAM start addresses and size. On KEIL uVision, open _ble_app_lbs.uvproj_ then go to Flash->Configure Flash Tools... and go to target tab. Check if the IROM1 and IRAM1 parameters match with following and, if not, change them.
-
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/IRAM_IROM_settings_SD.png
-
 Then click on _Debug_ tab, and on settings of J-LINK programmer. In new window select _Flash Download_ tab and check if the RAM for Algorithm is properly setted to Start: 0x20000000 and Size: 0x2000, like following image. If mismatch, change it with correct values.
-
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/jlink_RAM_SD.png
 
 == Application analysis==
