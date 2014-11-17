@@ -6,7 +6,7 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/work-in
 <wiki:toc max_depth="4" />
 
 = Introduction =
-To start with Bluetooth Smart a simple but complete application was provided by Nordic Semiconductor. It can be found on GitHub, at [https://github.com/NordicSemiconductor/nrf51-ble-app-lbs https://github.com/NordicSemiconductor/nrf51-ble-app-lbs]. [http://www.nordicsemi.com/eng/content/download/34055/573345/file/nAN-36_v1.1.pdf Here] is available the related application note (nAN-36).
+To start with Bluetooth Smart, a simple but complete application was provided by Nordic Semiconductor. It can be found on GitHub, at [https://github.com/NordicSemiconductor/nrf51-ble-app-lbs https://github.com/NordicSemiconductor/nrf51-ble-app-lbs]. [http://www.nordicsemi.com/eng/content/download/34055/573345/file/nAN-36_v1.1.pdf Here] is available the related application note (nAN-36).
 Minimum requisites to understand the application is to have some knowledge about [https://code.google.com/p/nrf51822-bleeh/wiki/Bluetooth_Smart_Overview Bluetooth Smart technology].
 
 = The Led Button application=
@@ -15,8 +15,8 @@ The application is implemented in one service, with two characteristics—the LE
 
 == Download firmware into evaluation board PCA10001 ==
 There are some simple steps to follow. Note that I've SDK v6.0.0 and SoftDevice S110 v7.1.
- # 
- # 
+ # *Install* following Nordic Semiconductor software: [nRFgo Studio] and [Master Control Panel]. Download SoftDevice BLE protocol stack solution.
+ # *Download* last SoftDevice sw stack on USB dongle (PCA10000): open nRFgo Studio and in device manager menu select nRF51 development dongle and its embedded J-Link programmer. Then select "Program SoftDevice" tab and browse for S110 hex file. Using S110 v7.1 its name is _s110_nrf51822_7.1.0_softdevice.hex_.
  # 
  # 
  # 
@@ -26,6 +26,11 @@ There are some simple steps to follow. Note that I've SDK v6.0.0 and SoftDevice 
 //I clone the repository on GitHub, which is the accompanying code for the Application Note nAN-36 "Creating Bluetooth Low Energy Applications Using nRF51822", in the //nrf51822/Board/pca10001/s110/ folder. Though I can successfully build the project, I can not download the image the the PCA10001 target board. The log is as shown //below:
 }}}
 
+== Application analysis==
+
+=== Services ===
+
+==== Characteristics ====
 
 Starting from this example could be developed the final "BLEEH" application to sense bicycle's speed and send speed-data to external devices such as Bluetooth Smart Ready smartphones.
 Probably I need to use the Button characteristic and remove LED characteristic besides to implement tips suggested on wiki page [https://code.google.com/p/nrf51822-bleeh/wiki/Bluetooth_Smart_and_Low_Power_considerations Bluetooth_Smart_and_Low_Power_considerations] of this project.
