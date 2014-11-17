@@ -21,9 +21,13 @@ There are some simple steps to follow. Note that I've SDK v6.0.0 and SoftDevice 
  # *Download* last SoftDevice sw stack on evaluation board (PCA10001): open nRFgo Studio and in device manager menu select nRF51 evaluation boards and its embedded J-Link programmer. Then select "Program SoftDevice" tab and browse for S110 hex file. Using S110 v7.1.0 its name is _s110_nrf51822_7.1.0_softdevice.hex_. Finally click on _Program_.
  # *Setup* proper Flash and RAM start addresses and size. On KEIL uVision, open _ble_app_lbs.uvproj_ then go to Flash->Configure Flash Tools... and go to target tab. Check if the IROM1 and IRAM1 parameters match with following and, if not, change them. https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/IRAM_IROM_settings_SD.png Then click on _Debug_ tab, and on settings of J-LINK programmer. In new window select _Flash Download_ tab and check if the RAM for Algorithm is properly setted to Start: 0x20000000 and Size: 0x2000, like following image. If mismatch, change it with correct values. https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/jlink_RAM_SD.png 
  # *Download* application FW into usb evaluation board (PCA10001): in KEIL, build the project (press F7) and download it into evaluation board.
-Now the application is running on evaluation board.
+Now the application is running on evaluation board. Push reset button to reset the device. You must see the LED 0 on, indicating the device is in advertising mode. 
 
 == Application analysis==
+The analysis is done with help of Master Control Panel.
+Connect either devices to usb and open Master Control Panel application. Select as master emulator the serial port corresponding to serial number of embedded J-LINK of the USB dongle. In log table you must see a message claims the server has started.
+Clicking on Start discovery button the discovered device table will populate with the "LedButtonDemo" device information. This is the advertising data of evaluation board PCA10001.
+Now click on _Select device_ then on _Connect_ and on _Discover services_. You'll see the fundamentals primary services, GAP and GATT, together with the main service of the LedButtonDemo application. Grouped under services there are the corresponding characteristics declaration, characteristic definition (values) and some characteristic descriptors.
 
 === Services ===
 
