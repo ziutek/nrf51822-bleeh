@@ -19,7 +19,7 @@ More information on setup [https://www.nordicsemi.com/eng/user/login/?next=Produ
  # Once uVision is ok, let's to locate the Blinky project under _<keil path>\ARM\Device\Nordic\nRF51822\Board\PCA10001\blinky_example\arm_.
  # Open the Blinky project in Keil μVision by double clicking the _blinky.uvprojfile_.
  # Select nRF51822from the Select Target list and click Buildor press F7 to compile the Blinky project.
- # Click the Load icon to download and run the Blinky example firmware. LED 0and LED 1on the PCA10001 should now blink sequentially.
+ # Click the Load icon https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/downloadButton.png to download and run the Blinky example firmware. LED 0and LED 1on the PCA10001 should now blink sequentially.
 
 == Debug mode ==
 The debug mode, in KEIL uVision, is very complete and full of features. It allow, in combination with the on-board & build-in Segger J-Link, to debug the application right in the evaluation board with different views such as disassebly window, register window, performance analyzer, logic analyzer, instruction trace, etc..
