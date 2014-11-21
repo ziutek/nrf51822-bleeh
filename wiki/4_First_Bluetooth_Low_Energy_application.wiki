@@ -23,25 +23,47 @@ There are some simple steps to follow. Note that I've SDK v6.0.0 and SoftDevice 
  # *Download* application FW into usb evaluation board (PCA10001): in KEIL, build the project (press F7) and download it into evaluation board.
 Now the application is running on evaluation board. Push reset button to reset the device. You must see the LED 0 on, indicating the device is in advertising mode. 
 
-== Application analysis==
-The analysis is done with help of Master Control Panel.
-Connect either devices to usb and open Master Control Panel application. Select as master emulator the serial port corresponding to serial number of embedded J-LINK of the USB dongle. In log table you must see a message claims the server has started.
+== Application analysis ==
+The LED Button application example was created in order to give you an environment where you can learn how to use Bluetooth low energy on the nRF51822 chip. It is a simple BLE application that demonstrates bidirectional communication over BLE. When it is running, you will be able to toggle an LED output on the nRF51822 chip from the Central, and receive a notification when button input on nRF51822 is pressed.
+The application is implemented in one service, with two characteristics—the LED characteristic, which can be used to control the LED remotely through the write without response operation, and the Button
+characteristic, which sends a notification when the button is pressed or released.
+
+The example code is divided into three files:
+ * main.c
+ * ble_lbs.c
+ * ble_lbs.h
+The structure is the same as in other SDK examples, with main.c implementing application behavior and the separate service files implementing the service and its behavior. All I/O handling is left to the
+application.
+
+The analysis is done with help of Master Control Panel on a PC or with a Bluetooth Smart ready smartphone and [https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp nRF Master Control Panel App] from Play Store.
+On PC, connect either devices to USB and open Master Control Panel application. Select as master emulator the serial port corresponding to serial number of embedded J-LINK of the USB dongle. In log table you must see a message claims the server has started.
 Clicking on Start discovery button the discovered device table will populate with the "LedButtonDemo" device information. This is the advertising data of evaluation board PCA10001.
 Now click on _Select device_ then on _Connect_ and on _Discover services_. You'll see the fundamentals primary services, GAP and GATT, together with the main service of the LedButtonDemo application. Grouped under services there are the corresponding characteristics declaration, characteristic definition (values) and some characteristic descriptors.
 Below are described these attributes.
 
 === Services ===
-As specified [https://code.google.com/p/nrf51822-bleeh/wiki/Bluetooth_Smart_Overview#Generic_Attribute_Profile_(GATT) here], in order to establish a connection, minimum number of services is two: GAP service and GATT service (highlighted in yellow in figure below).
+As specified [https://code.google.com/p/nrf51822-bleeh/wiki/Bluetooth_Smart_Overview#Generic_Attribute_Profile_(GATT) here], in order to establish a connection, minimum number of services is two: GAP service (0x1800) and GATT service (0x1801) (highlighted in yellow in figure below).
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/LedButtonExample_attributes_BLE.png
 
-Furthermore, an additional service (highlighted in green) is provided to include application data. This service is implemented in two files: 'ble_lbs.c' and its heades 'ble_lbs.h'.
-
+Furthermore, an additional service (highlighted in green) is provided to include application data. This service is implemented in two files: 'ble_lbs.c' and its header 'ble_lbs.h'.
 
 ==== Characteristics ====
 
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/GAP_characteristics_BLE.png
+
+ Into GAP service (0x1800), are provided 3 different characteristics declarations and its related values:
+ # Device Name Characteristic (UUID=0x2A00): contain the name of the device as an UTF-8 string; see Bluetooth Core Specification Volume 3, Part C, Section 12.1.
+ # Appareance (UUID=0x2A01): defines the representation of the external appearance of the device. This enables the discovering device to represent the device to the user using an icon, or a string, or similar; see Bluetooth Core Specification Volume 3, Part C, Section 12.2.
+ # Peripheral Preferred Connection Parameters (UUID=0x2A04): contains the preferred connection parameters of the Peripheral; see Bluetooth Core Specification Volume 3, Part C, Section 12.5.
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/GAP_characteristics_BLE.png
+
+==== Descriptors ====
 
 
+== Firmware analysis ==
 
+= Final considerations =
 Starting from this example could be developed the final "BLEEH" application to sense bicycle's speed and send speed-data to external devices such as Bluetooth Smart Ready smartphones.
 Probably I need to use the Button characteristic and remove LED characteristic besides to implement tips suggested on wiki page [https://code.google.com/p/nrf51822-bleeh/wiki/Bluetooth_Smart_and_Low_Power_considerations Bluetooth_Smart_and_Low_Power_considerations] of this project.
