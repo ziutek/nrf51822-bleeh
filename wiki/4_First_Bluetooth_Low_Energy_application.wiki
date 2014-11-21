@@ -52,15 +52,21 @@ Furthermore, an additional service (highlighted in green) is provided to include
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/GAP_characteristics_BLE.png
 
- Into GAP service (0x1800), are provided 3 different characteristics declarations and its related values:
+As shown in the image above, into GAP service (0x1800), are provided 3 different characteristics declarations and its related values:
  # Device Name Characteristic (UUID=0x2A00): contain the name of the device as an UTF-8 string; see Bluetooth Core Specification Volume 3, Part C, Section 12.1.
  # Appareance (UUID=0x2A01): defines the representation of the external appearance of the device. This enables the discovering device to represent the device to the user using an icon, or a string, or similar; see Bluetooth Core Specification Volume 3, Part C, Section 12.2.
  # Peripheral Preferred Connection Parameters (UUID=0x2A04): contains the preferred connection parameters of the Peripheral; see Bluetooth Core Specification Volume 3, Part C, Section 12.5.
 
-https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/GAP_characteristics_BLE.png
+while GATT service has no characteristic. 
 
-==== Descriptors ====
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/CustomService_characteristics_BLE.png
 
+Last service, instead, has 2 characteristics and one descriptor. Since it is a custom attributes, a full 128-bit UUID should be used. 
+ # Led characteristic (UUID=0x...1525...): 
+ # Button state characteristic (UID=0x...1524...):
+
+
+The SoftDevice organizes UUIDs in a similar way to how the Bluetooth Core Specification defines the Bluetooth SIG UUIDS, that is, you add a custom base UUID and then define 16-bit numbers, similar to the aliases, to be used on top of this base. It’s easiest to use one base UUID for all custom attributes, at least within the same service. For the LED Button example, 0x0000xxxx-1212-EFDE-1523-785FEABCD123 will be used as the base, while 0x1523 is used for the service, 0x1524 for the LED characteristic, and 0x1525 for the button state characteristic.
 
 == Firmware analysis ==
 
