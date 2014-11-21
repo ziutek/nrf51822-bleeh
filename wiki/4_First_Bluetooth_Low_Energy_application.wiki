@@ -35,7 +35,8 @@ As specified [https://code.google.com/p/nrf51822-bleeh/wiki/Bluetooth_Smart_Over
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/LedButtonExample_attributes_BLE.png
 
-Furthermore, an additional service (highlighted in green) is provided to include data application.
+Furthermore, an additional service (highlighted in green) is provided to include application data. This service is implemented in two files: 'ble_lbs.c' and its heades 'ble_lbs.h'.
+
 
 ==== Characteristics ====
 
