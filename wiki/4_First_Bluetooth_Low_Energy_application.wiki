@@ -62,8 +62,8 @@ while GATT service has no characteristic.
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/CustomService_characteristics_BLE.png
 
 Last service, instead, has 2 characteristics and one descriptor. Since it is a custom attributes, a full 128-bit UUID should be used. 
- # Led characteristic (UUID=0x...1525...): 
- # Button state characteristic (UID=0x...1524...):
+ # Led characteristic (UUID=0x...1525...): The LED state characteristic needs to be writable and readable, without any notification.
+ # Button state characteristic (UID=0x...1524...): The button characteristic notifies on button state change, but also allows the peer device to read the button state. To implement notification, must be included another attribute, the Client Characteristic Configuration Descriptor (CCCD) and its value must be set to 1 (see [https://code.google.com/p/nrf51822-bleeh/wiki/Bluetooth_Smart_Overview#Generic_Attribute_Profile_(GATT) here]).
 
 
 The SoftDevice organizes UUIDs in a similar way to how the Bluetooth Core Specification defines the Bluetooth SIG UUIDS, that is, you add a custom base UUID and then define 16-bit numbers, similar to the aliases, to be used on top of this base. It’s easiest to use one base UUID for all custom attributes, at least within the same service. For the LED Button example, 0x0000xxxx-1212-EFDE-1523-785FEABCD123 will be used as the base, while 0x1523 is used for the service, 0x1524 for the LED characteristic, and 0x1525 for the button state characteristic.
