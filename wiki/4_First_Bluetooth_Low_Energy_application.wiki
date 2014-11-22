@@ -28,13 +28,6 @@ The LED Button application example was created in order to give you an environme
 The application is implemented in one service, with two characteristics—the LED characteristic, which can be used to control the LED remotely through the write without response operation, and the Button
 characteristic, which sends a notification when the button is pressed or released.
 
-The example code is divided into three files:
- * main.c
- * ble_lbs.c
- * ble_lbs.h
-The structure is the same as in other SDK examples, with main.c implementing application behavior and the separate service files implementing the service and its behavior. All I/O handling is left to the
-application.
-
 The analysis is done with help of Master Control Panel on a PC or with a Bluetooth Smart ready smartphone and [https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp nRF Master Control Panel App] from Play Store.
 On PC, connect either devices to USB and open Master Control Panel application. Select as master emulator the serial port corresponding to serial number of embedded J-LINK of the USB dongle. In log table you must see a message claims the server has started.
 Clicking on Start discovery button the discovered device table will populate with the "LedButtonDemo" device information. This is the advertising data of evaluation board PCA10001.
@@ -63,12 +56,25 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/CustomS
 
 Last service, instead, has 2 characteristics and one descriptor. Since it is a custom attributes, a full 128-bit UUID should be used. 
  # Led characteristic (UUID=0x...1525...): The LED state characteristic needs to be writable and readable, without any notification.
- # Button state characteristic (UID=0x...1524...): The button characteristic notifies on button state change, but also allows the peer device to read the button state. To implement notification, must be included another attribute, the Client Characteristic Configuration Descriptor (CCCD) and its value must be set to 1 (see [https://code.google.com/p/nrf51822-bleeh/wiki/Bluetooth_Smart_Overview#Generic_Attribute_Profile_(GATT) here]).
-
+ # Button state characteristic (UID=0x...1524...): The button characteristic notifies on button state change, but also allows the peer device to read the button state. To implement notification, must be included another attribute, the Client Characteristic Configuration Descriptor (CCCD) and its value must be set to 1 (see [https://code.google.com/p/nrf51822-bleeh/wiki/Bluetooth_Smart_Overview#Generic_Attribute_Profile_(GATT) here]). In above image application, button changes don't perform notify since CCCD value is 0x00 (see fourth line).
 
 The SoftDevice organizes UUIDs in a similar way to how the Bluetooth Core Specification defines the Bluetooth SIG UUIDS, that is, you add a custom base UUID and then define 16-bit numbers, similar to the aliases, to be used on top of this base. It’s easiest to use one base UUID for all custom attributes, at least within the same service. For the LED Button example, 0x0000xxxx-1212-EFDE-1523-785FEABCD123 will be used as the base, while 0x1523 is used for the service, 0x1524 for the LED characteristic, and 0x1525 for the button state characteristic.
 
 == Firmware analysis ==
+
+The example code is divided into three files:
+ * main.c
+ * ble_lbs.c
+ * ble_lbs.h
+The structure is the same as in other SDK examples, with main.c implementing application behavior and the separate service files implementing the service and its behavior. All I/O handling is left to the application.
+
+The basic flow of a typical BLE application running on the nRF51822 chip is to initialize all needed parts, start advertising, and possibly enter a power-saving mode and wait for a BLE event. When an event is received, it is passed to all BLE services and modules. An event can be, but is not restricted to, one of the following:
+ * When a peer device connects to nRF51822.
+ * When a peer device writes to a characteristic.
+ * An indication that advertising has timed out.
+This flow makes the application very modular and a service can usually be added to an application by initializing it and ensuring its event handler is called when an event comes in.
+
+
 
 = Final considerations =
 Starting from this example could be developed the final "BLEEH" application to sense bicycle's speed and send speed-data to external devices such as Bluetooth Smart Ready smartphones.
