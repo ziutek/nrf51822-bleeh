@@ -28,6 +28,8 @@ The LED Button application example was created in order to give you an environme
 The application is implemented in one service, with two characteristics—the LED characteristic, which can be used to control the LED remotely through the write without response operation, and the Button
 characteristic, which sends a notification when the button is pressed or released.
 
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/nRF_MCP_android_BLE.png
+
 The analysis is done with help of Master Control Panel on a PC or with a Bluetooth Smart ready smartphone and [https://play.google.com/store/apps/details?id=no.nordicsemi.android.mcp nRF Master Control Panel App] from Play Store.
 On PC, connect either devices to USB and open Master Control Panel application. Select as master emulator the serial port corresponding to serial number of embedded J-LINK of the USB dongle. In log table you must see a message claims the server has started.
 Clicking on Start discovery button the discovered device table will populate with the "LedButtonDemo" device information. This is the advertising data of evaluation board PCA10001.
