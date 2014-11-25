@@ -76,8 +76,6 @@ The basic flow of a typical BLE application running on the nRF51822 chip is to i
  * An indication that advertising has timed out.
 This flow makes the application very modular and a service can usually be added to an application by initializing it and ensuring its event handler is called when an event comes in.
 
-
-
 = Final considerations =
 Starting from this example could be developed the final "BLEEH" application to sense bicycle's speed and send speed-data to external devices such as Bluetooth Smart Ready smartphones.
 Probably I need to use the Button characteristic and remove LED characteristic besides to implement tips suggested on wiki page [https://code.google.com/p/nrf51822-bleeh/wiki/Bluetooth_Smart_and_Low_Power_considerations Bluetooth_Smart_and_Low_Power_considerations] of this project.
