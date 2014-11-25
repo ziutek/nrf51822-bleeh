@@ -14,3 +14,9 @@ Mains modifies to actuate are:
  # delete all extra functionality minimizing current consumption (tips [https://devzone.nordicsemi.com/question/5186/how-to-minimize-current-consumption-for-ble-application-on-nrf51822/ here]);
 
 ==1 Delete the LED characteristic and other minor changes==
+
+The code could be downloaded from GitHub into your PC. Note that in order to work properly, the code must be copied into a specific folder (../nrf51822/Board/pca10001/s110/), otherwise the header files and source files of the libraries will not found. However I copied this files in the project folder, into the "Include" and "Source" folders and I've modify some project's options to have portability feature. 
+
+First, simplest modify is to change device's name. The file main.c at row 44 is modified as follow:
+{{{#define DEVICE_NAME                     "BLE Speed Sensor"                          /**< Name of device. Will be included in the advertising data. */}}}
+
