@@ -7,10 +7,10 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/work-in
 = Introduction =
 Here are described the modifies to nrf51-ble-app-lbs-master code available on [https://github.com/NordicSemiconductor/nrf51-ble-app-lbs GitHub]. And described [https://code.google.com/p/nrf51822-bleeh/wiki/4_First_Bluetooth_Low_Energy_application here].
 Mains modifies to actuate are:
- # delete the LED characteristic;
+ # delete the LED characteristic and others minor changes;
  # add LPCOMP functionality and measure speed with help of RTC and LFCLK using code of [https://code.google.com/p/nrf51822-bleeh/wiki/2b_Development_of_Comparator_Driver 2b_Development_of_Comparator_Driver] and [https://code.google.com/p/nrf51822-bleeh/wiki/3_Study_and_Development_of_UltraLowPower_Techniques 3_Study_and_Development_of_UltraLowPower_Techniques] wiki pages;
  # modify the BUTTON characteristic replacing button status data with speed data computed at point "2";
  # update connection parameters programmatically (related with bicycle's speed) (tips [https://devzone.nordicsemi.com/question/12545/update-connection-parameter-programmatically/?answer=12551#post-id-12551 here]);
  # delete all extra functionality minimizing current consumption (tips [https://devzone.nordicsemi.com/question/5186/how-to-minimize-current-consumption-for-ble-application-on-nrf51822/ here]);
 
-==1 Delete the LED characteristic==
+==1 Delete the LED characteristic and other minor changes==
