@@ -16,17 +16,18 @@ Mains modifies to actuate are:
 The code could be downloaded from GitHub into your PC. Note that in order to work properly, the code must be copied into a specific folder (../nrf51822/Board/pca10001/s110/), otherwise the header files and source files of the libraries will not found. However I copied this files in the project folder, into the "Include" and "Source" folders and I've modify some project's options to have portability feature. 
 
 ==1 Delete the LED characteristic and other minor changes==
-The first simple modify is to change device's name. The file main.c at row 44 is modified as follow:
+The first simple modify is to change device's name. The file `main.c` at row 44 is modified as follow:
 {{{
 #define DEVICE_NAME                     "BLE Speed Sensor"                          /**< Name of device. Will be included in the advertising data. */
 }}}
 Then let's go to delete the led characteristic: it isn't necessary for our purposes. 
 Interesting files, as mentioned in the application note are 3:
- # main.c
- # ble_lbs.h
- # ble-lbs.c
-The structure is the same as in other SDK examples, with main.c implementing application behavior and the separate service files implementing the service and its behavior. All I/O handling is left to the application.
-In main.c, can be deleted (or commented out) following code lines:
+ # `main.c`
+ # `ble_lbs.h`
+ # `ble-lbs.c`
+The structure is the same as in other SDK examples, with `main.c` implementing application behavior and the separate service files implementing the service and its behavior. All I/O handling is left to the application.
+
+In `main.c`, can be deleted (or commented out) following code lines:
  * 
 {{{
     nrf_gpio_cfg_output(LEDBUTTON_LED_PIN_NO);
@@ -49,10 +50,61 @@ In main.c, can be deleted (or commented out) following code lines:
 {{{
     init.led_write_handler = led_write_handler;
 }}}
-
-
-
+while in `ble_lbs.c` can be deleted following lines regarding the function for adding the new led characteristic to the existing GATT service:
  * 
 {{{
+/**@brief Function for adding the LED characteristic.
+ *
+ */
+static uint32_t led_char_add(ble_lbs_t * p_lbs, const ble_lbs_init_t * p_lbs_init)
+{
+    ble_gatts_char_md_t char_md;
+    ble_gatts_attr_t    attr_char_value;
+    ble_uuid_t          ble_uuid;
+    ble_gatts_attr_md_t attr_md;
 
+    memset(&char_md, 0, sizeof(char_md));
+    
+    char_md.char_props.read   = 1;
+    char_md.char_props.write  = 1;
+    char_md.p_char_user_desc  = NULL;
+    char_md.p_char_pf         = NULL;
+    char_md.p_user_desc_md    = NULL;
+    char_md.p_cccd_md         = NULL;
+    char_md.p_sccd_md         = NULL;
+    
+    ble_uuid.type = p_lbs->uuid_type;
+    ble_uuid.uuid = LBS_UUID_LED_CHAR;
+    
+    memset(&attr_md, 0, sizeof(attr_md));
+
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&attr_md.read_perm);
+    BLE_GAP_CONN_SEC_MODE_SET_OPEN(&attr_md.write_perm);
+    attr_md.vloc       = BLE_GATTS_VLOC_STACK;
+    attr_md.rd_auth    = 0;
+    attr_md.wr_auth    = 0;
+    attr_md.vlen       = 0;
+    
+    memset(&attr_char_value, 0, sizeof(attr_char_value));
+
+    attr_char_value.p_uuid       = &ble_uuid;
+    attr_char_value.p_attr_md    = &attr_md;
+    attr_char_value.init_len     = sizeof(uint8_t);
+    attr_char_value.init_offs    = 0;
+    attr_char_value.max_len      = sizeof(uint8_t);
+    attr_char_value.p_value      = NULL;
+    
+    return sd_ble_gatts_characteristic_add(p_lbs->service_handle, &char_md,
+                                               &attr_char_value,
+                                               &p_lbs->led_char_handles);
+}
 }}}
+together with following lines that really call the above-mentioned function.
+{{{
+    err_code = led_char_add(p_lbs, p_lbs_init);
+    if (err_code != NRF_SUCCESS)
+    {
+        return err_code;
+    }
+}}}
+No led-related functions are available to other c modules thus the file `ble_lbs.h` is unchanged.``
