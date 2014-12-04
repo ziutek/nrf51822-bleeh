@@ -31,12 +31,21 @@
 
 ; Description message
 
+                IF :DEF: __STACK_SIZE
+Stack_Size      EQU     __STACK_SIZE
+                ELSE
 Stack_Size      EQU     2048
+                ENDIF
+
                 AREA    STACK, NOINIT, READWRITE, ALIGN=3
 Stack_Mem       SPACE   Stack_Size
 __initial_sp
 
+                IF :DEF: __HEAP_SIZE
+Heap_Size       EQU     __HEAP_SIZE
+                ELSE
 Heap_Size       EQU     2048
+                ENDIF
 
                 AREA    HEAP, NOINIT, READWRITE, ALIGN=3
 __heap_base
@@ -97,230 +106,6 @@ __Vectors       DCD     __initial_sp              ; Top of Stack
                 DCD      SWI3_IRQHandler ;SWI3
                 DCD      SWI4_IRQHandler ;SWI4
                 DCD      SWI5_IRQHandler ;SWI5
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
-                DCD      0 ;Reserved
                 DCD      0 ;Reserved
                 DCD      0 ;Reserved
                 DCD      0 ;Reserved
