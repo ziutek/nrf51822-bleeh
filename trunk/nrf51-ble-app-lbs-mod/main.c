@@ -132,7 +132,6 @@ static void leds_init(void)
 {
     nrf_gpio_cfg_output(ADVERTISING_LED_PIN_NO);
     nrf_gpio_cfg_output(CONNECTED_LED_PIN_NO);
-//L    nrf_gpio_cfg_output(LEDBUTTON_LED_PIN_NO);
 }
 
 
@@ -207,20 +206,6 @@ static void advertising_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
-/*
-//L
-static void led_write_handler(ble_lbs_t * p_lbs, uint8_t led_state)
-{
-    if (led_state)
-    {
-        nrf_gpio_pin_set(LEDBUTTON_LED_PIN_NO);
-    }
-    else
-    {
-        nrf_gpio_pin_clear(LEDBUTTON_LED_PIN_NO);
-    }
-}
-*/
 
 /**@brief Function for initializing services that will be used by the application.
  */
@@ -229,7 +214,6 @@ static void services_init(void)
     uint32_t err_code;
     ble_lbs_init_t init;
     
-//L    init.led_write_handler = led_write_handler;
     
     err_code = ble_lbs_init(&m_lbs, &init);
     APP_ERROR_CHECK(err_code);
