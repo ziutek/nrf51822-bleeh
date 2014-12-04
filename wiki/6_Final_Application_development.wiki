@@ -108,3 +108,4 @@ together with following lines that really call the above-mentioned function.
     }
 }}} 
 No led-related functions are available to other c modules thus the file `ble_lbs.h` is unchanged. 
+This step is done and related code is here: 
