@@ -41,7 +41,7 @@
 #define LEDBUTTON_LED_PIN_NO            LED_0
 #define LEDBUTTON_BUTTON_PIN_NO         BUTTON_1
 
-#define DEVICE_NAME                     "BLE Speed Sensor"                          /**< Name of device. Will be included in the advertising data. */
+#define DEVICE_NAME                     "LedButtonDemo"                          		/**< Name of device. Will be included in the advertising data. */
 
 #define APP_ADV_INTERVAL                64                                          /**< The advertising interval (in units of 0.625 ms. This value corresponds to 40 ms). */
 #define APP_ADV_TIMEOUT_IN_SECONDS      180                                         /**< The advertising timeout (in units of seconds). */
@@ -51,7 +51,7 @@
 #define APP_TIMER_OP_QUEUE_SIZE         4                                           /**< Size of timer operation queues. */
 
 #define MIN_CONN_INTERVAL               MSEC_TO_UNITS(100, UNIT_1_25_MS)            /**< Minimum acceptable connection interval (0.5 seconds). */
-#define MAX_CONN_INTERVAL               MSEC_TO_UNITS(200, UNIT_1_25_MS)            /**< Maximum acceptable connection interval (1 second). */
+#define MAX_CONN_INTERVAL               MSEC_TO_UNITS(200, UNIT_1_25_MS)           /**< Maximum acceptable connection interval (1 second). */
 #define SLAVE_LATENCY                   0                                           /**< Slave latency. */
 #define CONN_SUP_TIMEOUT                MSEC_TO_UNITS(4000, UNIT_10_MS)             /**< Connection supervisory timeout (4 seconds). */
 #define FIRST_CONN_PARAMS_UPDATE_DELAY  APP_TIMER_TICKS(20000, APP_TIMER_PRESCALER) /**< Time from initiating event (connect or start of notification) to first time sd_ble_gap_conn_param_update is called (15 seconds). */
@@ -132,7 +132,7 @@ static void leds_init(void)
 {
     nrf_gpio_cfg_output(ADVERTISING_LED_PIN_NO);
     nrf_gpio_cfg_output(CONNECTED_LED_PIN_NO);
-//L    nrf_gpio_cfg_output(LEDBUTTON_LED_PIN_NO);
+    nrf_gpio_cfg_output(LEDBUTTON_LED_PIN_NO);
 }
 
 
@@ -207,8 +207,6 @@ static void advertising_init(void)
     APP_ERROR_CHECK(err_code);
 }
 
-/*
-//L
 static void led_write_handler(ble_lbs_t * p_lbs, uint8_t led_state)
 {
     if (led_state)
@@ -220,7 +218,6 @@ static void led_write_handler(ble_lbs_t * p_lbs, uint8_t led_state)
         nrf_gpio_pin_clear(LEDBUTTON_LED_PIN_NO);
     }
 }
-*/
 
 /**@brief Function for initializing services that will be used by the application.
  */
@@ -229,7 +226,7 @@ static void services_init(void)
     uint32_t err_code;
     ble_lbs_init_t init;
     
-//L    init.led_write_handler = led_write_handler;
+    init.led_write_handler = led_write_handler;
     
     err_code = ble_lbs_init(&m_lbs, &init);
     APP_ERROR_CHECK(err_code);
