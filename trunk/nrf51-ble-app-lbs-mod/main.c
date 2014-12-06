@@ -74,7 +74,7 @@
 
 static ble_gap_sec_params_t             m_sec_params;                               /**< Security requirements for this application. */
 static uint16_t                         m_conn_handle = BLE_CONN_HANDLE_INVALID;    /**< Handle of the current connection. */
-static ble_lbs_t                        m_lbs;
+static ble_sss_t                        m_sss;
 
 #define SCHED_MAX_EVENT_DATA_SIZE       sizeof(app_timer_event_t)                   /**< Maximum size of scheduler events. Note that scheduler BLE stack events do not contain any data, as the events are being pulled from the stack in the event handler. */
 #define SCHED_QUEUE_SIZE                10                                          /**< Maximum number of events in the scheduler queue. */
@@ -188,7 +188,7 @@ static void advertising_init(void)
     ble_advdata_t scanrsp;
     uint8_t       flags = BLE_GAP_ADV_FLAGS_LE_ONLY_LIMITED_DISC_MODE;
 
-    ble_uuid_t adv_uuids[] = {{LBS_UUID_SERVICE, m_lbs.uuid_type}};
+    ble_uuid_t adv_uuids[] = {{sss_UUID_SERVICE, m_sss.uuid_type}};
 
     // Build and set advertising data
     memset(&advdata, 0, sizeof(advdata));
@@ -212,10 +212,10 @@ static void advertising_init(void)
 static void services_init(void)
 {
     uint32_t err_code;
-    ble_lbs_init_t init;
+    ble_sss_init_t init;
     
     
-    err_code = ble_lbs_init(&m_lbs, &init);
+    err_code = ble_sss_init(&m_sss, &init);
     APP_ERROR_CHECK(err_code);
 }
 
@@ -414,7 +414,7 @@ static void ble_evt_dispatch(ble_evt_t * p_ble_evt)
 {
     on_ble_evt(p_ble_evt);
     ble_conn_params_on_ble_evt(p_ble_evt);
-    ble_lbs_on_ble_evt(&m_lbs, p_ble_evt);
+    ble_sss_on_ble_evt(&m_sss, p_ble_evt);
 }
 
 
@@ -475,7 +475,7 @@ static void button_event_handler(uint8_t pin_no, uint8_t button_action)
     switch (pin_no)
     {
         case LEDBUTTON_BUTTON_PIN_NO:
-            err_code = ble_lbs_on_button_change(&m_lbs, button_action);
+            err_code = ble_sss_on_button_change(&m_sss, button_action);
             if (err_code != NRF_SUCCESS &&
                 err_code != BLE_ERROR_INVALID_CONN_HANDLE &&
                 err_code != NRF_ERROR_INVALID_STATE)
