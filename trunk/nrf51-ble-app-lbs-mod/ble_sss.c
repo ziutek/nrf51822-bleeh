@@ -4,7 +4,7 @@
  * found in the license.txt file.
  */
 
-#include "ble_lbs.h"
+#include "ble_sss.h"
 #include <string.h>
 #include "nordic_common.h"
 #include "ble_srv_common.h"
@@ -34,24 +34,6 @@ static void on_disconnect(ble_lbs_t * p_lbs, ble_evt_t * p_ble_evt)
 }
 
 
-/**@brief Function for handling the Write event.
- *
- * @param[in]   p_lbs       LED Button Service structure.
- * @param[in]   p_ble_evt   Event received from the BLE stack.
- */
-static void on_write(ble_lbs_t * p_lbs, ble_evt_t * p_ble_evt)
-{
-    ble_gatts_evt_write_t * p_evt_write = &p_ble_evt->evt.gatts_evt.params.write;
-    
-    if ((p_evt_write->handle == p_lbs->led_char_handles.value_handle) &&
-        (p_evt_write->len == 1) &&
-        (p_lbs->led_write_handler != NULL))
-    {
-        p_lbs->led_write_handler(p_lbs, p_evt_write->data[0]);
-    }
-}
-
-
 void ble_lbs_on_ble_evt(ble_lbs_t * p_lbs, ble_evt_t * p_ble_evt)
 {
     switch (p_ble_evt->header.evt_id)
@@ -63,11 +45,7 @@ void ble_lbs_on_ble_evt(ble_lbs_t * p_lbs, ble_evt_t * p_ble_evt)
         case BLE_GAP_EVT_DISCONNECTED:
             on_disconnect(p_lbs, p_ble_evt);
             break;
-            
-        case BLE_GATTS_EVT_WRITE:
-            on_write(p_lbs, p_ble_evt);
-            break;
-            
+				
         default:
             // No implementation needed.
             break;
