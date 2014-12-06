@@ -145,26 +145,28 @@ The service will have only one characteristic that reflects the speed sensor dat
 
  * Find the method called "button_char_add" and rename it to "speed_sensor_char_add".
  * Rename the files `ble_lbs.c` into `ble_sss.c` and `ble_lbs.h` into `ble_sss.h`. The string sss stand for Speed Sensor Service.
- * Find all string containing `ble_lbs` and and replace them with `ble_sss`.
+ * Find all string containing `lbs` and and replace them with `sss`.
 
-===Replace state data with speed data===
+===Replace state data with custom data===
+To send some data via Bluetooth Low Energy, a simple modification to button characteristic was done. It consist on adding a new variable (a simple static counter) to example's code. Exactly in `ble_sss.c` file, into `ble_sss_on_button_change()` module.
+When handling the button press, you want to send a notification to the peer device with the new button state. The SoftDevice API method for doing this is called sd_ble_gatts_hvx, and takes a connection handle and a ble_gatts_hvx_params_t structure as parameters. It then manages the process when a value is to be notified. In the ble_gatts_hvx_params_t structure, you set whether you want a notification or  indication, which attribute handle to be notified, the new data, and the new data length. The method will look as follows:
 
 {{{
 uint32_t ble_sss_on_button_change(ble_sss_t * p_sss, uint8_t button_state)
 {
     ble_gatts_hvx_params_t params;
     //uint16_t len = sizeof(button_state);
-		static uint8_t counter_to_send=0;
-		++counter_to_send;
-		static uint16_t counter_to_send_len=sizeof(counter_to_send);
+		static uint8_t counter_to_send=0;					//new variable to test custom data sending
+		++counter_to_send;												//increment the counter
+		static uint16_t counter_to_send_len=sizeof(counter_to_send);	//lenght of the counter
     
     memset(&params, 0, sizeof(params));
-    params.type = BLE_GATT_HVX_NOTIFICATION;
+    params.type = BLE_GATT_HVX_NOTIFICATION;	//state here if you want notification or indication
     params.handle = p_sss->button_char_handles.value_handle;
-    params.p_data = &counter_to_send;
-    params.p_len = &counter_to_send_len;
+    params.p_data = &counter_to_send;					//counter_to_send copied to hvx structure
+    params.p_len = &counter_to_send_len;			//counter_to_send_len copied to hvx structure
     
-    return sd_ble_gatts_hvx(p_sss->conn_handle, &params);
+    return sd_ble_gatts_hvx(p_sss->conn_handle, &params);	//issue the PDU
 }
 }}}
 
