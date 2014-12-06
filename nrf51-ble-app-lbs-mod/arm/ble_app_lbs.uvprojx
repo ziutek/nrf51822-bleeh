@@ -420,9 +420,9 @@
               <FilePath>..\Source\ble\ble_services\ble_srv_common.c</FilePath>
             </File>
             <File>
-              <FileName>ble_lbs.c</FileName>
+              <FileName>ble_sss.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\ble_lbs.c</FilePath>
+              <FilePath>..\ble_sss.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1010,9 +1010,9 @@
               <FilePath>..\Source\ble\ble_services\ble_srv_common.c</FilePath>
             </File>
             <File>
-              <FileName>ble_lbs.c</FileName>
+              <FileName>ble_sss.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\ble_lbs.c</FilePath>
+              <FilePath>..\ble_sss.c</FilePath>
             </File>
           </Files>
         </Group>
