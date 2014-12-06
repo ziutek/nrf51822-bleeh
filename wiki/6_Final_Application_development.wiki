@@ -26,7 +26,7 @@ Then let's go to delete the led characteristic: it isn't necessary for our purpo
 Interesting files, as mentioned in the application note are 3:
  # `main.c`
  # `ble_lbs.h`
- # `ble-lbs.c`
+ # `ble_lbs.c`
 The structure is the same as in other SDK examples, with `main.c` implementing application behavior and the separate service files implementing the service and its behavior. All I/O handling is left to the application.
 
 In `main.c`, can be deleted (or commented out) following code lines:
@@ -109,10 +109,46 @@ together with following lines that really call the above-mentioned function.
         return err_code;
     }
 }}} 
+and the following lines that handle the LED writing event:
+{{{
+/**@brief Function for handling the Write event.
+ *
+ * @param[in]   p_sss       LED Button Service structure.
+ * @param[in]   p_ble_evt   Event received from the BLE stack.
+ */
+static void on_write(ble_sss_t * p_sss, ble_evt_t * p_ble_evt)
+{
+    ble_gatts_evt_write_t * p_evt_write = &p_ble_evt->evt.gatts_evt.params.write;
+    
+    if ((p_evt_write->handle == p_sss->led_char_handles.value_handle) &&
+        (p_evt_write->len == 1) &&
+        (p_sss->led_write_handler != NULL))
+    {
+        p_sss->led_write_handler(p_sss, p_evt_write->data[0]);
+    }
+}
+}}}
+
+and following case of switch-case structure, in the ble_sss_on_ble_evt() function that handle the BLE event that is the point in which the above on_write() function is called:
+{{{			
+        case BLE_GATTS_EVT_WRITE:
+            on_write(p_sss, p_ble_evt);
+            break;
+}}}
+
 No led-related functions are available to other c modules thus the file `ble_lbs.h` is unchanged. 
 This step is done and related code is here: [https://code.google.com/p/nrf51822-bleeh/source/browse/#svn%2Ftags%2F6_1_Final_Application_development_step_1 svn\tags\6_1_Final_Application_development_step_1]
 
 ==2 modify the BUTTON characteristic replacing button status data with custom data ==
+
+The service will have only one characteristic that reflects the speed sensor data. The button characteristic notifies on button state change, but also allows the peer device to read the button state. This is very similar to the behavior of the speed sensor. The button's status will be replaced with actual speed data, so you can base your implementation on this:
+
+ * Find the method called "button_char_add" and rename it to "speed_sensor_char_add".
+ * Rename the files `ble_lbs.c` into `ble_sss.c` and `ble_lbs.h` into `ble_sss.h`. The string sss stand for Speed Sensor Service.
+ * Find all string containing `ble_lbs` and and replace them with `ble_sss`.
+
+===Replace state data with speed data===
+
 {{{
 uint32_t ble_sss_on_button_change(ble_sss_t * p_sss, uint8_t button_state)
 {
@@ -131,6 +167,15 @@ uint32_t ble_sss_on_button_change(ble_sss_t * p_sss, uint8_t button_state)
     return sd_ble_gatts_hvx(p_sss->conn_handle, &params);
 }
 }}}
+
+The button_char_add method expects to find a parameter stating whether or not notifications are supported, but in this case only notification support is wanted.
+
+=== Why notification must be enabled by peer device? ===
+
+https://devzone.nordicsemi.com/question/14340/can-i-enable-notification-in-my-ble-peripheral/
+
+
+===Update connection parameters to preserve energy decreasing data frame rate===
 
 ==3-Add LPCOMP functionality and measure speed with help of RTC==
 Useful link: 
