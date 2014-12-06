@@ -141,7 +141,7 @@ This step is done and related code is here: [https://code.google.com/p/nrf51822-
 
 ==2 modify the BUTTON characteristic replacing button status data with custom data ==
 
-The service will have only one characteristic that reflects the speed sensor data. The button characteristic notifies on button state change, but also allows the peer device to read the button state. This is very similar to the behavior of the speed sensor. The button's status will be replaced with actual speed data, so you can base your implementation on this:
+The service will have only one characteristic that reflects the speed sensor data. The button characteristic notifies on button state change, but also allows the peer device to read the button state. This is very similar to the behavior of the speed sensor. The button's status will be replaced with actual speed data, so I can base my implementation on this, following steps below:
 
  * Find the method called "button_char_add" and rename it to "speed_sensor_char_add".
  * Rename the files `ble_lbs.c` into `ble_sss.c` and `ble_lbs.h` into `ble_sss.h`. The string sss stand for Speed Sensor Service.
