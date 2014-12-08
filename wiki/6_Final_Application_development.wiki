@@ -28,7 +28,10 @@ Interesting files, as mentioned in the application note are 3:
  # `main.c`
  # `ble_lbs.h`
  # `ble_lbs.c`
+
+
 The structure is the same as in other SDK examples, with `main.c` implementing application behavior and the separate service files implementing the service and its behavior. All I/O handling is left to the application.
+
 
 In `main.c`, can be deleted (or commented out) following code lines:
  * 
