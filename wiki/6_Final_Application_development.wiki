@@ -6,18 +6,19 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/work-in
 <wiki:toc max_depth="4" />
 
 = Introduction =
-Here are described the modifies to nrf51-ble-app-lbs-master code available on [https://github.com/NordicSemiconductor/nrf51-ble-app-lbs GitHub]. And described [https://code.google.com/p/nrf51822-bleeh/wiki/4_First_Bluetooth_Low_Energy_application here].
-Mains modifies to actuate are:
+Here are described the modifies to nrf51-ble-app-lbs-master code available on [https://github.com/NordicSemiconductor/nrf51-ble-app-lbs GitHub] and described [https://code.google.com/p/nrf51822-bleeh/wiki/4_First_Bluetooth_Low_Energy_application here]. Since the example's code is very similar final application code, some changes were done to the example's application in order start with a fully working code. Main changes are related to deleting unnecessary BLE-GATT characteristics, add useful speed data to transmission task and adapt connection parameters to the desired one.
+In detail, main modifies to actuate are:
  # delete the LED characteristic and others minor changes;
  # modify the BUTTON characteristic replacing button status data with custom data. This data will be replaced by actual speed data in step 3.
  # add LPCOMP functionality and measure speed with help of RTC and LFCLK using code of [https://code.google.com/p/nrf51822-bleeh/wiki/2b_Development_of_Comparator_Driver 2b_Development_of_Comparator_Driver] and [https://code.google.com/p/nrf51822-bleeh/wiki/3_Study_and_Development_of_UltraLowPower_Techniques 3_Study_and_Development_of_UltraLowPower_Techniques] wiki pages. Replace custom data sent in step 2 with actual speed data;
  # update connection parameters programmatically (related with bicycle's speed) (tips [https://devzone.nordicsemi.com/question/12545/update-connection-parameter-programmatically/?answer=12551#post-id-12551 here]);
  # delete all extra functionality minimizing current consumption (tips [https://devzone.nordicsemi.com/question/5186/how-to-minimize-current-consumption-for-ble-application-on-nrf51822/ here]);
 
-The code could be downloaded from GitHub into your PC. Note that in order to work properly, the code must be copied into a specific folder (../nrf51822/Board/pca10001/s110/), otherwise the header files and source files of the libraries will not found. However I copied this files in the project folder, into the "Include" and "Source" folders and I've modify some project's options to have portability feature. 
-To easily access to code, a stand-alone version is available here: [https://code.google.com/p/nrf51822-bleeh/source/browse/#svn%2Ftags%2F6_Final_Application_development_BaseCode svn\tags\6_Final_Application_development_BaseCode]
+The code could be downloaded from GitHub into your PC. Note that in order to work properly, the code must be copied into a specific folder (../nrf51822/Board/pca10001/s110/), otherwise the header files and source files of the libraries will not found. However I copied such files in the project folder, into the "Include" and "Source" folders and I've modify some project's proprieties  to have portability feature. 
+To easily access to code, a stand-alone version is available here for download: [https://code.google.com/p/nrf51822-bleeh/source/browse/#svn%2Ftags%2F6_Final_Application_development_BaseCode svn\tags\6_Final_Application_development_BaseCode]
+All the mentioned steps are described below.
 
-==1-Delete the LED characteristic and other minor changes==
+==1-Deleting of the LED characteristic and other minor changes==
 The first simple modify is to change device's name. The file `main.c` at row 44 is modified as follow:
 {{{
 #define DEVICE_NAME                     "BLE Speed Sensor"                          /**< Name of device. Will be included in the advertising data. */
@@ -137,7 +138,6 @@ and following case of switch-case structure, in the ble_sss_on_ble_evt() functio
 }}}
 
 No led-related functions are available to other c modules thus the file `ble_lbs.h` is unchanged. 
-This step is done and related code is here: [https://code.google.com/p/nrf51822-bleeh/source/browse/#svn%2Ftags%2F6_1_Final_Application_development_step_1 svn\tags\6_1_Final_Application_development_step_1]
 
 ==2-modify the BUTTON characteristic replacing button status data with custom data ==
 
