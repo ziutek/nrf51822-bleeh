@@ -173,14 +173,19 @@ uint32_t ble_sss_on_button_change(ble_sss_t * p_sss, uint8_t button_state)
 }
 }}}
 
-The button_char_add method expects to find a parameter stating whether or not notifications are supported, but in this case only notification support is wanted.
+Previous code will notify a custom variable to peer device each time the counter has changed its value. The variable is static, thus its lifetime it is the same of the entire application's lifetime (e.g. the counter has memory and only a board-reset can reset the counter's value). 
 
 === Why notification must be enabled by peer device? ===
 
-https://devzone.nordicsemi.com/question/14340/can-i-enable-notification-in-my-ble-peripheral/
-
+As described in Bluetooth specification, notification and indication mode must be enabled by adding one more attribute: the client characteristic descriptor (CCCD). This characteristic must be set so one to enable notification (two for indication), as described [https://developer.bluetooth.org/gatt/descriptors/Pages/DescriptorViewer.aspx?u=org.bluetooth.descriptor.gatt.client_characteristic_configuration.xml here]. Furthermore, the default value for the Client Characteristic Configuration descriptor is 0x00. Upon connection of non-binded clients, this descriptor is set to the default value.
+So it's a client's charge to write 1 to the CCCD value each time the devices start a connection.
+Into Nordic Semiconductor Developer's space there are some useful information: [https://devzone.nordicsemi.com/question/14340/can-i-enable-notification-in-my-ble-peripheral/]
 
 ===Update connection parameters to preserve energy decreasing data frame rate===
+
+All feature described in this step, are showed in following video. See the custom data replacing the prior button-state data, observe the connection parameters are updating after some seconds from starting and note the enable services button needed to set to one the CCCD value: it allow the GATT server (the peripheral that is the speed sensor) to notify and must be set by client.
+
+<wiki:video url="https://www.youtube.com/watch?v=OZw28PdlXQU"/>
 
 ==3-Add LPCOMP functionality and measure speed with help of RTC==
 Useful link: 
