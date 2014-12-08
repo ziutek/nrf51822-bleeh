@@ -183,6 +183,7 @@ Into Nordic Semiconductor Developer's space there are some useful information: [
 
 ===Update connection parameters to preserve energy decreasing data frame rate===
 
+
 All feature described in this step, are showed in following video. See the custom data replacing the prior button-state data, observe the connection parameters are updating after some seconds from starting and note the enable services button needed to set to one the CCCD value: it allow the GATT server (the peripheral that is the speed sensor) to notify and must be set by client.
 
 <wiki:video url="https://www.youtube.com/watch?v=OZw28PdlXQU"/>
