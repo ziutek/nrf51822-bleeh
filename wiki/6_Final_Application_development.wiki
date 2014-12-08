@@ -17,7 +17,7 @@ Mains modifies to actuate are:
 The code could be downloaded from GitHub into your PC. Note that in order to work properly, the code must be copied into a specific folder (../nrf51822/Board/pca10001/s110/), otherwise the header files and source files of the libraries will not found. However I copied this files in the project folder, into the "Include" and "Source" folders and I've modify some project's options to have portability feature. 
 To easily access to code, a stand-alone version is available here: [https://code.google.com/p/nrf51822-bleeh/source/browse/#svn%2Ftags%2F6_Final_Application_development_BaseCode svn\tags\6_Final_Application_development_BaseCode]
 
-==1 Delete the LED characteristic and other minor changes==
+==1-Delete the LED characteristic and other minor changes==
 The first simple modify is to change device's name. The file `main.c` at row 44 is modified as follow:
 {{{
 #define DEVICE_NAME                     "BLE Speed Sensor"                          /**< Name of device. Will be included in the advertising data. */
@@ -139,7 +139,7 @@ and following case of switch-case structure, in the ble_sss_on_ble_evt() functio
 No led-related functions are available to other c modules thus the file `ble_lbs.h` is unchanged. 
 This step is done and related code is here: [https://code.google.com/p/nrf51822-bleeh/source/browse/#svn%2Ftags%2F6_1_Final_Application_development_step_1 svn\tags\6_1_Final_Application_development_step_1]
 
-==2 modify the BUTTON characteristic replacing button status data with custom data ==
+==2-modify the BUTTON characteristic replacing button status data with custom data ==
 
 The service will have only one characteristic that reflects the speed sensor data. The button characteristic notifies on button state change, but also allows the peer device to read the button state. This is very similar to the behavior of the speed sensor. The button's status will be replaced with actual speed data, so I can base my implementation on this, following steps below:
 
@@ -183,3 +183,7 @@ https://devzone.nordicsemi.com/question/14340/can-i-enable-notification-in-my-bl
 Useful link: 
  * https://devzone.nordicsemi.com/question/6976/s110-adc-example/
  * https://devzone.nordicsemi.com/question/15153/s110-lpcomp-interrupt-not-working/
+
+==4-Update connection parameters programmatically==
+
+==5-Delete all extra functionality minimizing current consumption==
