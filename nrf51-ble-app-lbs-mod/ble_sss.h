@@ -14,7 +14,6 @@
 
 #define sss_UUID_BASE {0x23, 0xD1, 0xBC, 0xEA, 0x5F, 0x78, 0x23, 0x15, 0xDE, 0xEF, 0x12, 0x12, 0x00, 0x00, 0x00, 0x00}
 #define sss_UUID_SERVICE 0x1523
-#define sss_UUID_LED_CHAR 0x1525
 #define sss_UUID_BUTTON_CHAR 0x1524
 
 // Forward declaration of the ble_sss_t type. 
@@ -32,7 +31,6 @@ typedef struct
 typedef struct ble_sss_s
 {
     uint16_t                    service_handle;
-    ble_gatts_char_handles_t    led_char_handles;
     ble_gatts_char_handles_t    button_char_handles;
     uint8_t                     uuid_type;
     uint16_t                    conn_handle;
