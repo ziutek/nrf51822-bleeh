@@ -193,11 +193,10 @@ Otherwise, as in ble_lbs example, a call to [http://developer.nordicsemi.com/nRF
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/MCP_update_connection_parameters.png
 
-
-
-
-
-
+Useful information about connection parameters are available here:
+ * [https://devzone.nordicsemi.com/question/60/what-is-connection-parameters/]
+ * [https://devzone.nordicsemi.com/question/22689/who-set-initial-connection-parameters-on-ble/]
+ * [https://devzone.nordicsemi.com/question/12545/update-connection-parameter-programmatically/]
 
 All features described in this step, are showed in following video. See the custom data replacing the prior button-state data, observe the connection parameters are updating after some seconds from starting and note the enable services button needed to set to one the CCCD value: it allow the GATT server (the peripheral that is the speed sensor) to notify and must be set by client.
 
