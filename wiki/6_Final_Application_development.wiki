@@ -183,21 +183,20 @@ The Master Control Panel does not automatically write to CCCDs unless you click 
 Into Nordic Semiconductor Developer's forum there are some useful information: [https://devzone.nordicsemi.com/question/14340/can-i-enable-notification-in-my-ble-peripheral/]
 
 ===Update connection parameters (on start-up) to preserve energy decreasing data frame rate===
-On connection start-up, connection parameters are negotiated. 
+On connection start-up, connection parameters are forced by central device so, in Master Control Panel we'll see following string in log tab:
 
-From Bluetooth specifications 
-The connInterval shall be a multiple of 1.25 ms in the range of 7.5 ms to 4.0 s. The connInterval is set by the Initiator’s Link Layer in the CONNNECT_REQ PDU from the range given by the Host
-Slave latency allows a slave to use a reduced number of connection events.
-The connSlaveLatency parameter defines the number of consecutive
-connection events that the slave device is not required to listen for the master.
-The value of connSlaveLatency should not cause a Supervision Timeout (see
-Section 4.5.2). connSlaveLatency shall be an integer in the range of 0 to
-((connSupervisionTimeout / (connInterval*2)) - 1). The connSlaveLatency
-parameter shall also be less than 500. When connSlaveLatency is set to zero
-the slave device shall listen at every anchor point. If the slave does not receive
-a packet from the master after applying slave latency, it should listen at each
-anchor point and not apply slave latency until it receives a packet from the
-master.
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/MCP_init_connection_parameters.png
+
+Therefore it's a task of the central device application to perform a connection with ad hoc parameter settings.
+In peripheral application could be requested some parameter update trough the function [http://developer.nordicsemi.com/nRF51_SDK/doc/7.1.0/s110/html/a01049.html#ga6e9dce98f85415d2fc3c47f8a599f8fd sd_ble_gap_conn_param_update()] but it is up to the central to decide what the parameters should update to.
+Otherwise, as in ble_lbs example, a call to [http://developer.nordicsemi.com/nRF51_SDK/doc/7.1.0/s110/html/a01049.html#ga8c6db7d9bc501929c9cc63b4b04fdfbb sd_ble_gap_ppcp_set()] function could be done. It updates some values in the GATT database that can later be read out by the central device after connecting. So, after some seconds, Master Control Panel show the successful of updating task:
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/MCP_update_connection_parameters.png
+
+
+
+
+
 
 
 All features described in this step, are showed in following video. See the custom data replacing the prior button-state data, observe the connection parameters are updating after some seconds from starting and note the enable services button needed to set to one the CCCD value: it allow the GATT server (the peripheral that is the speed sensor) to notify and must be set by client.
