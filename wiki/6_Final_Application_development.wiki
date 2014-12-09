@@ -144,15 +144,15 @@ No led-related functions are available to other c modules thus the file `ble_lbs
 
 ==2-modify the BUTTON characteristic replacing button status data with custom data ==
 
-The service will have only one characteristic that reflects the speed sensor data. The button characteristic notifies on button state change, but also allows the peer device to read the button state. This is very similar to the behavior of the speed sensor. The button's status will be replaced with actual speed data, so I can base my implementation on this, following steps below:
+The service of the final application need only one characteristic that reflects the speed sensor data. In actual example, the button characteristic notifies on button state change, but also allows the peer device to read the button state. This is very similar to the behavior of the speed sensor. The button's status will be replaced with actual speed data, so I can base implementation of my custom code on this, following steps below:
 
  * Find the method called "button_char_add" and rename it to "speed_sensor_char_add".
  * Rename the files `ble_lbs.c` into `ble_sss.c` and `ble_lbs.h` into `ble_sss.h`. The string sss stand for Speed Sensor Service.
  * Find all string containing `lbs` and and replace them with `sss`.
 
 ===Replace state data with custom data===
-To send some data via Bluetooth Low Energy, a simple modification to button characteristic was done. It consist on adding a new variable (a simple static counter) to example's code. Exactly in `ble_sss.c` file, into `ble_sss_on_button_change()` module.
-When handling the button press, you want to send a notification to the peer device with the new button state. The SoftDevice API method for doing this is called sd_ble_gatts_hvx, and takes a connection handle and a ble_gatts_hvx_params_t structure as parameters. It then manages the process when a value is to be notified. In the ble_gatts_hvx_params_t structure, you set whether you want a notification or  indication, which attribute handle to be notified, the new data, and the new data length. The method will look as follows:
+To send some data via Bluetooth Low Energy, a simple modification to button characteristic was done. It consist on adding a new variable (a simple static counter) to example's code. Exactly in `ble_sss.c` file, into `ble_sss_on_button_change()` function.
+When handling the button press, the example's application send a notification to the peer device with the new button state. The SoftDevice API method for doing this is called sd_ble_gatts_hvx, and takes a connection handle and a ble_gatts_hvx_params_t structure as parameters. It then manages the process when a value is to be notified. In the ble_gatts_hvx_params_t structure, you set whether you want a notification or  indication, which attribute handle to be notified, the new data, and the new data length. The method will look as follows:
 
 {{{
 uint32_t ble_sss_on_button_change(ble_sss_t * p_sss, uint8_t button_state)
@@ -173,18 +173,34 @@ uint32_t ble_sss_on_button_change(ble_sss_t * p_sss, uint8_t button_state)
 }
 }}}
 
-Previous code will notify a custom variable to peer device each time the counter has changed its value. The variable is static, thus its lifetime it is the same of the entire application's lifetime (e.g. the counter has memory and only a board-reset can reset the counter's value). 
+Previous code will notify a custom variable to peer device each time the counter has changed its value. The variable is static, thus its lifetime is the same of the entire application's one (in other words the counter has memory and only a board-reset can reset the counter's value). 
 
 === Why notification must be enabled by peer device? ===
 
 As described in Bluetooth specification, notification and indication mode must be enabled by adding one more attribute: the client characteristic descriptor (CCCD). This characteristic must be set so one to enable notification (two for indication), as described [https://developer.bluetooth.org/gatt/descriptors/Pages/DescriptorViewer.aspx?u=org.bluetooth.descriptor.gatt.client_characteristic_configuration.xml here]. Furthermore, the default value for the Client Characteristic Configuration descriptor is 0x00. Upon connection of non-binded clients, this descriptor is set to the default value.
 So it's a client's charge to write 1 to the CCCD value each time the devices start a connection.
-Into Nordic Semiconductor Developer's space there are some useful information: [https://devzone.nordicsemi.com/question/14340/can-i-enable-notification-in-my-ble-peripheral/]
+The Master Control Panel does not automatically write to CCCDs unless you click the "enable services"-button or manually write e.g. 01-00 to the descriptor. The peer device that is interested in consuming the data would, on the other hand, automatically write to the descriptor to start getting data flowing.
+Into Nordic Semiconductor Developer's forum there are some useful information: [https://devzone.nordicsemi.com/question/14340/can-i-enable-notification-in-my-ble-peripheral/]
 
-===Update connection parameters to preserve energy decreasing data frame rate===
+===Update connection parameters (on start-up) to preserve energy decreasing data frame rate===
+On connection start-up, connection parameters are negotiated. 
+
+From Bluetooth specifications 
+The connInterval shall be a multiple of 1.25 ms in the range of 7.5 ms to 4.0 s. The connInterval is set by the Initiator’s Link Layer in the CONNNECT_REQ PDU from the range given by the Host
+Slave latency allows a slave to use a reduced number of connection events.
+The connSlaveLatency parameter defines the number of consecutive
+connection events that the slave device is not required to listen for the master.
+The value of connSlaveLatency should not cause a Supervision Timeout (see
+Section 4.5.2). connSlaveLatency shall be an integer in the range of 0 to
+((connSupervisionTimeout / (connInterval*2)) - 1). The connSlaveLatency
+parameter shall also be less than 500. When connSlaveLatency is set to zero
+the slave device shall listen at every anchor point. If the slave does not receive
+a packet from the master after applying slave latency, it should listen at each
+anchor point and not apply slave latency until it receives a packet from the
+master.
 
 
-All feature described in this step, are showed in following video. See the custom data replacing the prior button-state data, observe the connection parameters are updating after some seconds from starting and note the enable services button needed to set to one the CCCD value: it allow the GATT server (the peripheral that is the speed sensor) to notify and must be set by client.
+All features described in this step, are showed in following video. See the custom data replacing the prior button-state data, observe the connection parameters are updating after some seconds from starting and note the enable services button needed to set to one the CCCD value: it allow the GATT server (the peripheral that is the speed sensor) to notify and must be set by client.
 
 <wiki:video url="https://www.youtube.com/watch?v=OZw28PdlXQU"/>
 
