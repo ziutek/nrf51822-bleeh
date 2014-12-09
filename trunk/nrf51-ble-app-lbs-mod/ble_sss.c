@@ -144,15 +144,15 @@ uint32_t ble_sss_on_button_change(ble_sss_t * p_sss, uint8_t button_state)
 {
     ble_gatts_hvx_params_t params;
     //uint16_t len = sizeof(button_state);
-		static uint8_t counter_to_send=0;
-		++counter_to_send;
-		static uint16_t counter_to_send_len=sizeof(counter_to_send);
+		static uint8_t counter_to_send=0;					//new variable to test custom data sending
+		++counter_to_send;												//increment the counter
+		static uint16_t counter_to_send_len=sizeof(counter_to_send);	//lenght of the counter
     
     memset(&params, 0, sizeof(params));
-    params.type = BLE_GATT_HVX_NOTIFICATION;
+    params.type = BLE_GATT_HVX_NOTIFICATION;	//state here if you want notification or indication
     params.handle = p_sss->button_char_handles.value_handle;
-    params.p_data = &counter_to_send;
-    params.p_len = &counter_to_send_len;
+    params.p_data = &counter_to_send;					//counter_to_send copied to hvx structure
+    params.p_len = &counter_to_send_len;			//counter_to_send_len copied to hvx structure
     
-    return sd_ble_gatts_hvx(p_sss->conn_handle, &params);
+    return sd_ble_gatts_hvx(p_sss->conn_handle, &params);	//issue the PDU
 }
