@@ -409,6 +409,11 @@
               <FileType>1</FileType>
               <FilePath>.\..\main.c</FilePath>
             </File>
+            <File>
+              <FileName>nrf51_LPCOMP.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Source\lpcomp\nrf51_LPCOMP.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -483,6 +488,16 @@
               <FileName>ble_debug_assert_handler.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Source\ble\ble_debug_assert_handler.c</FilePath>
+            </File>
+            <File>
+              <FileName>SEGGER_RTT.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Source\segger_debugger\SEGGER_RTT.c</FilePath>
+            </File>
+            <File>
+              <FileName>SEGGER_RTT_printf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Source\segger_debugger\SEGGER_RTT_printf.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -999,6 +1014,11 @@
               <FileType>1</FileType>
               <FilePath>.\..\main.c</FilePath>
             </File>
+            <File>
+              <FileName>nrf51_LPCOMP.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Source\lpcomp\nrf51_LPCOMP.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1073,6 +1093,16 @@
               <FileName>ble_debug_assert_handler.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Source\ble\ble_debug_assert_handler.c</FilePath>
+            </File>
+            <File>
+              <FileName>SEGGER_RTT.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Source\segger_debugger\SEGGER_RTT.c</FilePath>
+            </File>
+            <File>
+              <FileName>SEGGER_RTT_printf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Source\segger_debugger\SEGGER_RTT_printf.c</FilePath>
             </File>
           </Files>
         </Group>
