@@ -31,7 +31,7 @@
 #include "ble_debug_assert_handler.h"
 #include "pstorage.h"
 #include "ble_sss.h"
-#include "nrf51_LPCOMP.h"
+#include "lpcomp\nrf51_LPCOMP.h"
 #include "segger_debugger\SEGGER_RTT.h"
 
 #define IS_SRVC_CHANGED_CHARACT_PRESENT 0                                           /**< Include or not the service_changed characteristic. if not enabled, the server's database cannot be changed for the lifetime of the device*/

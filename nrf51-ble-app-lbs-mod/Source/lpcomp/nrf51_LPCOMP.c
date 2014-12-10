@@ -14,7 +14,7 @@
 
 #include <nrf51.h>
 #include <nrf51_bitfields.h>
-#include "nrf51_LPCOMP.h"
+#include "lpcomp\nrf51_LPCOMP.h"
 #include "boards\pca10001.h"
 
 
