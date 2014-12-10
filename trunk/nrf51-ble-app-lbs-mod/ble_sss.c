@@ -140,7 +140,7 @@ uint32_t ble_sss_init(ble_sss_t * p_sss, const ble_sss_init_t * p_sss_init)
         return NRF_SUCCESS;
 }
 
-uint32_t ble_sss_on_button_change(ble_sss_t * p_sss, uint8_t button_state)
+uint32_t ble_sss_on_button_change(ble_sss_t * p_sss, uint8_t button_state)			//This function notify on BLE the new value!
 {
     ble_gatts_hvx_params_t params;
     //uint16_t len = sizeof(button_state);
