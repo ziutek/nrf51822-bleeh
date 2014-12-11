@@ -414,11 +414,6 @@
               <FileType>1</FileType>
               <FilePath>..\Source\lpcomp\nrf51_LPCOMP.c</FilePath>
             </File>
-            <File>
-              <FileName>nrf_delay.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Source\nrf_delay\nrf_delay.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
@@ -1023,11 +1018,6 @@
               <FileName>nrf51_LPCOMP.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Source\lpcomp\nrf51_LPCOMP.c</FilePath>
-            </File>
-            <File>
-              <FileName>nrf_delay.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Source\nrf_delay\nrf_delay.c</FilePath>
             </File>
           </Files>
         </Group>
