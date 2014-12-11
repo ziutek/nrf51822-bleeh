@@ -1,18 +1,18 @@
-/*****************************************************************************************************
-** -------------------------------------------------------------------------------------------------**
-** Filename: nrf51_LPCOMP.c																																					**												
-** -------------------------------------------------------------------------------------------------**	
-** Description: comparator driver for Nordic Semiconductor nRF51822 																**
-** -------------------------------------------------------------------------------------------------**
-** Author: Luca Buccolini																																						**
-** -------------------------------------------------------------------------------------------------**
-** Start date: Sep 25, 2014 																																				**
-** -------------------------------------------------------------------------------------------------**
-** Finish date:	Oct 06, 2014    																																		**
-** -------------------------------------------------------------------------------------------------**
-** Modified to obtain SoftDevice compatibility on:	Dec 10, 2014   																	**
-** -------------------------------------------------------------------------------------------------**
-*****************************************************************************************************/
+/*********************************************************************************************************
+** -----------------------------------------------------------------------------------------------------**
+** Filename: nrf51_LPCOMP.c																																							**												
+** -----------------------------------------------------------------------------------------------------**	
+** Description: comparator driver for Nordic Semiconductor nRF51822 to use with SoftDevice S110	7.1.0		**
+** -----------------------------------------------------------------------------------------------------**
+** Author: Luca Buccolini																																								**
+** -----------------------------------------------------------------------------------------------------**
+** Start date: Sep 25, 2014 																																						**
+** -----------------------------------------------------------------------------------------------------**
+** Finish date:	Oct 06, 2014    																																				**
+** -----------------------------------------------------------------------------------------------------**
+** Modified to gain SoftDevice compatibility on:	Dec 10, 2014   																				**
+** -----------------------------------------------------------------------------------------------------**
+*********************************************************************************************************/
 
 #include <nrf51.h>
 #include <nrf51_bitfields.h>
@@ -20,7 +20,6 @@
 #include "lpcomp\nrf51_LPCOMP.h"
 #include "boards\pca10001.h"
 #include "segger_debugger\segger_RTT.h"
-// #include "Include\nrf_delay.h"
 
 /* 	it seems the LPCOMP works well without SW_DELAY before TASK_START. Uncomment if not!
 		hints about possible improper working was found here:
@@ -70,7 +69,7 @@
  	NRF_LPCOMP->TASKS_START = 1;
 		
 	//Debug code: print the init status
-	SEGGER_RTT_printf(0,"LPCOMP intializated\n");
+	SEGGER_RTT_printf(0,"LPCOMP intializated\r\n");
 	}
 	 
 /**
@@ -97,9 +96,11 @@ void LPCOMP_IRQHandler(void)
 	NRF_LPCOMP->TASKS_SAMPLE = 1;
 	
 	//Debug code: print the interrupt has happened and print the result of the comparator
-	SEGGER_RTT_printf(0,"LPCOMP interrupt! Result= %d\n",NRF_LPCOMP->RESULT);
+	SEGGER_RTT_printf(0,"LPCOMP interrupt! Result=%d \r\n",NRF_LPCOMP->RESULT);
 	static uint8_t LPCOMP_interrupt_counter=0;
-	SEGGER_RTT_printf(0,"LPCOME interrupt happened &d times\n", LPCOMP_interrupt_counter);
+	SEGGER_RTT_printf(0,"LPCOME interrupt happened %d times\r\n", ++LPCOMP_interrupt_counter);
+	SEGGER_RTT_printf(0,"RTC1->COUNTER=%d \r\n", NRF_RTC0->COUNTER);
+	
 		
 	//release external crystal
 	sd_clock_hfclk_release();

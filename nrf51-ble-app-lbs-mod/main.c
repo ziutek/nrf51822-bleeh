@@ -131,12 +131,28 @@ void assert_nrf_callback(uint16_t line_num, const uint8_t * p_file_name)
  *
  * @details Initializes all LEDs used by the application.
  */
+
+/**@brief Function for POWER configuration initialization
+ *
+ * @details Disable internal DC/DC step down and select low power mode when in system on mode.
+ */
+
+static void power_config_init(void)
+{
+	uint32_t                				err_code;
+	
+	err_code=sd_power_dcdc_mode_set(NRF_POWER_DCDC_MODE_OFF);	
+	APP_ERROR_CHECK(err_code);
+	
+	err_code=sd_power_mode_set(NRF_POWER_MODE_LOWPWR);
+	APP_ERROR_CHECK(err_code);
+}
+
 static void leds_init(void)
 {
     nrf_gpio_cfg_output(ADVERTISING_LED_PIN_NO);
     nrf_gpio_cfg_output(CONNECTED_LED_PIN_NO);
 }
-
 
 /**@brief Function for the Timer initialization.
  *
@@ -536,7 +552,8 @@ int main(void)
     gpiote_init();
     buttons_init();
     ble_stack_init();
-    scheduler_init();    
+    scheduler_init();  
+	  power_config_init();  
     gap_params_init();
     services_init();
     advertising_init();
