@@ -418,7 +418,7 @@
       <Focus>0</Focus>
       <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>517</TopLine>
+      <TopLine>516</TopLine>
       <CurrentLine>534</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\..\main.c</PathWithFileName>
@@ -432,10 +432,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>16</ColumnNumber>
+      <ColumnNumber>3</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>43</TopLine>
-      <CurrentLine>73</CurrentLine>
+      <TopLine>61</TopLine>
+      <CurrentLine>75</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>..\Source\lpcomp\nrf51_LPCOMP.c</PathWithFileName>
       <FilenameWithoutPath>nrf51_LPCOMP.c</FilenameWithoutPath>
