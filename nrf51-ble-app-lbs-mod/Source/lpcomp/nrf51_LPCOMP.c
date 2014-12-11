@@ -20,8 +20,22 @@
 #include "lpcomp\nrf51_LPCOMP.h"
 #include "boards\pca10001.h"
 #include "segger_debugger\segger_RTT.h"
-#include "Include\nrf_delay.h"
+// #include "Include\nrf_delay.h"
 
+/* 	it seems the LPCOMP works well without SW_DELAY before TASK_START. Uncomment if not!
+		hints about possible improper working was found here:
+		https://devzone.nordicsemi.com/question/15153/s110-lpcomp-interrupt-not-working/
+#define SW_DELAY() 																						\
+									{																						\
+									__nop();__nop();__nop();__nop();__nop();		\
+									__nop();__nop();__nop();__nop();__nop();		\
+									__nop();__nop();__nop();__nop();__nop();		\
+									__nop();__nop();__nop();__nop();__nop();		\
+									__nop();__nop();__nop();__nop();__nop();		\
+									__nop();__nop();__nop();__nop();__nop();		\
+									}
+*/
+									
 /**
  * Initialize the comparator
  *
@@ -31,6 +45,7 @@
  * @brief  Configures and enables the LPCOMP through SoftDevice module
  *
  */
+ 
  
  void LPCOMP_init (void)
 	{
@@ -48,9 +63,12 @@
 
 	//Enable and start the low power comparator
 	NRF_LPCOMP->ENABLE = LPCOMP_ENABLE_ENABLE_Enabled;	
-	NRF_LPCOMP->POWER = 1;			//ATTENTION!!! If no event are delivered, put a delay here (1ms it's ok).
-	nrf_delay_ms(1);
+	NRF_LPCOMP->POWER = 1;			
+	/*ATTENTION!!! If no event are delivered, put a delay here (1ms it's ok). Uncomment following line.
+	SW_DELAY();		//information about this delay here: https://devzone.nordicsemi.com/question/15153/s110-lpcomp-interrupt-not-working/
+	*/
  	NRF_LPCOMP->TASKS_START = 1;
+		
 	//Debug code: print the init status
 	SEGGER_RTT_printf(0,"LPCOMP intializated\n");
 	}
