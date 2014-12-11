@@ -20,6 +20,15 @@
 #include "lpcomp\nrf51_LPCOMP.h"
 #include "boards\pca10001.h"
 #include "segger_debugger\segger_RTT.h"
+#include <stdlib.h>
+
+/***************************************************************************************************
+*_____________________________________________MACRO_________________________________________________
+***************************************************************************************************/
+#define TYRE_CIRCUMFERENCE_M 2070E-3
+#define RTC0_RESOLUTION_S 30.517E-6
+#define SPEED_MS(dt) ((TYRE_CIRCUMFERENCE_M)/(dt*RTC0_RESOLUTION_S))
+#define SPEED_KMH(dt) (SPEED_MS(dt)*3.6)
 
 /* 	it seems the LPCOMP works well without SW_DELAY before TASK_START. Uncomment if not!
 		hints about possible improper working was found here:
@@ -34,7 +43,20 @@
 									__nop();__nop();__nop();__nop();__nop();		\
 									}
 */
-									
+
+/***************************************************************************************************
+*__________________________________GLOBAL-VARIABLES-DEFINITION______________________________________
+***************************************************************************************************/
+
+//Definition and initialization of previous counter value useful to compute delta time 
+uint32_t PreviousRTC0CounterValue=0;
+//Definition and initialization of DeltaTime and Speed variables
+uint32_t deltatime=0;
+uint32_t speed_kmh;
+					
+/***************************************************************************************************
+*__________________________________APIs EXPORTED TO TASK LEVEL______________________________________
+***************************************************************************************************/
 /**
  * Initialize the comparator
  *
@@ -44,12 +66,11 @@
  * @brief  Configures and enables the LPCOMP through SoftDevice module
  *
  */
- 
- 
+//------------------------------------------------------------------------------------------------- 
  void LPCOMP_init (void)
 	{
-	//Enable interrupt on LPCOMP CROSS event
-	NRF_LPCOMP->INTENSET = LPCOMP_INTENSET_CROSS_Msk;
+	//Enable interrupt on LPCOMP UPWARD-CROSSING event
+	NRF_LPCOMP->INTENSET = LPCOMP_INTENSET_UP_Msk;
 	//Set the priority level of the interrupt through SoftDevice module
 	sd_nvic_SetPriority(LPCOMP_IRQn, NRF_APP_PRIORITY_LOW);
 	//Enable the device-specific interrupt in the NVIC interrupt controller through SoftDevice module
@@ -68,10 +89,17 @@
 	*/
  	NRF_LPCOMP->TASKS_START = 1;
 		
+	/*
 	//Debug code: print the init status
 	SEGGER_RTT_printf(0,"LPCOMP intializated\r\n");
+	*/
 	}
-	 
+//-------------------------------------------------------------------------------------------------
+	
+/***************************************************************************************************
+*____________________________________________LPCOMP_ISR_____________________________________________
+***************************************************************************************************/
+
 /**
  * Interrupt handler for LPCOMP
  *
@@ -80,29 +108,42 @@
  *
  * @brief  	ISR for LPCOMP: 
  * 					clear event's flag, 
- *					sample LPCOMP and write result to LED_0 
- *					toggle LED_1 to indicate triggering of event	
  */
-//---------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 	 /* Interrupt handler for LPCOMP */
 void LPCOMP_IRQHandler(void)
 	{
 	// Clear event
-	NRF_LPCOMP->EVENTS_CROSS = 0;
+	NRF_LPCOMP->EVENTS_UP = 0;
 
-	// Sample the LPCOMP stores its state in the RESULT register. 
-	// RESULT==0 means lower than reference voltage, 
-	// RESULT==1 means higher than reference voltage
-	NRF_LPCOMP->TASKS_SAMPLE = 1;
+		
+	//compute delta time between two LPCOM upward crossing event
+	deltatime=abs(NRF_RTC0->COUNTER - PreviousRTC0CounterValue);    
 	
+	//update value of PreviuousRTC0CounterValue
+	PreviousRTC0CounterValue=NRF_RTC0->COUNTER;
+	
+	//Compute Speed in km/h from Delta Time in RTC0 ticks;
+	speed_kmh=SPEED_KMH(deltatime);
+	
+	
+	//Print to SEGGER_RTT-debugger-tool speed in km/h
+	/*++++++++++++++++++++++++++++___START-OF-DEBUG-CODE___+++++++++++++++++++++++++++++++++++++*/
+	//
+	SEGGER_RTT_printf(0, "deltaTime=%u\r\n", deltatime);
+	SEGGER_RTT_printf(0, "speed_kmh=%.2u\r\n", speed_kmh);
+	//
+	/*++++++++++++++++++++++++++++++___END-OF-DEBUG-CODE___+++++++++++++++++++++++++++++++++++++*/
+	
+		
 	//Debug code: print the interrupt has happened and print the result of the comparator
 	SEGGER_RTT_printf(0,"LPCOMP interrupt! Result=%d \r\n",NRF_LPCOMP->RESULT);
 	static uint8_t LPCOMP_interrupt_counter=0;
 	SEGGER_RTT_printf(0,"LPCOME interrupt happened %d times\r\n", ++LPCOMP_interrupt_counter);
 	SEGGER_RTT_printf(0,"RTC1->COUNTER=%d \r\n", NRF_RTC0->COUNTER);
-	
-		
+
+
 	//release external crystal
 	sd_clock_hfclk_release();
 	}
-//---------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
