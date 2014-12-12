@@ -412,7 +412,7 @@
             <File>
               <FileName>speed_sensor.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Source\lpcomp\speed_sensor.c</FilePath>
+              <FilePath>..\Source\speed_sensor\speed_sensor.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1017,7 +1017,7 @@
             <File>
               <FileName>speed_sensor.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Source\lpcomp\speed_sensor.c</FilePath>
+              <FilePath>..\Source\speed_sensor\speed_sensor.c</FilePath>
             </File>
           </Files>
         </Group>
