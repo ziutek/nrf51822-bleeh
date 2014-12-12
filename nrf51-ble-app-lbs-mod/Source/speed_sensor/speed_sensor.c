@@ -17,7 +17,7 @@
 #include <nrf51.h>
 #include <nrf51_bitfields.h>
 #include "nrf_soc.h"
-#include "lpcomp\nrf51_LPCOMP.h"
+#include "speed_sensor\speed_sensor.h"
 #include "boards\pca10001.h"
 #include "segger_debugger\segger_RTT.h"
 #include <stdlib.h>

@@ -410,9 +410,9 @@
               <FilePath>.\..\main.c</FilePath>
             </File>
             <File>
-              <FileName>nrf51_LPCOMP.c</FileName>
+              <FileName>speed_sensor.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Source\lpcomp\nrf51_LPCOMP.c</FilePath>
+              <FilePath>..\Source\speed_sensor\speed_sensor.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1015,9 +1015,9 @@
               <FilePath>.\..\main.c</FilePath>
             </File>
             <File>
-              <FileName>nrf51_LPCOMP.c</FileName>
+              <FileName>speed_sensor.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Source\lpcomp\nrf51_LPCOMP.c</FilePath>
+              <FilePath>..\Source\speed_sensor\speed_sensor.c</FilePath>
             </File>
           </Files>
         </Group>
