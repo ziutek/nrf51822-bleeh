@@ -14,12 +14,13 @@
 ** -----------------------------------------------------------------------------------------------------**
 *********************************************************************************************************/
 
-#include "speed_sensor\speed_sensor.h"
+#include <nrf51.h>
 #include <nrf51_bitfields.h>
 #include "nrf_soc.h"
+#include "lpcomp\nrf51_LPCOMP.h"
 #include "boards\pca10001.h"
 #include "segger_debugger\segger_RTT.h"
-#include "softdevice_handler.h"
+#include <stdlib.h>
 
 /***************************************************************************************************
 *_____________________________________________MACRO_________________________________________________
@@ -48,10 +49,10 @@
 ***************************************************************************************************/
 
 //Definition and initialization of previous counter value useful to compute delta time 
-static uint32_t PreviousRTC0CounterValue=0;
+uint32_t PreviousRTC0CounterValue=0;
 //Definition and initialization of DeltaTime and Speed variables
-static uint32_t deltatime=0;
-static uint32_t speed_kmh;
+uint32_t deltatime=0;
+uint32_t speed_kmh;
 					
 /***************************************************************************************************
 *__________________________________APIs EXPORTED TO TASK LEVEL______________________________________
@@ -68,19 +69,12 @@ static uint32_t speed_kmh;
 //------------------------------------------------------------------------------------------------- 
  void LPCOMP_init (void)
 	{
-		
-	uint32_t err_code;
-		
 	//Enable interrupt on LPCOMP UPWARD-CROSSING event
 	NRF_LPCOMP->INTENSET = LPCOMP_INTENSET_UP_Msk;
 	//Set the priority level of the interrupt through SoftDevice module
-	err_code=sd_nvic_SetPriority(LPCOMP_IRQn, NRF_APP_PRIORITY_LOW);
-	APP_ERROR_CHECK(err_code);
+	sd_nvic_SetPriority(LPCOMP_IRQn, NRF_APP_PRIORITY_LOW);
 	//Enable the device-specific interrupt in the NVIC interrupt controller through SoftDevice module
-	err_code = sd_nvic_ClearPendingIRQ(LPCOMP_IRQn);
-  APP_ERROR_CHECK(err_code);
-	err_code=sd_nvic_EnableIRQ(LPCOMP_IRQn);
-	APP_ERROR_CHECK(err_code);
+	sd_nvic_EnableIRQ(LPCOMP_IRQn);
 
 	//Configure LPCOMP - set reference input source to AIN pin 4 (P0.03)
 	NRF_LPCOMP->PSEL |= (LPCOMP_PSEL_PSEL_AnalogInput4 << LPCOMP_PSEL_PSEL_Pos);
@@ -100,24 +94,6 @@ static uint32_t speed_kmh;
 	SEGGER_RTT_printf(0,"LPCOMP intializated\r\n");
 	*/
 	}
-	
-/**
- * Get the speed_kmh variable
- *
- * @param  none
- * @return The computed speed in [km/h]
- *
- * @brief  Compute the speed in km/h and return it
- *
- */
-//------------------------------------------------------------------------------------------------- 
-uint32_t get_speed(void)
-	{
-		//Compute Speed in km/h from Delta Time in RTC0 ticks;
-		return SPEED_KMH(deltatime);
-	}
-	
-	
 //-------------------------------------------------------------------------------------------------
 	
 /***************************************************************************************************
@@ -140,12 +116,17 @@ void LPCOMP_IRQHandler(void)
 	// Clear event
 	NRF_LPCOMP->EVENTS_UP = 0;
 
-	//compute delta-time between two LPCOM upward crossing event
+		
+	//compute delta time between two LPCOM upward crossing event
 	deltatime=abs(NRF_RTC0->COUNTER - PreviousRTC0CounterValue);    
 	
 	//update value of PreviuousRTC0CounterValue
 	PreviousRTC0CounterValue=NRF_RTC0->COUNTER;
-		
+	
+	//Compute Speed in km/h from Delta Time in RTC0 ticks;
+	speed_kmh=SPEED_KMH(deltatime);
+	
+	
 	//Print to SEGGER_RTT-debugger-tool speed in km/h
 	/*++++++++++++++++++++++++++++___START-OF-DEBUG-CODE___+++++++++++++++++++++++++++++++++++++*/
 	//
