@@ -1,8 +1,9 @@
 /*********************************************************************************************************
 ** -----------------------------------------------------------------------------------------------------**
-** Filename: nrf51_LPCOMP.c																																							**												
+** Filename: speed_sensor.c																																							**												
 ** -----------------------------------------------------------------------------------------------------**	
 ** Description: comparator driver for Nordic Semiconductor nRF51822 to use with SoftDevice S110	7.1.0		**
+**							and SDK 6.0.0																																						**
 ** -----------------------------------------------------------------------------------------------------**
 ** Author: Luca Buccolini																																								**
 ** -----------------------------------------------------------------------------------------------------**
@@ -14,13 +15,14 @@
 ** -----------------------------------------------------------------------------------------------------**
 *********************************************************************************************************/
 
+#include "speed_sensor\speed_sensor.h"
 #include <nrf51.h>
 #include <nrf51_bitfields.h>
 #include "nrf_soc.h"
-#include "speed_sensor\speed_sensor.h"
 #include "boards\pca10001.h"
 #include "segger_debugger\segger_RTT.h"
 #include <stdlib.h>
+#include "app_scheduler.h"
 
 /***************************************************************************************************
 *_____________________________________________MACRO_________________________________________________
@@ -43,20 +45,31 @@
 									__nop();__nop();__nop();__nop();__nop();		\
 									}
 */
-
 /***************************************************************************************************
-*__________________________________GLOBAL-VARIABLES-DEFINITION______________________________________
+*_____________________________________VARIABLES DECLARATION_________________________________________
 ***************************************************************************************************/
 
-//Definition and initialization of previous counter value useful to compute delta time 
-uint32_t PreviousRTC0CounterValue=0;
-//Definition and initialization of DeltaTime and Speed variables
-uint32_t deltatime=0;
-uint32_t speed_kmh;
-					
+uint32_t actual_speed_kmh;
+
 /***************************************************************************************************
 *__________________________________APIs EXPORTED TO TASK LEVEL______________________________________
 ***************************************************************************************************/
+/**
+ * Get the actual speed
+ *
+ * @param  none
+ * @return the actual speed in [kmh]
+ *
+ * @brief  function to get the actual computed speed
+ *
+ */
+uint32_t get_speed_kmh(void)
+{
+	return actual_speed_kmh;
+}
+
+
+
 /**
  * Initialize the comparator
  *
@@ -66,9 +79,8 @@ uint32_t speed_kmh;
  * @brief  Configures and enables the LPCOMP through SoftDevice module
  *
  */
-//------------------------------------------------------------------------------------------------- 
- void LPCOMP_init (void)
-	{
+void LPCOMP_init (void)
+{
 	//Enable interrupt on LPCOMP UPWARD-CROSSING event
 	NRF_LPCOMP->INTENSET = LPCOMP_INTENSET_UP_Msk;
 	//Set the priority level of the interrupt through SoftDevice module
@@ -93,8 +105,8 @@ uint32_t speed_kmh;
 	//Debug code: print the init status
 	SEGGER_RTT_printf(0,"LPCOMP intializated\r\n");
 	*/
-	}
-//-------------------------------------------------------------------------------------------------
+}
+
 	
 /***************************************************************************************************
 *____________________________________________LPCOMP_ISR_____________________________________________
@@ -109,29 +121,45 @@ uint32_t speed_kmh;
  * @brief  	ISR for LPCOMP: 
  * 					clear event's flag, 
  */
-//-------------------------------------------------------------------------------------------------
 	 /* Interrupt handler for LPCOMP */
 void LPCOMP_IRQHandler(void)
-	{
+{
+	//____________________________LOCAL-VARIABLES-DEFINITION_________________________________________
+
+	//Declaration and initialization of previous counter value useful to compute delta time: it must have memory
+	static uint32_t PreviousRTC0CounterValue=0;
+	//Declaration of DeltaTime and Speed variables
+	uint32_t deltatime;
+	static uint32_t old_speed_kmh;
+	
+	//____________________________SERVICE-ROUTINES___________________________________________________
+		
 	// Clear event
 	NRF_LPCOMP->EVENTS_UP = 0;
 
+	//______________________________COMPUTATION______________________________________________________
 		
-	//compute delta time between two LPCOM upward crossing event
-	deltatime=abs(NRF_RTC0->COUNTER - PreviousRTC0CounterValue);    
-	
+	//compute actual delta time between two LPCOMP upward crossing event
+	deltatime=abs(NRF_RTC0->COUNTER - PreviousRTC0CounterValue);   
 	//update value of PreviuousRTC0CounterValue
 	PreviousRTC0CounterValue=NRF_RTC0->COUNTER;
-	
 	//Compute Speed in km/h from Delta Time in RTC0 ticks;
-	speed_kmh=SPEED_KMH(deltatime);
+	actual_speed_kmh=SPEED_KMH(deltatime);
 	
 	
-	//Print to SEGGER_RTT-debugger-tool speed in km/h
+	
+	if(old_speed_kmh!=actual_speed_kmh)		//speed has changed: generate an event and send value through BLE to central device
+	{
+		old_speed_kmh=actual_speed_kmh;
+		//insert an event into the scheduler's queue.
+		//app_sched_event_put(,,);			// per l'app buttone è: app_sched_event_put(&buttons_event, sizeof(buttons_event), app_button_evt_get);
+	}
+
+	
 	/*++++++++++++++++++++++++++++___START-OF-DEBUG-CODE___+++++++++++++++++++++++++++++++++++++*/
-	//
+	//	Print to SEGGER_RTT-debugger-tool speed in km/h
 	SEGGER_RTT_printf(0, "deltaTime=%u\r\n", deltatime);
-	SEGGER_RTT_printf(0, "speed_kmh=%.2u\r\n", speed_kmh);
+	SEGGER_RTT_printf(0, "speed_kmh=%.2u\r\n", actual_speed_kmh);
 	//
 	/*++++++++++++++++++++++++++++++___END-OF-DEBUG-CODE___+++++++++++++++++++++++++++++++++++++*/
 	
@@ -142,8 +170,7 @@ void LPCOMP_IRQHandler(void)
 	SEGGER_RTT_printf(0,"LPCOME interrupt happened %d times\r\n", ++LPCOMP_interrupt_counter);
 	SEGGER_RTT_printf(0,"RTC1->COUNTER=%d \r\n", NRF_RTC0->COUNTER);
 
-
 	//release external crystal
 	sd_clock_hfclk_release();
-	}
-//-------------------------------------------------------------------------------------------------
+}
+
