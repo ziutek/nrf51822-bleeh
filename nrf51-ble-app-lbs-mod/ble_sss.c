@@ -53,7 +53,7 @@ void ble_sss_on_ble_evt(ble_sss_t * p_sss, ble_evt_t * p_ble_evt)
 }
 
 
-/**@brief Function for adding the Speed Sensor characteristic.
+/**@brief Function for adding the Button characteristic.
  *
  */
 static uint32_t speed_sensor_char_add(ble_sss_t * p_sss, const ble_sss_init_t * p_sss_init)
