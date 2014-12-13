@@ -509,6 +509,21 @@ static void button_event_handler(uint8_t pin_no, uint8_t button_action)
     }
 }
 
+static void speed_event_handler()
+{
+	uint32_t err_code;
+	
+	err_code= ble_sss_on_speed_change(&m_sss, get_speed_kmh());
+	
+	if (err_code != NRF_SUCCESS &&
+                err_code != BLE_ERROR_INVALID_CONN_HANDLE &&
+                err_code != NRF_ERROR_INVALID_STATE)
+            {
+                APP_ERROR_CHECK(err_code);
+            }
+}
+
+
 /**@brief Function for initializing the GPIOTE handler module.
  */
 static void gpiote_init(void)

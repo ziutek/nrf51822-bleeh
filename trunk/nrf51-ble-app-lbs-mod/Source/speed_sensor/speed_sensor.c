@@ -153,6 +153,10 @@ void LPCOMP_IRQHandler(void)
 		old_speed_kmh=actual_speed_kmh;
 		//insert an event into the scheduler's queue.
 		//app_sched_event_put(,,);			// per l'app buttone è: app_sched_event_put(&buttons_event, sizeof(buttons_event), app_button_evt_get);
+		// i parametri di ingresso dovrebbero essere, in ordine: (void* p_evt_data, uint16_t event_size, app_sched_evt_handler handler)
+		//dove &button_event è il puntatore alla struttura dati che contiene i dati relativi all'evento (ad es. l'handler, il pin del pulsante premuto, l'azione effettuata)
+		//event_size è la dimensione della struttura dati relativa all'evento (event_size == sizeof(app_button_event_t));		
+		//handler è l'indirizzo della funzione di gestione dell'evento. 
 	}
 
 	

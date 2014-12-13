@@ -9,6 +9,8 @@
 #include "nordic_common.h"
 #include "ble_srv_common.h"
 #include "app_util.h"
+#include "segger_debugger\segger_RTT.h"
+
 
 
 /**@brief Function for handling the Connect event.
@@ -155,4 +157,21 @@ uint32_t ble_sss_on_button_change(ble_sss_t * p_sss, uint8_t button_state)			//T
     params.p_len = &counter_to_send_len;			//counter_to_send_len copied to hvx structure
     
     return sd_ble_gatts_hvx(p_sss->conn_handle, &params);	//issue the PDU
+}
+
+uint32_t ble_sss_on_speed_change(ble_sss_t * p_sss, uint8_t actual_speed)
+{
+	SEGGER_RTT_WriteString(0,"I'm on speed_change event. Now I'll tx speed data through BLE!!!\n\r");
+	
+	ble_gatts_hvx_params_t params;
+	uint16_t actual_speed_len=sizeof(actual_speed);
+	
+	memset(&params, 0, sizeof(params));
+	
+	params.type = BLE_GATT_HVX_NOTIFICATION;	//state here if you want notification or indication
+	params.handle = p_sss->button_char_handles.value_handle;
+	params.p_data = &actual_speed;						//actual_speed copied to hvx structure
+	params.p_len = &actual_speed_len;					//actual_speed_len copied to hvx structure
+	
+	return sd_ble_gatts_hvx(p_sss->conn_handle, &params);	//issue the PDU
 }
