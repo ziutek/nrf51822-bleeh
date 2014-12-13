@@ -62,6 +62,10 @@ void ble_sss_on_ble_evt(ble_sss_t * p_sss, ble_evt_t * p_ble_evt);
  */
 uint32_t ble_sss_on_button_change(ble_sss_t * p_sss, uint8_t button_state);
 
+/**@brief Function for sending a "speed changed" notification.
+ */
+uint32_t ble_sss_on_speed_change(ble_sss_t * p_sss, uint8_t actual_speed);
+
 #endif // ble_sss_H__
 
 /** @} */

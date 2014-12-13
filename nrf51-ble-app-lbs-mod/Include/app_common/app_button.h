@@ -161,7 +161,7 @@ typedef struct
     uint8_t              button_action;
 } app_button_event_t;
 
-static __INLINE void app_button_evt_get(void * p_event_data, uint16_t event_size)
+static __INLINE void app_button_evt_get(void * p_event_data, uint16_t event_size)		//event handler 
 {
     app_button_event_t * p_buttons_event = (app_button_event_t *)p_event_data;
     
@@ -169,7 +169,7 @@ static __INLINE void app_button_evt_get(void * p_event_data, uint16_t event_size
     p_buttons_event->button_handler(p_buttons_event->pin_no, p_buttons_event->button_action);
 }
 
-static __INLINE uint32_t app_button_evt_schedule(app_button_handler_t button_handler,
+static __INLINE uint32_t app_button_evt_schedule(app_button_handler_t button_handler,		//called by INIT function if it is used the scheduler. Not called if not.
                                                  uint8_t              pin_no,
                                                  uint8_t              button_action)
 {
@@ -179,8 +179,8 @@ static __INLINE uint32_t app_button_evt_schedule(app_button_handler_t button_han
     buttons_event.pin_no         = pin_no;
     buttons_event.button_action  = button_action;
     
-    return app_sched_event_put(&buttons_event, sizeof(buttons_event), app_button_evt_get);
-}
+    return app_sched_event_put(&buttons_event, sizeof(buttons_event), app_button_evt_get);		//see here: http://developer.nordicsemi.com/nRF51_SDK/doc/7.1.0/s110/html/a00779.html#ga49ec0ad278ece44b5dc56b86ac44489c
+}																																															//Puts event (function pointed by function pointer (*app_button_evt_get())) into event queue.
 /**@endcond */
 
 #endif // APP_BUTTON_H__
