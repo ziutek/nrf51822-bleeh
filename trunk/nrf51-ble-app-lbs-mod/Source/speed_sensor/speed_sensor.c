@@ -22,7 +22,12 @@
 #include "boards\pca10001.h"
 #include "segger_debugger\segger_RTT.h"
 #include <stdlib.h>
-#include "app_scheduler.h"
+
+/***************************************************************************************************
+*_________________________________________DECLARATIONs______________________________________________
+***************************************************************************************************/
+void speed_event_handler(uint32_t speed_data);
+
 
 /***************************************************************************************************
 *_____________________________________________MACRO_________________________________________________
@@ -45,30 +50,25 @@
 									__nop();__nop();__nop();__nop();__nop();		\
 									}
 */
+
 /***************************************************************************************************
 *_____________________________________VARIABLES DECLARATION_________________________________________
 ***************************************************************************************************/
+// My first event handler stuffs
 
-uint32_t actual_speed_kmh;
+/***************************************************************************************************
+*________________________________________EVENT HANDLERS_____________________________________________
+***************************************************************************************************/
+
+//static void myeventhandler(void* data,uint16_t size)
+//{
+//	SEGGER_RTT_WriteString(0,"on my custom event handler\n\r");
+//	SEGGER_RTT_printf(0,"Speed = %.2u\n\r",data);
+//}
 
 /***************************************************************************************************
 *__________________________________APIs EXPORTED TO TASK LEVEL______________________________________
 ***************************************************************************************************/
-/**
- * Get the actual speed
- *
- * @param  none
- * @return the actual speed in [kmh]
- *
- * @brief  function to get the actual computed speed
- *
- */
-uint32_t get_speed_kmh(void)
-{
-	return actual_speed_kmh;
-}
-
-
 
 /**
  * Initialize the comparator
@@ -144,13 +144,20 @@ void LPCOMP_IRQHandler(void)
 	//update value of PreviuousRTC0CounterValue
 	PreviousRTC0CounterValue=NRF_RTC0->COUNTER;
 	//Compute Speed in km/h from Delta Time in RTC0 ticks;
-	actual_speed_kmh=SPEED_KMH(deltatime);
+	uint32_t actual_speed_kmh=SPEED_KMH(deltatime);
 	
 	
 	
 	if(old_speed_kmh!=actual_speed_kmh)		//speed has changed: generate an event and send value through BLE to central device
 	{
 		old_speed_kmh=actual_speed_kmh;
+				
+		app_speed_sensor_evt_schedule(speed_event_handler,actual_speed_kmh);
+		
+		//app_sched_event_put(&speed_data,sizeof(speed_data),myeventhandler);
+
+		//app_speed_sensor_evt_schedule(/*app_speed_sensor_handler_t ss_handler*/, actual_speed_kmh);
+		
 		//insert an event into the scheduler's queue.
 		//app_sched_event_put(,,);			// per l'app buttone è: app_sched_event_put(&buttons_event, sizeof(buttons_event), app_button_evt_get);
 		// i parametri di ingresso dovrebbero essere, in ordine: (void* p_evt_data, uint16_t event_size, app_sched_evt_handler handler)

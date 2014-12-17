@@ -509,11 +509,12 @@ static void button_event_handler(uint8_t pin_no, uint8_t button_action)
     }
 }
 
-static void speed_event_handler()
+
+void speed_event_handler(uint32_t speed_data)
 {
 	uint32_t err_code;
-	
-	err_code= ble_sss_on_speed_change(&m_sss, get_speed_kmh());
+	SEGGER_RTT_WriteString(0,"into speed_event_handler() in main.c\n\r");
+	err_code= ble_sss_on_speed_change(&m_sss, speed_data);
 	
 	if (err_code != NRF_SUCCESS &&
                 err_code != BLE_ERROR_INVALID_CONN_HANDLE &&
