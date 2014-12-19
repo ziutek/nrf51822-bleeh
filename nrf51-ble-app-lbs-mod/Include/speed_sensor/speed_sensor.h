@@ -34,10 +34,11 @@ typedef struct
 	uint32_t speed_data;
 }app_speed_sensor_event_t;
 
+
 /***************************************************************************************************
 *______________________________________LOCAL FUNCTIONS______________________________________________
 ***************************************************************************************************/
-/**@brief Function calling the event with approriate data*/
+/**@brief Function to get the event with approriate data*/
 static void app_speed_sensor_evt_get(void * p_event_data, uint16_t event_size)				
 {
     app_speed_sensor_event_t * p_speed_sensor_event = (app_speed_sensor_event_t *)p_event_data;
@@ -46,7 +47,7 @@ static void app_speed_sensor_evt_get(void * p_event_data, uint16_t event_size)
 	p_speed_sensor_event->speed_sensor_handler(p_speed_sensor_event->speed_data);
 }
 
-/**@brief Function that create the data-structure of the event and that put the event into scheduler's queue.*/
+/**@brief Function to create the data-structure of the event and put the event into scheduler's queue.*/
 static uint32_t app_speed_sensor_evt_schedule(app_speed_sensor_handler_t speed_sensor_handler, uint32_t speed_data)		
 {
 	app_speed_sensor_event_t speed_sensor_event;
