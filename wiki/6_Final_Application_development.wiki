@@ -11,7 +11,7 @@ In detail, main modifies to actuate are:
  # delete the LED characteristic and others minor changes;
  # modify the BUTTON characteristic replacing button status data with custom data. This data will be replaced by actual speed data in step 3.
  # add LPCOMP functionality and measure speed with help of RTC and LFCLK using code of [https://code.google.com/p/nrf51822-bleeh/wiki/2b_Development_of_Comparator_Driver 2b_Development_of_Comparator_Driver] and [https://code.google.com/p/nrf51822-bleeh/wiki/3_Study_and_Development_of_UltraLowPower_Techniques 3_Study_and_Development_of_UltraLowPower_Techniques] wiki pages. Replace custom data sent in step 2 with actual speed data;
- # update connection parameters programmatically (related with bicycle's speed) (tips [https://devzone.nordicsemi.com/question/12545/update-connection-parameter-programmatically/?answer=12551#post-id-12551 here]);
+ # in order to preserve energy, transmit data only when it's essential;
  # delete all extra functionality minimizing current consumption (tips [https://devzone.nordicsemi.com/question/5186/how-to-minimize-current-consumption-for-ble-application-on-nrf51822/ here]);
 
 The code could be downloaded from GitHub into your PC. Note that in order to work properly, the code must be copied into a specific folder (../nrf51822/Board/pca10001/s110/), otherwise the header files and source files of the libraries will not found. However I copied such files in the project folder, into the "Include" and "Source" folders and I've modify some project's proprieties  to have portability feature. 
@@ -203,10 +203,10 @@ All features described in this step, are showed in following video. See the cust
 <wiki:video url="https://www.youtube.com/watch?v=OZw28PdlXQU"/>
 
 ==3-Add LPCOMP functionality and measure speed with help of RTC==
-Useful link: 
+Useful link:
  * https://devzone.nordicsemi.com/question/6976/s110-adc-example/
  * https://devzone.nordicsemi.com/question/15153/s110-lpcomp-interrupt-not-working/
 
-==4-Update connection parameters programmatically==
+==4-Transmit data only when essential==
 
 ==5-Delete all extra functionality minimizing current consumption==
