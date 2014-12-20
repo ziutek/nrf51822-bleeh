@@ -28,20 +28,14 @@
 ***************************************************************************************************/
 void speed_event_handler(uint32_t speed_data);
 
+
 /***************************************************************************************************
 *_____________________________________________MACRO_________________________________________________
 ***************************************************************************************************/
 #define TYRE_CIRCUMFERENCE_M 2070E-3
-#define RTC0_RESOLUTION_S 30.518E-6
+#define RTC0_RESOLUTION_S 30.517E-6
 #define SPEED_MS(dt) ((TYRE_CIRCUMFERENCE_M)/(dt*RTC0_RESOLUTION_S))
 #define SPEED_KMH(dt) (SPEED_MS(dt)*3.6)
-
-#define MIN_TX_SPEED_KMH 		4			//minimum speed in [km/h] to transmit speed-data
-#define	MIN_TX_INTERVAL_S   0.5		//minimum tx interval = maximum frame rate in [1/s] = 2 frame/s = refresh rate of displayed speed
-
-#define MIN_TX_INTERVAL_TICKS		MIN_TX_INTERVAL_S/RTC0_RESOLUTION_S
-
-//	#define MAX_TX_DELTATIME_TICKS
 
 /* 	it seems the LPCOMP works well without SW_DELAY before TASK_START. Uncomment if not!
 		hints about possible improper working was found here:
@@ -106,6 +100,11 @@ void LPCOMP_init (void)
 	SW_DELAY();		//information about this delay here: https://devzone.nordicsemi.com/question/15153/s110-lpcomp-interrupt-not-working/
 	*/
  	NRF_LPCOMP->TASKS_START = 1;
+		
+	/*
+	//Debug code: print the init status
+	SEGGER_RTT_printf(0,"LPCOMP intializated\r\n");
+	*/
 }
 
 	
@@ -130,50 +129,57 @@ void LPCOMP_IRQHandler(void)
 	//Declaration and initialization of previous counter value useful to compute delta time: it must have memory
 	static uint32_t PreviousRTC0CounterValue=0;
 	//Declaration of DeltaTime and Speed variables
-	uint32_t deltatime_ticks;
+	uint32_t deltatime;
 	static uint32_t old_speed_kmh;
-	static uint32_t last_tx_evt_time;
-	//____________________________SERVICE's-ROUTINES___________________________________________________
+	
+	//____________________________SERVICE-ROUTINES___________________________________________________
 		
-	// Clear LPCOMP event
+	// Clear event
 	NRF_LPCOMP->EVENTS_UP = 0;
 
 	//______________________________COMPUTATION______________________________________________________
 		
 	//compute actual delta time between two LPCOMP upward crossing event
-	deltatime_ticks=abs(NRF_RTC0->COUNTER - PreviousRTC0CounterValue);   
+	deltatime=abs(NRF_RTC0->COUNTER - PreviousRTC0CounterValue);   
 	//update value of PreviuousRTC0CounterValue
-		PreviousRTC0CounterValue=NRF_RTC0->COUNTER;
-
-	//if time elapsed is greater than minimum BLE TX interval, compute speed and, if speed has changed, tx data.
-	if(abs(last_tx_evt_time - NRF_RTC0->COUNTER )>=MIN_TX_INTERVAL_TICKS)
-	{
-		//compute Speed in km/h from Delta Time in RTC0 ticks;
-		uint32_t actual_speed_kmh=SPEED_KMH(deltatime_ticks);
-		
-		//speed has changed: generate an event and send value through BLE to central device: TX data!
-		if(old_speed_kmh!=actual_speed_kmh)		
-		{
-			old_speed_kmh=actual_speed_kmh;
-			app_speed_sensor_evt_schedule(speed_event_handler,actual_speed_kmh);
-			last_tx_evt_time=NRF_RTC0->COUNTER;
-			
-		}
-	}
+	PreviousRTC0CounterValue=NRF_RTC0->COUNTER;
+	//Compute Speed in km/h from Delta Time in RTC0 ticks;
+	uint32_t actual_speed_kmh=SPEED_KMH(deltatime);
 	
-//	/*++++++++++++++++++++++++++++___START-OF-DEBUG-CODE___+++++++++++++++++++++++++++++++++++++*/
-//	//	Print to SEGGER_RTT-debugger-tool speed in km/h
-//	SEGGER_RTT_printf(0, "deltatime_ticks=%u\r\n", deltatime_ticks);
-//	SEGGER_RTT_printf(0, "speed_kmh=%.2u\r\n", actual_speed_kmh);
-//	//
-//	/*++++++++++++++++++++++++++++++___END-OF-DEBUG-CODE___+++++++++++++++++++++++++++++++++++++*/
-//	
-//		
-//	//Debug code: print the interrupt has happened and print the result of the comparator
-//	SEGGER_RTT_printf(0,"LPCOMP interrupt! Result=%d \r\n",NRF_LPCOMP->RESULT);
-//	static uint8_t LPCOMP_interrupt_counter=0;
-//	SEGGER_RTT_printf(0,"LPCOME interrupt happened %d times\r\n", ++LPCOMP_interrupt_counter);
-//	SEGGER_RTT_printf(0,"RTC1->COUNTER=%d \r\n", NRF_RTC0->COUNTER);
+	
+	
+	if(old_speed_kmh!=actual_speed_kmh)		//speed has changed: generate an event and send value through BLE to central device
+	{
+		old_speed_kmh=actual_speed_kmh;
+				
+		app_speed_sensor_evt_schedule(speed_event_handler,actual_speed_kmh);
+		
+		//app_sched_event_put(&speed_data,sizeof(speed_data),myeventhandler);
+
+		//app_speed_sensor_evt_schedule(/*app_speed_sensor_handler_t ss_handler*/, actual_speed_kmh);
+		
+		//insert an event into the scheduler's queue.
+		//app_sched_event_put(,,);			// per l'app buttone è: app_sched_event_put(&buttons_event, sizeof(buttons_event), app_button_evt_get);
+		// i parametri di ingresso dovrebbero essere, in ordine: (void* p_evt_data, uint16_t event_size, app_sched_evt_handler handler)
+		//dove &button_event è il puntatore alla struttura dati che contiene i dati relativi all'evento (ad es. l'handler, il pin del pulsante premuto, l'azione effettuata)
+		//event_size è la dimensione della struttura dati relativa all'evento (event_size == sizeof(app_button_event_t));		
+		//handler è l'indirizzo della funzione di gestione dell'evento. 
+	}
+
+	
+	/*++++++++++++++++++++++++++++___START-OF-DEBUG-CODE___+++++++++++++++++++++++++++++++++++++*/
+	//	Print to SEGGER_RTT-debugger-tool speed in km/h
+	SEGGER_RTT_printf(0, "deltaTime=%u\r\n", deltatime);
+	SEGGER_RTT_printf(0, "speed_kmh=%.2u\r\n", actual_speed_kmh);
+	//
+	/*++++++++++++++++++++++++++++++___END-OF-DEBUG-CODE___+++++++++++++++++++++++++++++++++++++*/
+	
+		
+	//Debug code: print the interrupt has happened and print the result of the comparator
+	SEGGER_RTT_printf(0,"LPCOMP interrupt! Result=%d \r\n",NRF_LPCOMP->RESULT);
+	static uint8_t LPCOMP_interrupt_counter=0;
+	SEGGER_RTT_printf(0,"LPCOME interrupt happened %d times\r\n", ++LPCOMP_interrupt_counter);
+	SEGGER_RTT_printf(0,"RTC1->COUNTER=%d \r\n", NRF_RTC0->COUNTER);
 
 	//release external crystal
 	sd_clock_hfclk_release();
