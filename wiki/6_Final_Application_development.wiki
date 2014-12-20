@@ -210,3 +210,5 @@ Useful link:
 ==4-Transmit data only when essential==
 
 ==5-Delete all extra functionality minimizing current consumption==
+
+TODO: implement tips suggested on wiki page [https://code.google.com/p/nrf51822-bleeh/wiki/Bluetooth_Smart_and_Low_Power_considerations Bluetooth_Smart_and_Low_Power_considerations] of this project.
