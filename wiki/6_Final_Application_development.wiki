@@ -215,7 +215,9 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/schedul
 
 To use scheduler some logic must be implemented. it is spitted into two parts:
 ==== Logic in main context: ====
- * Define an event handler for each type of event expected. To transmit speed data, the event handler placed in `main.c` file is the `speed_event_handler function`:{{{void speed_event_handler(uint32_t speed_data)
+ * Define an event handler for each type of event expected. To transmit speed data, the event handler placed in `main.c` file is the `speed_event_handler function`:
+{{{
+void speed_event_handler(uint32_t speed_data)
 {
 	uint32_t err_code;
 	SEGGER_RTT_WriteString(0,"into speed_event_handler() in main.c\n\r");
@@ -227,7 +229,8 @@ To use scheduler some logic must be implemented. it is spitted into two parts:
             {
                 APP_ERROR_CHECK(err_code);
             }
-}}}}
+}
+}}}
  * Initialize the scheduler by calling the APP_SCHED_INIT() macro before entering the application main loop.
  * Call app_sched_execute() from the main loop each time the application wakes up because of an event (typically when sd_app_evt_wait() returns).
 
