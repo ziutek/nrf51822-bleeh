@@ -373,8 +373,7 @@ Thus the goal is to put the event into scheduler's queue only when the speed has
  * @param  none
  * @return none
  *
- * @brief  	ISR for LPCOMP: 
- * 					clear event's flag, 
+ * @brief  	ISR for LPCOMP
  */
 	 /* Interrupt handler for LPCOMP */
 void LPCOMP_IRQHandler(void)
