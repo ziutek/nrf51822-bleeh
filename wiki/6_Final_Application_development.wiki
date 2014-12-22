@@ -252,8 +252,105 @@ static void scheduler_init(void)
 
 ==== Logic in interrupt context: ====
  * In the interrupt handler, call app_sched_event_put() with the appropriate data and event handler. This will insert an event into the scheduler's queue. The app_sched_execute() function will pull this event and call its handler in the main context.
+The LPCOMP interrupt handler is the following:
+{{{
+/***************************************************************************************************
+*____________________________________________LPCOMP_ISR_____________________________________________
+***************************************************************************************************/
 
- 
+/**
+ * Interrupt handler for LPCOMP
+ *
+ * @param  none
+ * @return none
+ *
+ * @brief  	ISR for LPCOMP: 
+ * 					clear event's flag, 
+ */
+	 /* Interrupt handler for LPCOMP */
+void LPCOMP_IRQHandler(void)
+{
+	//____________________________LOCAL-VARIABLES-DEFINITION_________________________________________
+
+	//Declaration and initialization of previous counter value useful to compute delta time: it must have memory
+	static uint32_t PreviousRTC0CounterValue=0;
+	//Declaration of DeltaTime and Speed variables
+	uint32_t deltatime;
+	static uint32_t old_speed_kmh;
+	
+	//____________________________SERVICE-ROUTINES___________________________________________________
+		
+	// Clear event
+	NRF_LPCOMP->EVENTS_UP = 0;
+
+	//______________________________COMPUTATION______________________________________________________
+		
+	//compute actual delta time between two LPCOMP upward crossing event
+	deltatime=abs(NRF_RTC0->COUNTER - PreviousRTC0CounterValue);   
+	//update value of PreviuousRTC0CounterValue
+	PreviousRTC0CounterValue=NRF_RTC0->COUNTER;
+	//Compute Speed in km/h from Delta Time in RTC0 ticks;
+	uint32_t actual_speed_kmh=SPEED_KMH(deltatime);
+	
+	
+	
+	if(old_speed_kmh!=actual_speed_kmh)		//speed has changed: generate an event and send value through BLE to central device
+	{
+		old_speed_kmh=actual_speed_kmh;
+				
+		app_speed_sensor_evt_schedule(speed_event_handler,actual_speed_kmh);
+		
+	}
+
+	static uint8_t LPCOMP_interrupt_counter=0;
+
+	//release external crystal
+	sd_clock_hfclk_release();
+}
+}}}
+
+the `app_speed_sensor_evt_schedule(speed_event_handler,actual_speed_kmh)` called in the previous code is defined in its header file as follow:
+
+{{{
+/**@brief Function that create the data-structure of the event and that put the event into scheduler's queue.*/
+static uint32_t app_speed_sensor_evt_schedule(app_speed_sensor_handler_t speed_sensor_handler, uint32_t speed_data)		
+{
+	app_speed_sensor_event_t speed_sensor_event;
+	
+	speed_sensor_event.speed_sensor_handler = speed_sensor_handler;
+	speed_sensor_event.speed_data 					= speed_data;
+	
+	return app_sched_event_put(&speed_sensor_event, sizeof(speed_sensor_event),app_speed_sensor_evt_get);
+}
+}}}
+
+As commented, the function create a data-structure of the event and put the event into scheduler's queue through the function pointer `app_speed_sensor_evt_get` shown below.
+
+{{{
+/**@brief Function calling the event with appropriate data*/
+static void app_speed_sensor_evt_get(void * p_event_data, uint16_t event_size)				
+{
+    app_speed_sensor_event_t * p_speed_sensor_event = (app_speed_sensor_event_t *)p_event_data;
+    
+    APP_ERROR_CHECK_BOOL(event_size == sizeof(app_speed_sensor_event_t));
+	p_speed_sensor_event->speed_sensor_handler(p_speed_sensor_event->speed_data);
+}
+}}}.
+
+To handle the event, a data structure and a function pointer was defined in `speed_sensor.h`, in a similar way of the button's event.
+
+{{{
+/**@brief Speed sensor event handler type. Function pointer to speed_sensor handler function in main.c */
+typedef void (*app_speed_sensor_handler_t)(uint32_t speed_data);
+
+/**@brief Data structure to handle the event and relative event-data*/
+typedef struct																											
+{
+	app_speed_sensor_handler_t speed_sensor_handler;
+	uint32_t speed_data;
+}app_speed_sensor_event_t;
+}}}
+
 Some generic useful information on events and scheduler are available in SDK, [http://developer.nordicsemi.com/nRF51_SDK/doc/7.0.0/s110/html/a00778.html#details here].
 
 Useful links:
