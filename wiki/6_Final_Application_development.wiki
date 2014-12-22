@@ -187,7 +187,7 @@ On connection start-up, connection parameters are forced by central device so, i
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/MCP_init_connection_parameters.png
 
-Therefore it's a task of the central device application to perform a connection with ad hoc parameter settings.
+Therefore there must be a feature of the central device application to perform a connection with ad hoc parameter settings.
 In peripheral application could be requested some parameter update trough the function [http://developer.nordicsemi.com/nRF51_SDK/doc/7.1.0/s110/html/a01049.html#ga6e9dce98f85415d2fc3c47f8a599f8fd sd_ble_gap_conn_param_update()] but it is up to the central to decide what the parameters should update to.
 Otherwise, as in ble_lbs example, a call to [http://developer.nordicsemi.com/nRF51_SDK/doc/7.1.0/s110/html/a01049.html#ga8c6db7d9bc501929c9cc63b4b04fdfbb sd_ble_gap_ppcp_set()] function could be done. It updates some values in the GATT database that can later be read out by the central device after connecting. So, after some seconds, Master Control Panel show the successful of updating task:
 
@@ -198,14 +198,43 @@ Useful information about connection parameters are available here:
  * [https://devzone.nordicsemi.com/question/22689/who-set-initial-connection-parameters-on-ble/]
  * [https://devzone.nordicsemi.com/question/12545/update-connection-parameter-programmatically/]
 
-All features described in this step, are showed in following video. See the custom data replacing the prior button-state data, observe the connection parameters are updating after some seconds from starting and note the enable services button needed to set to one the CCCD value: it allow the GATT server (the peripheral that is the speed sensor) to notify and must be set by client.
+All features described in this step, are showed in following video. See the custom data replacing the prior button-state data, observe the connection parameters are updating after some seconds from starting and note the enable services button needed to set to one the CCCD value: it allow the GATT server (the peripheral that is the speed sensor) to notify and must be set by the client.
 
 <wiki:video url="https://www.youtube.com/watch?v=OZw28PdlXQU"/>
 
 ==3-Add LPCOMP functionality and measure speed with help of RTC==
-Useful link:
+In order to measure bicycle's speed computing delta-time among two pulses, the low power comparator LPCOMP and a low power clock must be enabled. Code in [https://code.google.com/p/nrf51822-bleeh/wiki/2b_Development_of_Comparator_Driver 2b_Development_of_Comparator_Driver] and [https://code.google.com/p/nrf51822-bleeh/wiki/3_Study_and_Development_of_UltraLowPower_Techniques 3_Study_and_Development_of_UltraLowPower_Techniques] wiki pages is used.
+
+However, in order to interact with SoftDevice SW stack, some changes was made. In details two new files were created: `speed_sensor.c` and its header file `speed_sensor.h`.
+They contains some new typedefs and functions to handle events and put events into scheduler queue, interrupt handler linked to LPCOMP and some code to compute the speed. In [https://code.google.com/p/nrf51822-bleeh/source/browse/#svn%2Ftags%2F6_Final_Application_development_BaseCode ble-app-lbs] code was used a scheduler to handle events and events queue.
+
+===Events and event scheduler===
+The scheduler is used for transferring execution from the interrupt context to the main context.
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/scheduler_logic.png
+
+To use scheduler some logic must be implemented. it is spitted into two parts:
+==== Logic in main context: ====
+ * Define an event handler for each type of event expected.
+ * Initialize the scheduler by calling the APP_SCHED_INIT() macro before entering the application main loop.
+ * Call app_sched_execute() from the main loop each time the application wakes up because of an event (typically when sd_app_evt_wait() returns).
+
+==== Logic in interrupt context: ====
+ * In the interrupt handler, call app_sched_event_put() with the appropriate data and event handler. This will insert an event into the scheduler's queue. The app_sched_execute() function will pull this event and call its handler in the main context.
+
+ 
+Some useful information on events and scheduler are available in SDK, [here].
+
+
+Useful links:
  * https://devzone.nordicsemi.com/question/6976/s110-adc-example/
  * https://devzone.nordicsemi.com/question/15153/s110-lpcomp-interrupt-not-working/
+
+
+
+
+
+
 
 ==4-Transmit data only when essential==
 
