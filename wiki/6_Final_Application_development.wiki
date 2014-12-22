@@ -335,7 +335,7 @@ static void app_speed_sensor_evt_get(void * p_event_data, uint16_t event_size)
     APP_ERROR_CHECK_BOOL(event_size == sizeof(app_speed_sensor_event_t));
 	p_speed_sensor_event->speed_sensor_handler(p_speed_sensor_event->speed_data);
 }
-}}}.
+}}}
 
 To handle the event, a data structure and a function pointer was defined in `speed_sensor.h`, in a similar way of the button's event.
 
