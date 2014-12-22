@@ -353,6 +353,13 @@ typedef struct
 Other generic useful information on events and scheduler are available in SDK, [http://developer.nordicsemi.com/nRF51_SDK/doc/7.0.0/s110/html/a00778.html#details here].
 
 ==4-Transmit data only when essential==
+Once the code was developed, a simple test was done. The [https://code.google.com/p/nrf51822-bleeh/wiki/2b_Development_of_Comparator_Driver#Circuit_setup button] at port P0.03 was pushed and some over-the-air packets were registered with [https://www.youtube.com/watch?v=Sccst1loWbU nRF-Sniffer]. This is the result after the connection parameters update was done:
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/Sniffer_WS_6_3.png
+
+Connection parameters was set to: 500 ms of connection interval, slave latency of 7 and supervisory timeout of 10 s. With this connection parameters, the PCA10001 board (the device with link-layer in slave mode) connect to the master (a Bluetoorh Smart Ready smartphone) every 4 s if it has no data to send. This is clear from above image. In-fact, is not available any data to transmit, the slave, transmit an empty PDU every 4 s.
+
+
 
 ==5-Delete all extra functionality minimizing current consumption==
 
