@@ -357,9 +357,68 @@ Once the code was developed, a simple test was done. The [https://code.google.co
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/Sniffer_WS_6_3.png
 
-Connection parameters was set to: 500 ms of connection interval, slave latency of 7 and supervisory timeout of 10 s. With this connection parameters, the PCA10001 board (the device with link-layer in slave mode) connect to the master (a Bluetoorh Smart Ready smartphone) every 4 s if it has no data to send. This is clear from above image. In-fact, is not available any data to transmit, the slave, transmit an empty PDU every 4 s.
+Connection parameters was set to: 500 ms of connection interval, slave latency of 7 and supervisory timeout of 10 s. With this connection parameters, the PCA10001 board (the device with link-layer in slave mode) connect to the master (a Bluetoorh Smart Ready smartphone) every 4 s if it has no data to send. This is clear from above image: observe the green-high-lightened rows. In-fact, is not available any data to transmit, the slave, transmit an empty PDU every 4 s (at t1=26.36 s and t2=30.36 s). The master, instead, transmit the empty packets every 500 ms however the slave is not listen for them and could be in low-power mode.
+Yellow-high-lightened rows are the packets send from slave (the speed-sensor) to master device. Observe there are three packets on-air in 30 ms. I don't want this because the user cannot appreciate an ultra fast refresh rate. It's only a waste of energy. As I mentioned above, I desire a maximum refresh-rate of 2 frame per second (a min. period equal to 500 ms).
+Multiple packets sending in only 30 ms occur because in firmware, at every comparator-related interrupt, a call to  function `app_speed_sensor_evt_schedule(speed_event_handler,actual_speed_kmh)` is done. This function put the event into scheduler's queue and, when the scheduler execute the event placed in `ble_sss.c`, `ble_sss_on_speed_change(ble_sss_t * p_sss, uint8_t actual_speed)`, is called the SoftDevice function `sd_ble_gatts_hvx(p_sss->conn_handle, &params)` that transmit a data-packet on the air.
+Thus the goal is to put the event into scheduler's queue only when the speed has changed and at a maximum frame rate of 2 fps. This is reached with following code:
 
+{{{
+/***************************************************************************************************
+*____________________________________________LPCOMP_ISR_____________________________________________
+***************************************************************************************************/
 
+/**
+ * Interrupt handler for LPCOMP
+ *
+ * @param  none
+ * @return none
+ *
+ * @brief  	ISR for LPCOMP: 
+ * 					clear event's flag, 
+ */
+	 /* Interrupt handler for LPCOMP */
+void LPCOMP_IRQHandler(void)
+{
+	//____________________________LOCAL-VARIABLES-DEFINITION_________________________________________
+
+	//Declaration and initialization of previous counter value useful to compute delta time: it must have memory
+	static uint32_t PreviousRTC0CounterValue=0;
+	//Declaration of DeltaTime and Speed variables
+	uint32_t deltatime_ticks;
+	static uint32_t old_speed_kmh;
+	static uint32_t last_tx_evt_time;
+	//____________________________SERVICE's-ROUTINES___________________________________________________
+		
+	// Clear LPCOMP event
+	NRF_LPCOMP->EVENTS_UP = 0;
+
+	//______________________________COMPUTATION______________________________________________________
+		
+	//compute actual delta time between two LPCOMP upward crossing event
+	deltatime_ticks=abs(NRF_RTC0->COUNTER - PreviousRTC0CounterValue);   
+	//update value of PreviuousRTC0CounterValue
+		PreviousRTC0CounterValue=NRF_RTC0->COUNTER;
+
+	//if time elapsed is greater than minimum BLE TX interval, compute speed and, if speed has changed, tx data.
+	if(abs(last_tx_evt_time - NRF_RTC0->COUNTER )>=MIN_TX_INTERVAL_TICKS)
+	{
+		//compute Speed in km/h from Delta Time in RTC0 ticks;
+		uint32_t actual_speed_kmh=SPEED_KMH(deltatime_ticks);
+		
+		//speed has changed: generate an event and send value through BLE to central device: TX data!
+		if(old_speed_kmh!=actual_speed_kmh)		
+		{
+			old_speed_kmh=actual_speed_kmh;
+			app_speed_sensor_evt_schedule(speed_event_handler,actual_speed_kmh);
+			last_tx_evt_time=NRF_RTC0->COUNTER;
+			
+		}
+	}
+
+	//release external crystal
+	sd_clock_hfclk_release();
+}
+}}}
 
 ==5-Delete all extra functionality minimizing current consumption==
 
