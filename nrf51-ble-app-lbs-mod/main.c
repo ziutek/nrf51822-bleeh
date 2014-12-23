@@ -127,16 +127,10 @@ void assert_nrf_callback(uint16_t line_num, const uint8_t * p_file_name)
 }
 
 
-/**@brief Function for the LEDs initialization.
- *
- * @details Initializes all LEDs used by the application.
- */
-
 /**@brief Function for POWER configuration initialization
  *
  * @details Disable internal DC/DC step down and select low power mode when in system on mode.
  */
-
 static void power_config_init(void)
 {
 	uint32_t                				err_code;
@@ -148,6 +142,10 @@ static void power_config_init(void)
 	APP_ERROR_CHECK(err_code);
 }
 
+/**@brief Function for the LEDs initialization.
+ *
+ * @details Initializes all LEDs used by the application.
+ */
 static void leds_init(void)
 {
     nrf_gpio_cfg_output(ADVERTISING_LED_PIN_NO);
@@ -333,7 +331,6 @@ static void advertising_start(void)
 
     err_code = sd_ble_gap_adv_start(&adv_params);
     APP_ERROR_CHECK(err_code);
-    nrf_gpio_pin_set(ADVERTISING_LED_PIN_NO);
 }
 
 
@@ -350,8 +347,6 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
     switch (p_ble_evt->header.evt_id)
     {
         case BLE_GAP_EVT_CONNECTED:
-            nrf_gpio_pin_set(CONNECTED_LED_PIN_NO);
-            nrf_gpio_pin_clear(ADVERTISING_LED_PIN_NO);
             m_conn_handle = p_ble_evt->evt.gap_evt.conn_handle;
 
             err_code = app_button_enable();
@@ -359,7 +354,6 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
             break;
 
         case BLE_GAP_EVT_DISCONNECTED:
-            nrf_gpio_pin_clear(CONNECTED_LED_PIN_NO);
             m_conn_handle = BLE_CONN_HANDLE_INVALID;
 
             err_code = app_button_disable();
@@ -487,29 +481,6 @@ static void scheduler_init(void)
 }
 
 
-static void button_event_handler(uint8_t pin_no, uint8_t button_action)
-{
-    uint32_t err_code;
-    
-    switch (pin_no)
-    {
-        case LEDBUTTON_BUTTON_PIN_NO:
-            err_code = ble_sss_on_button_change(&m_sss, button_action);
-            if (err_code != NRF_SUCCESS &&
-                err_code != BLE_ERROR_INVALID_CONN_HANDLE &&
-                err_code != NRF_ERROR_INVALID_STATE)
-            {
-                APP_ERROR_CHECK(err_code);
-            }
-            break;
-
-        default:
-            APP_ERROR_HANDLER(pin_no);
-            break;
-    }
-}
-
-
 void speed_event_handler(uint32_t speed_data)
 {
 	uint32_t err_code;
@@ -542,7 +513,7 @@ static void buttons_init(void)
     static app_button_cfg_t buttons[] =
     {
         {WAKEUP_BUTTON_PIN, false, BUTTON_PULL, NULL},
-        {LEDBUTTON_BUTTON_PIN_NO, false, BUTTON_PULL, button_event_handler}
+        {LEDBUTTON_BUTTON_PIN_NO, false, BUTTON_PULL, NULL}
     };
 
     APP_BUTTON_INIT(buttons, sizeof(buttons) / sizeof(buttons[0]), BUTTON_DETECTION_DELAY, true);
