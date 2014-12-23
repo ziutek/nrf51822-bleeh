@@ -352,14 +352,21 @@ typedef struct
 
 Other generic useful information on events and scheduler are available in SDK, [http://developer.nordicsemi.com/nRF51_SDK/doc/7.0.0/s110/html/a00778.html#details here].
 
+A session log of this step is available [https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/BLEEH_6_3_rev333_sniffing.pcapng here] (the file could be opened with [https://www.wireshark.org/ Wireshark]).
+
 ==4-Transmit data only when essential==
 Once the code was developed, a simple test was done. The [https://code.google.com/p/nrf51822-bleeh/wiki/2b_Development_of_Comparator_Driver#Circuit_setup button] at port P0.03 was pushed and some over-the-air packets were registered with [https://www.youtube.com/watch?v=Sccst1loWbU nRF-Sniffer]. This is the result after the connection parameters update was done:
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/Sniffer_WS_6_3.png
 
-Connection parameters was set to: 500 ms of connection interval, slave latency of 7 and supervisory timeout of 10 s. With this connection parameters, the PCA10001 board (the device with link-layer in slave mode) connect to the master (a Bluetoorh Smart Ready smartphone) every 4 s if it has no data to send. This is clear from above image: observe the green-high-lightened rows. In-fact, is not available any data to transmit, the slave, transmit an empty PDU every 4 s (at t1=26.36 s and t2=30.36 s). The master, instead, transmit the empty packets every 500 ms however the slave is not listen for them and could be in low-power mode.
-Yellow-high-lightened rows are the packets send from slave (the speed-sensor) to master device. Observe there are three packets on-air in 30 ms. I don't want this because the user cannot appreciate an ultra fast refresh rate. It's only a waste of energy. As I mentioned above, I desire a maximum refresh-rate of 2 frame per second (a min. period equal to 500 ms).
-Multiple packets sending in only 30 ms occur because in firmware, at every comparator-related interrupt, a call to  function `app_speed_sensor_evt_schedule(speed_event_handler,actual_speed_kmh)` is done. This function put the event into scheduler's queue and, when the scheduler execute the event placed in `ble_sss.c`, `ble_sss_on_speed_change(ble_sss_t * p_sss, uint8_t actual_speed)`, is called the SoftDevice function `sd_ble_gatts_hvx(p_sss->conn_handle, &params)` that transmit a data-packet on the air.
+Connection parameters was set to: 500 ms of connection interval, slave latency of 7 and supervisory timeout of 10 s. 
+
+With this connection parameters, the PCA10001 board (the device with link-layer in slave mode) connect to the master (a Bluetoorh Smart Ready smartphone) every 4 s if it has no data to send. This is clear from above image: observe the green-highlighted rows. In-fact, is not available any data to transmit, the slave, transmit an empty PDU every 4 s (e.g. at t1=26.36 s and t2=30.36 s). The master, instead, transmit an empty packets every 500 ms however the slave is not listen for them and could be in low-power mode.
+Yellow-highlighted rows are the data-packets send from slave (the speed-sensor) to master device. Observe there are three packets on-air in 30 ms. I don't want this because the user cannot appreciate an ultra fast refresh rate. It's only a waste of energy. 
+
+As I mentioned above, I desire a maximum refresh-rate of 2 frame per second corresponding to a min. period of 500 ms.
+Multiple packets sending in only 30 ms occur because in firmware, at every comparator-related interrupt, a call to  function `app_speed_sensor_evt_schedule(speed_event_handler,actual_speed_kmh)` is done. This function put the event into scheduler's queue. When the scheduler executes the event, the function `ble_sss_on_speed_change(ble_sss_t * p_sss, uint8_t actual_speed)` is executed and it calls the SoftDevice function `sd_ble_gatts_hvx(p_sss->conn_handle, &params)` that transmit a data-packet on the air.
+
 Thus the goal is to put the event into scheduler's queue only when the speed has changed and at a maximum frame rate of 2 fps. This is reached with following code:
 
 {{{
@@ -418,6 +425,12 @@ void LPCOMP_IRQHandler(void)
 	sd_clock_hfclk_release();
 }
 }}}
+
+With previous code, a maximum refresh rate equal to 2 frame per second is obtained. A packet is sent from slave to master every 500 ms at minimum and only if data has changed. If speed-data has not changed, slave transmit an empty packet every 4 s. See a nRF-Sniffer session below:
+
+https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/Sniffer_WS_6_4.png
+
+Observe the yellow-highlighted rows: they're spaced at least 500 ms each other as desired. If no data has to be transmitted, an empty PDU is transmitted every 4 s in order to maintain the connection active. A session log of this step is available [https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/BLEEH_6_4_rev335_sniffing.pcapng here] (the file could be opened with [https://www.wireshark.org/ Wireshark]).
 
 ==5-Delete all extra functionality minimizing current consumption==
 
