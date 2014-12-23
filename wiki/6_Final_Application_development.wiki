@@ -141,6 +141,7 @@ and following case of switch-case structure, in the ble_sss_on_ble_evt() functio
 }}}
 
 No led-related functions are available to other c modules thus the file `ble_lbs.h` is unchanged. 
+Code for this step is here: [https://code.google.com/p/nrf51822-bleeh/source/browse/#svn%2Ftags%2F6_1_Final_Application_development_step_1 svn\tags\6_1_Final_Application_development_step_1].
 
 ==2-modify the BUTTON characteristic replacing button status data with custom data ==
 
@@ -225,6 +226,8 @@ Useful information about connection parameters are available here:
 All features described in this step, are showed in following video. See the custom data replacing the prior button-state data, observe the connection parameters are updating after some seconds from starting and note the enable services button needed to set to one the CCCD value: it allow the GATT server (the peripheral that is the speed sensor) to notify and must be set by the client.
 
 <wiki:video url="https://www.youtube.com/watch?v=OZw28PdlXQU"/>
+
+Code for this step is here: [https://code.google.com/p/nrf51822-bleeh/source/browse/#svn%2Ftags%2F6_2_Final_Application_development_step_2 svn\tags\6_2_Final_Application_development_step_2].
 
 ==3-Add LPCOMP functionality and measure speed with help of RTC==
 In order to measure bicycle's speed computing delta-time among two pulses, the low power comparator LPCOMP and a low power clock must be enabled. Code in [https://code.google.com/p/nrf51822-bleeh/wiki/2b_Development_of_Comparator_Driver 2b_Development_of_Comparator_Driver] and [https://code.google.com/p/nrf51822-bleeh/wiki/3_Study_and_Development_of_UltraLowPower_Techniques 3_Study_and_Development_of_UltraLowPower_Techniques] wiki pages is used.
@@ -378,6 +381,8 @@ Other generic useful information on events and scheduler are available in SDK, [
 
 A session log of this step is available [https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/BLEEH_6_3_rev333_sniffing.pcapng here] (the file could be opened with [https://www.wireshark.org/ Wireshark]).
 
+Code for this step is here: [https://code.google.com/p/nrf51822-bleeh/source/browse/#svn%2Ftags%2F6_3_Final_Application_development_step_3 svn\tags\6_3_Final_Application_development_step_3].
+
 ==4-Transmit data only when essential==
 Once the code was developed, a simple test was done. The [https://code.google.com/p/nrf51822-bleeh/wiki/2b_Development_of_Comparator_Driver#Circuit_setup button] at port P0.03 was pushed and some over-the-air packets were registered with [https://www.youtube.com/watch?v=Sccst1loWbU nRF-Sniffer]. This is the result after the connection parameters update was done:
 
@@ -456,6 +461,8 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/Sniffer
 
 Observe the yellow-highlighted rows: they're spaced at least 500 ms each other as desired. If no data has to be transmitted, an empty PDU is transmitted every 4 s in order to maintain the connection active. A session log of this step is available [https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/BLEEH_6_4_rev335_sniffing.pcapng here] (the file could be opened with [https://www.wireshark.org/ Wireshark]).
 
+Code for this step is here: [https://code.google.com/p/nrf51822-bleeh/source/browse/#svn%2Ftags%2F6_4_Final_Application_development_step_4 svn\tags\6_4_Final_Application_development_step_4].
+
 ==5-Delete all extra functionality minimizing current consumption==
  * *Choice of 32 kHz clock source*: this clock source is ever running in system ON mode, either in CPU sleep and CPU on. A high accuracy external crystal is clearly the best choice in terms of current consumption.
  * *Choice of 16 MHz clock source*: to minimize current consumption, is chosen 16MHz external crystal. Chose a crystal with low load capacitance, i.e. around 9 pF instead of the specified maximum of 16 pF for the nRF51 to have minimal “startup” current consumption. Unfortunately changing capacitors is not practical with this evaluation kit.
@@ -475,3 +482,5 @@ Another parameter that effects the current consumption during advertising is how
  * *Compiler optimization*: enable compiler optimization in order for you application to be executed in as few instructions as possible. This will make the code execute faster and finish sooner and will therefore save power. To enable compiler optimization in Keil, select Options for Target -> C/C++ tab and set Optimization to “Level 3” and check “Optimize for Time”.
  *  *Change the TX power* with function [http://developer.nordicsemi.com/nRF51_SDK/doc/7.0.0/s110/html/a01047.html#ga0f1931af876bef39520c58de5ac060ca sd_ble_gap_tx_power_set()]. Accepted values are -40, -30, -20, -16, -12, -8, -4, 0, and 4 dBm.
  * *Disable GPIOTE module*: In first and second revision of SOC hardware there are some current consumption issues thus GPIOTE module could be disabled. Furthermore led (LED0 and LED1 indicating advertising mode and connected mode) and push buttons (somewhat pull-up/down resistors) drawn some current.
+
+Code for this step is here: [].
