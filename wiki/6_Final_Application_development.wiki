@@ -197,8 +197,7 @@ Summarize, main connection parameters to be used are:
  * Connection interval = 500 ms;
  * Slave latency = 7;
  * Supervisory timeout = 10 s;
-This allow to have a minimum transmitting period of 0.5 s if the speed change frequently and a maximum transmitting period of 4 s if the speed is quite constant.
-To change connection parameters simply overwrite following preprocessor's directive in `main.c`.
+This allow to have a minimum transmitting period of 0.5 s if the speed change frequently and a maximum transmitting period of 4 s if the speed is quite constant. To change connection parameters simply overwrite following preprocessor's directive in `main.c`.
 
 {{{
 #define MIN_CONN_INTERVAL               MSEC_TO_UNITS(500, UNIT_1_25_MS)            /**< Minimum acceptable connection interval (0.5 seconds). */
