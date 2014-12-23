@@ -448,5 +448,5 @@ https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/Sniffer
 Observe the yellow-highlighted rows: they're spaced at least 500 ms each other as desired. If no data has to be transmitted, an empty PDU is transmitted every 4 s in order to maintain the connection active. A session log of this step is available [https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/BLEEH_6_4_rev335_sniffing.pcapng here] (the file could be opened with [https://www.wireshark.org/ Wireshark]).
 
 ==5-Delete all extra functionality minimizing current consumption==
-
-TODO: implement tips suggested on wiki page [https://code.google.com/p/nrf51822-bleeh/wiki/Bluetooth_Smart_and_Low_Power_considerations Bluetooth_Smart_and_Low_Power_considerations] of this project.
+- disable all GPIO output (LED indicating advertising mode, connected mode, etc.)
+- implement tips suggested on wiki page [https://code.google.com/p/nrf51822-bleeh/wiki/Bluetooth_Smart_and_Low_Power_considerations Bluetooth_Smart_and_Low_Power_considerations] of this project.
