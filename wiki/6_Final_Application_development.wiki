@@ -183,6 +183,21 @@ The Master Control Panel does not automatically write to CCCDs unless you click 
 Into Nordic Semiconductor Developer's forum there are some useful information: [https://devzone.nordicsemi.com/question/14340/can-i-enable-notification-in-my-ble-peripheral/]
 
 ===Update connection parameters (on start-up) to preserve energy decreasing data frame rate===
+[https://code.google.com/p/nrf51822-bleeh/wiki/Bluetooth_Smart_Overview#The_Controller Connection parameters] are fundamentals in order to obtain minimum current consumption from device. This is very important in ultra-low-power device. 
+As explained [https://code.google.com/p/nrf51822-bleeh/wiki/Bluetooth_Smart_Overview#The_Controller here], main connection parameters are three:
+
+ # Connection interval: Determines how often the Central will ask for data from the Peripheral. When the Peripheral requests an update, it supplies a maximum and a minimum wanted interval. The connection interval must be between 7.5 ms and 4 s.
+ # Slave latency: By setting a non-zero slave latency, the Peripheral can choose to not answer when the Central asks for data up to the slave latency number of times. However, if the Peripheral has data to send, it can choose to send data at any time. This enables a peripheral to stay sleeping for a longer time, if it doesn't have data to send, but still send data fast if needed.
+ # Connection supervision timeout: This timeout determines the timeout from the last data exchange till a link is considered lost. A Central will not start trying to reconnect before the timeout has passed, so if you have a device which goes in and out of range often, and you need to notice when that happens, it might make sense to have a short timeout.
+
+In this application optimal connection parameters are due to a mix of feature. 
+Most important is low-power so it could be used a low frame-rate and a long supervisory timeout. However it's good to update speed-value with actual value every 500 ms. 
+This will be the value of connection interval: if the speed has an high change-rate, it will be transmitted a new speed-value every 500 ms. Instead, if speed is constant for a long period (if speed is low, this is often true), a new packet will be transmitted every (1 + connSlaveLatency) * connInterval= 4 s if the Slave_Latency is set to 7. Connection supervision timeout (connSupervisionTimeout) is a parameter that defines the maximum time between two received Data Packet PDUs before the connection is considered lost. The connSupervisionTimeout shall be a multiple of 10 ms in the range of 100 ms to 32.0 s and it shall be larger than (1 + connSlaveLatency) * connInterval * 2. Empirically it seems 10 s is a good value.
+Summarize, main connection parameters to be used are:
+ * Connection interval = 500 ms;
+ * Slave latency = 7;
+ * Supervisory timeout = 10 s;
+This allow to have a minimum transmitting period of 0.5 s if the speed change frequently and a maximum transmitting period of 4 s if the speed is quite constant. 
 On connection start-up, connection parameters are forced by central device so, in Master Control Panel we'll see following string in log tab:
 
 https://dl.dropboxusercontent.com/u/43091897/HostedFile/nRF51822_project/MCP_init_connection_parameters.png
