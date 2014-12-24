@@ -464,7 +464,7 @@ Observe the yellow-highlighted rows: they're spaced at least 500 ms each other a
 Code for this step is here: [https://code.google.com/p/nrf51822-bleeh/source/browse/#svn%2Ftags%2F6_4_Final_Application_development_step_4 svn\tags\6_4_Final_Application_development_step_4].
 
 ==5-Delete all extra functionality minimizing current consumption==
- * *Choice of 32 kHz clock source*: this clock source is ever running in system ON mode, either in CPU sleep and CPU on. A high accuracy external crystal is clearly the best choice in terms of current consumption.
+ * *Choice of 32 kHz clock source*: this clock source is ever running in system ON mode, either in CPU sleep and CPU on. A high accuracy external crystal is clearly the best choice in terms of current consumption. PCA10001 Evaluation board mount a 20 PPM accuracy crystal oscillator.
  * *Choice of 16 MHz clock source*: to minimize current consumption, is chosen 16MHz external crystal. Chose a crystal with low load capacitance, i.e. around 9 pF instead of the specified maximum of 16 pF for the nRF51 to have minimal “startup” current consumption. Unfortunately changing capacitors is not practical with this evaluation kit.
  * *Use of timers*: use the application timers that are generally used with SoftDevice stack, RTC0 in the background which is very power efficient and it's already running.
  * *Tuning connection parameters*: this is already done in [https://code.google.com/p/nrf51822-bleeh/wiki/6_Final_Application_development?ts=1419354921&updated=6_Final_Application_development#Update_connection_parameters_(on_start-up)_to_preserve_energy_de Update connection parameters] paragraph.
@@ -478,7 +478,23 @@ For some scenarios, it is convenient to advertise periodically, and that will sa
 #define APP_ADV_TIMEOUT_IN_SECONDS           180                                        /**< The advertising timeout in units of seconds. */
 }}}
 Another parameter that effects the current consumption during advertising is how many payload bytes are sent in each advertising packet.
- * *LDO mode vs Low Voltage mode vs DCDC mode*: maximum power saving mode is using Low Voltage mode however it isn't possible use this mode with the with evaluation board. [https://code.google.com/p/nrf51822-bleeh/wiki/3_Study_and_Development_of_UltraLowPower_Techniques#The_power_management LDO mode] is used instead.
+ * *LDO mode vs Low Voltage mode vs DCDC mode*: maximum power saving mode is using Low Voltage mode however it isn't possible use this mode with the with evaluation board. [https://code.google.com/p/nrf51822-bleeh/wiki/3_Study_and_Development_of_UltraLowPower_Techniques#The_power_management LDO mode] is used instead. With Softdevice, it's achieved as shown:
+{{{
+/**@brief Function for POWER configuration initialization
+ *
+ * @details Disable internal DC/DC step down and select low power mode when in system on mode.
+ */
+static void power_config_init(void)
+{
+	uint32_t                				err_code;
+	
+	err_code=sd_power_dcdc_mode_set(NRF_POWER_DCDC_MODE_OFF);	
+	APP_ERROR_CHECK(err_code);
+	
+	err_code=sd_power_mode_set(NRF_POWER_MODE_LOWPWR);
+	APP_ERROR_CHECK(err_code);
+}
+}}}
  * *Compiler optimization*: enable compiler optimization in order for you application to be executed in as few instructions as possible. This will make the code execute faster and finish sooner and will therefore save power. To enable compiler optimization in Keil, select Options for Target -> C/C++ tab and set Optimization to “Level 3” and check “Optimize for Time”.
  *  *Change the TX power* with function [http://developer.nordicsemi.com/nRF51_SDK/doc/7.0.0/s110/html/a01047.html#ga0f1931af876bef39520c58de5ac060ca sd_ble_gap_tx_power_set()]. Accepted values are -40, -30, -20, -16, -12, -8, -4, 0, and 4 dBm.
  * *Disable GPIOTE module*: In first and second revision of SOC hardware there are some current consumption issues thus GPIOTE module could be disabled. Furthermore led (LED0 and LED1 indicating advertising mode and connected mode) and push buttons (somewhat pull-up/down resistors) drawn some current.
