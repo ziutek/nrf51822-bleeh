@@ -475,16 +475,6 @@
               <FilePath>..\Source\sd_common\softdevice_handler.c</FilePath>
             </File>
             <File>
-              <FileName>app_button.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Source\app_common\app_button.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_gpiote.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Source\app_common\app_gpiote.c</FilePath>
-            </File>
-            <File>
               <FileName>ble_debug_assert_handler.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Source\ble\ble_debug_assert_handler.c</FilePath>
@@ -1078,16 +1068,6 @@
               <FileName>softdevice_handler.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Source\sd_common\softdevice_handler.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_button.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Source\app_common\app_button.c</FilePath>
-            </File>
-            <File>
-              <FileName>app_gpiote.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Source\app_common\app_gpiote.c</FilePath>
             </File>
             <File>
               <FileName>ble_debug_assert_handler.c</FileName>
