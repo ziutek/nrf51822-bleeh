@@ -26,8 +26,6 @@
 #include "softdevice_handler.h"
 #include "app_timer.h"
 #include "ble_error_log.h"
-//#include "app_gpiote.h"
-//#include "app_button.h"
 #include "ble_debug_assert_handler.h"
 #include "pstorage.h"
 #include "ble_sss.h"
@@ -45,6 +43,7 @@
 #define LEDBUTTON_BUTTON_PIN_NO         BUTTON_1
 
 #define DEVICE_NAME                     "BLE Speed Sensor"                          		/**< Name of device. Will be included in the advertising data. */
+#define TX_POWER_dBm										-12																					/**< tx power in dBm (-12 dBm) */
 
 #define APP_ADV_INTERVAL                64                                          /**< The advertising interval (in units of 0.625 ms. This value corresponds to 40 ms). */
 #define APP_ADV_TIMEOUT_IN_SECONDS      180                                         /**< The advertising timeout (in units of seconds). */
@@ -142,15 +141,6 @@ static void power_config_init(void)
 	APP_ERROR_CHECK(err_code);
 }
 
-/**@brief Function for the LEDs initialization.
- *
- * @details Initializes all LEDs used by the application.
- */
-static void leds_init(void)
-{
-    nrf_gpio_cfg_output(ADVERTISING_LED_PIN_NO);
-    nrf_gpio_cfg_output(CONNECTED_LED_PIN_NO);
-}
 
 /**@brief Function for the Timer initialization.
  *
@@ -180,6 +170,10 @@ static void gap_params_init(void)
                                           (const uint8_t *)DEVICE_NAME,
                                           strlen(DEVICE_NAME));
     APP_ERROR_CHECK(err_code);
+																			
+		err_code = sd_ble_gap_tx_power_set(TX_POWER_dBm);
+		APP_ERROR_CHECK(err_code);
+																					
 
     memset(&gap_conn_params, 0, sizeof(gap_conn_params));
 
@@ -210,7 +204,7 @@ static void advertising_init(void)
     // Build and set advertising data
     memset(&advdata, 0, sizeof(advdata));
 
-    advdata.name_type               = BLE_ADVDATA_FULL_NAME;
+    advdata.name_type               = BLE_ADVDATA_SHORT_NAME;
     advdata.include_appearance      = true;
     advdata.flags.size              = sizeof(flags);
     advdata.flags.p_data            = &flags;
@@ -349,15 +343,10 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
         case BLE_GAP_EVT_CONNECTED:
             m_conn_handle = p_ble_evt->evt.gap_evt.conn_handle;
 
-//            err_code = app_button_enable();
-//            APP_ERROR_CHECK(err_code);
             break;
 
         case BLE_GAP_EVT_DISCONNECTED:
             m_conn_handle = BLE_CONN_HANDLE_INVALID;
-
-//            err_code = app_button_disable();
-//            APP_ERROR_CHECK(err_code);
             
             advertising_start();
             break;
@@ -496,30 +485,6 @@ void speed_event_handler(uint32_t speed_data)
 }
 
 
-///**@brief Function for initializing the GPIOTE handler module.
-// */
-//static void gpiote_init(void)
-//{
-//    APP_GPIOTE_INIT(APP_GPIOTE_MAX_USERS);
-//}
-
-
-///**@brief Function for initializing the button handler module.
-// */
-//static void buttons_init(void)
-//{
-//    // Note: Array must be static because a pointer to it will be saved in the Button handler
-//    //       module.
-//    static app_button_cfg_t buttons[] =
-//    {
-//        {WAKEUP_BUTTON_PIN, false, BUTTON_PULL, NULL},
-//        {LEDBUTTON_BUTTON_PIN_NO, false, BUTTON_PULL, NULL}
-//    };
-
-//    APP_BUTTON_INIT(buttons, sizeof(buttons) / sizeof(buttons[0]), BUTTON_DETECTION_DELAY, true);
-//}
-
-
 /**@brief Function for the Power manager.
  */
 static void power_manage(void)
@@ -534,10 +499,7 @@ static void power_manage(void)
 int main(void)
 {
     // Initialize
-    leds_init();
     timers_init();
-//    gpiote_init();
-//    buttons_init();
     ble_stack_init();
     scheduler_init();  
 	  power_config_init();  
