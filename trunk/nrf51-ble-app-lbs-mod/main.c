@@ -26,8 +26,8 @@
 #include "softdevice_handler.h"
 #include "app_timer.h"
 #include "ble_error_log.h"
-#include "app_gpiote.h"
-#include "app_button.h"
+//#include "app_gpiote.h"
+//#include "app_button.h"
 #include "ble_debug_assert_handler.h"
 #include "pstorage.h"
 #include "ble_sss.h"
@@ -349,15 +349,15 @@ static void on_ble_evt(ble_evt_t * p_ble_evt)
         case BLE_GAP_EVT_CONNECTED:
             m_conn_handle = p_ble_evt->evt.gap_evt.conn_handle;
 
-            err_code = app_button_enable();
-            APP_ERROR_CHECK(err_code);
+//            err_code = app_button_enable();
+//            APP_ERROR_CHECK(err_code);
             break;
 
         case BLE_GAP_EVT_DISCONNECTED:
             m_conn_handle = BLE_CONN_HANDLE_INVALID;
 
-            err_code = app_button_disable();
-            APP_ERROR_CHECK(err_code);
+//            err_code = app_button_disable();
+//            APP_ERROR_CHECK(err_code);
             
             advertising_start();
             break;
@@ -496,28 +496,28 @@ void speed_event_handler(uint32_t speed_data)
 }
 
 
-/**@brief Function for initializing the GPIOTE handler module.
- */
-static void gpiote_init(void)
-{
-    APP_GPIOTE_INIT(APP_GPIOTE_MAX_USERS);
-}
+///**@brief Function for initializing the GPIOTE handler module.
+// */
+//static void gpiote_init(void)
+//{
+//    APP_GPIOTE_INIT(APP_GPIOTE_MAX_USERS);
+//}
 
 
-/**@brief Function for initializing the button handler module.
- */
-static void buttons_init(void)
-{
-    // Note: Array must be static because a pointer to it will be saved in the Button handler
-    //       module.
-    static app_button_cfg_t buttons[] =
-    {
-        {WAKEUP_BUTTON_PIN, false, BUTTON_PULL, NULL},
-        {LEDBUTTON_BUTTON_PIN_NO, false, BUTTON_PULL, NULL}
-    };
+///**@brief Function for initializing the button handler module.
+// */
+//static void buttons_init(void)
+//{
+//    // Note: Array must be static because a pointer to it will be saved in the Button handler
+//    //       module.
+//    static app_button_cfg_t buttons[] =
+//    {
+//        {WAKEUP_BUTTON_PIN, false, BUTTON_PULL, NULL},
+//        {LEDBUTTON_BUTTON_PIN_NO, false, BUTTON_PULL, NULL}
+//    };
 
-    APP_BUTTON_INIT(buttons, sizeof(buttons) / sizeof(buttons[0]), BUTTON_DETECTION_DELAY, true);
-}
+//    APP_BUTTON_INIT(buttons, sizeof(buttons) / sizeof(buttons[0]), BUTTON_DETECTION_DELAY, true);
+//}
 
 
 /**@brief Function for the Power manager.
@@ -536,8 +536,8 @@ int main(void)
     // Initialize
     leds_init();
     timers_init();
-    gpiote_init();
-    buttons_init();
+//    gpiote_init();
+//    buttons_init();
     ble_stack_init();
     scheduler_init();  
 	  power_config_init();  
